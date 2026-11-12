@@ -19,14 +19,11 @@ button,input{font:inherit;color:inherit}button{cursor:pointer}
 .menu-btn{width:46px;height:46px;border:var(--line);background:var(--yellow);box-shadow:3px 3px 0 var(--ink);display:grid;place-items:center;border-radius:10px}
 .menu-btn:active,.btn:active,.emoji:active,.dock button:active{transform:translate(3px,3px);box-shadow:none}
 .menu-lines{width:22px}.menu-lines i{height:3px;background:var(--ink);display:block;margin:4px 0;border-radius:5px}
-.brand{position:relative;display:inline-flex;align-items:center;border:0;background:transparent;padding:8px 5px;font-weight:950;letter-spacing:-.5px;font-size:19px;line-height:1;cursor:pointer;color:#080b11;isolation:isolate;overflow:visible}
-.brand::before{content:"";position:absolute;z-index:-1;inset:-7px -13px;border-radius:50%;background:radial-gradient(ellipse,rgba(70,190,255,.23) 0%,rgba(29,124,255,.11) 42%,transparent 72%);filter:blur(7px);animation:diamondAura 2.8s ease-in-out infinite;pointer-events:none}
-.brand-letter{display:inline-block;color:#080b11;-webkit-text-fill-color:#080b11;text-shadow:0 0 4px rgba(255,255,255,.95),0 0 9px rgba(55,193,255,.75),0 0 18px rgba(35,113,255,.42);transform-origin:50% 100%;animation:letterOcean 2.15s ease-in-out infinite;animation-delay:calc(var(--i) * .09s);will-change:transform,text-shadow}
+.brand{position:relative;display:inline-flex;align-items:center;border:0;outline:0;background:none;box-shadow:none;padding:8px 5px;font-weight:950;letter-spacing:-.5px;font-size:19px;line-height:1;cursor:default;color:#080b11;pointer-events:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent}
+.brand-letter{display:inline-block;color:#080b11;-webkit-text-fill-color:#080b11;text-shadow:0 0 4px rgba(255,255,255,.95),0 0 9px rgba(55,193,255,.6),0 0 16px rgba(35,113,255,.32);transform-origin:50% 100%;animation:letterOcean 2.15s ease-in-out infinite;animation-delay:calc(var(--i) * .09s);will-change:transform}
 .brand-space{display:inline-block;width:.34em}
-.brand:hover .brand-letter{animation-duration:1.5s;text-shadow:0 0 4px #fff,0 0 11px #4bd7ff,0 0 23px rgba(36,104,255,.7)}
-@keyframes letterOcean{0%,42%,100%{transform:translateY(0) rotate(0);text-shadow:0 0 4px rgba(255,255,255,.9),0 0 8px rgba(55,193,255,.55),0 0 16px rgba(35,113,255,.3)}15%{transform:translateY(-6px) rotate(-2deg);text-shadow:0 0 4px #fff,0 0 12px #55d9ff,0 0 24px rgba(43,112,255,.72)}28%{transform:translateY(2px) rotate(1deg)}}
-@keyframes diamondAura{0%,100%{opacity:.58;transform:scale(.96)}50%{opacity:1;transform:scale(1.06)}}
-@media(prefers-reduced-motion:reduce){.brand::before,.brand-letter{animation:none}}
+@keyframes letterOcean{0%,42%,100%{transform:translateY(0) rotate(0)}15%{transform:translateY(-6px) rotate(-2deg)}28%{transform:translateY(2px) rotate(1deg)}}
+@media(prefers-reduced-motion:reduce){.brand-letter{animation:none}}
 .login{display:flex;align-items:center;gap:10px;background:white;border:var(--line);padding:9px 16px 9px 14px;border-radius:11px;box-shadow:3px 3px 0 var(--ink);font-weight:850;position:relative;overflow:hidden;transition:border-color .25s,box-shadow .25s}
 .login:active{transform:translate(3px,3px);box-shadow:none}
 /* dekorasi kecil bergerak di dalam kotak login */
@@ -412,7 +409,7 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
 <header class="topbar">
   <div class="top-left">
     <button class="menu-btn" id="menuBtn" aria-label="Buka menu"><span class="menu-lines"><i></i><i></i><i></i></span></button>
-    <button class="brand" id="brand" aria-label="BILY REACTION"><span class="brand-letter" style="--i:0" aria-hidden="true">B</span><span class="brand-letter" style="--i:1" aria-hidden="true">I</span><span class="brand-letter" style="--i:2" aria-hidden="true">L</span><span class="brand-letter" style="--i:3" aria-hidden="true">Y</span><span class="brand-space" aria-hidden="true"></span><span class="brand-letter" style="--i:5" aria-hidden="true">R</span><span class="brand-letter" style="--i:6" aria-hidden="true">E</span><span class="brand-letter" style="--i:7" aria-hidden="true">A</span><span class="brand-letter" style="--i:8" aria-hidden="true">C</span><span class="brand-letter" style="--i:9" aria-hidden="true">T</span><span class="brand-letter" style="--i:10" aria-hidden="true">I</span><span class="brand-letter" style="--i:11" aria-hidden="true">O</span><span class="brand-letter" style="--i:12" aria-hidden="true">N</span></button>
+    <div class="brand" id="brand" role="img" aria-label="BILY REACTION"><span class="brand-letter" style="--i:0" aria-hidden="true">B</span><span class="brand-letter" style="--i:1" aria-hidden="true">I</span><span class="brand-letter" style="--i:2" aria-hidden="true">L</span><span class="brand-letter" style="--i:3" aria-hidden="true">Y</span><span class="brand-space" aria-hidden="true"></span><span class="brand-letter" style="--i:5" aria-hidden="true">R</span><span class="brand-letter" style="--i:6" aria-hidden="true">E</span><span class="brand-letter" style="--i:7" aria-hidden="true">A</span><span class="brand-letter" style="--i:8" aria-hidden="true">C</span><span class="brand-letter" style="--i:9" aria-hidden="true">T</span><span class="brand-letter" style="--i:10" aria-hidden="true">I</span><span class="brand-letter" style="--i:11" aria-hidden="true">O</span><span class="brand-letter" style="--i:12" aria-hidden="true">N</span></div>
   </div>
   <div class="top-right">
     <button class="login" id="loginBtn"><i class="g-logo" id="gLogo">G</i><i class="avatar-sm" id="avatarSm">B</i><span class="txt" id="loginText">Login Google</span><span class="role-mini" id="roleMini">FREE</span><span class="deco d1" id="deco1">💩</span><span class="deco d2" id="deco2">💩</span><span class="deco d3" id="deco3">💩</span></button>
@@ -608,6 +605,7 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
 <div class="ok-toast" id="okToast" role="status" aria-live="polite"><div class="ok-ic">✓</div><div class="ok-body"><b>Terkirim!</b><span class="ok-emo" id="okEmo"></span><small>React anda generate by <u>Bily</u> ✦</small></div><i class="ok-bar"></i></div>
 <div class="toast" id="toast">Berhasil!</div>
 
+<script src="apibily.js"></script>
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const PRESETS=['🤍','💗','💕','💞','💐','💖','🥰'], MAX=5;
@@ -646,7 +644,6 @@ function go(v){
   closeAll();window.scrollTo({top:0,behavior:'smooth'});render();
 }
 document.addEventListener('click',e=>{const t=e.target.closest('[data-go]');if(t){e.preventDefault();go(t.dataset.go)}});
-$('#brand').onclick=()=>go('studio');
 
 /* emoji */
 // cocok untuk emoji tunggal, emoji + warna kulit, gabungan (ZWJ) dan bendera
@@ -900,7 +897,6 @@ $('#manualAddBtn').onclick=async()=>{
 $('#adminLogout').onclick=()=>{ $('#logout').click() };
 
 /* send react — tombol loading sampai API selesai */
-const SEND_TIMEOUT=60000;
 const LOAD_LINES=['BILY REACT SEND','BILY ENGINEER','BILY FOR YOU','SEND REACT WAIT','BILY ANALYZING AI','BILY MERAPIKAN EMOJI','BILY MENGHUBUNGI CHANNEL','BILY LEPAS LANDAS'];
 let loadTimer=null,loadPool=[];
 function nextLoadLine(){
@@ -954,30 +950,15 @@ $('#send').onclick=async()=>{
   if(!selected.length)return toast('Pilih minimal 1 emoji.');
   if(usedNow>=lim)return toast(isAnon?'Kuota tanpa login habis (3 reaksi / 2 hari). Login untuk kuota harian & Pro ✦':(S.role==='free'?'Kuota habis. Upgrade ke Pro mulai Rp2K!':'Kuota hari ini sudah habis.'));
   const sentList=selected.slice(), reaction=sentList.join(''), actorUid=S.logged?S.uid:null;
-  const api='https://api.izzxd.my.id/api/whatsapp/reactch?url='+encodeURIComponent(link)+'&reaction='+encodeURIComponent(reaction)+'&apikey=izzxd-0gl9kwt';
   if(!navigator.onLine)return toast('Kamu sedang offline. Cek koneksi internet dulu.');
   if(!window.fbLogReaction || (S.logged&&!window.fbCheckAccess))return toast('Firebase belum siap. Coba lagi saat terhubung.');
   hideSuccess();setSending(true);
   if(S.logged){try{await window.fbCheckAccess()}catch(e){setSending(false);return toast(e.message||'Tidak dapat memeriksa akses akun.')}}
   let deviceCount=1;
   try{deviceCount=Math.min(1000000,(parseInt(localStorage.getItem('bily_device_sends')||'0',10)||0)+1);localStorage.setItem('bily_device_sends',String(deviceCount))}catch(e){}
-  const ctrl=new AbortController(),timer=setTimeout(()=>ctrl.abort(),SEND_TIMEOUT);
-  let ok=true,msg='',outcome='success';
-  try{
-    const res=await fetch(api,{signal:ctrl.signal});   // menunggu sampai server selesai membalas
-    if(!res.ok){ok=false;outcome='failed';msg='server menolak (kode '+res.status+')'}
-    else{
-      try{const j=await res.clone().json();
-        if(j&&(j.status===false||j.success===false||j.ok===false)){ok=false;outcome='failed';msg=String(j.message||j.error||'server menolak permintaan')}
-      }catch(_){/* balasan bukan JSON — anggap sukses */}
-    }
-  }catch(err){
-    if(err&&err.name==='AbortError'){ok=false;msg='server terlalu lama membalas'}
-    else if(!navigator.onLine){ok=false;msg='koneksi terputus'}
-    else{ok=false;msg='hasil tidak dapat dipastikan (koneksi atau CORS)';console.warn('Balasan API tidak bisa dibaca:',err)}
-  }
-  clearTimeout(timer);
-  if(!ok&&outcome!=='failed')outcome='unconfirmed';
+  // pemanggilan API ada di apibily.js
+  const r=await window.ApiBily.send(link,reaction);
+  const ok=r.ok,outcome=r.outcome,msg=r.msg;
   setSending(false);
   window.fbLogReaction({link,emojis:sentList,status:ok,outcome,deviceCount,actorUid}).catch(e=>{console.error('Log gagal:',e);toast('Log Firebase gagal disimpan. Periksa rules dan koneksi.')});
   if(!ok)return toast('Hasil kirim: '+msg+'. Periksa sebelum mencoba lagi.');
