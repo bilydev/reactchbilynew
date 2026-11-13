@@ -421,6 +421,12 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
 @media(prefers-reduced-motion:reduce){.nav-badge{animation:none}}
 
 /* ===== fake call ===== */
+.nav-item .ni-ic svg{width:21px;height:21px}
+.fc-field input::placeholder{color:#a19aa5;font-weight:600}
+.fc-result{display:none}.fc-result.show{display:block}
+.fc-message{margin-top:18px;color:#665f6a;font-size:13px;font-weight:750;line-height:1.5}.fc-message:empty{display:none}
+.fc-btn-icon{width:19px;height:19px;vertical-align:middle;margin-right:5px}
+
 .fc-form{display:grid;gap:17px;margin-bottom:20px}.fc-field label{display:block;font-size:13px;font-weight:950;margin-bottom:7px}.fc-field input,.fc-field select{width:100%;border:var(--line);border-radius:12px;background:#fff;padding:13px 14px;color:var(--ink);font:inherit;font-weight:750}.fc-field input:focus,.fc-field select:focus{outline:3px solid var(--purple);outline-offset:2px}.fc-field small{display:block;margin-top:7px;color:#665f6a;font-weight:700;line-height:1.5}.fc-upload{background:#fff8e4;border:2px dashed var(--ink);border-radius:12px;padding:14px}.fc-upload input{padding:8px;background:#fff;font-size:13px}.fc-preview{width:60px;height:60px;border:2px solid var(--ink);border-radius:50%;object-fit:cover;margin-top:10px;display:none}
 
 .fc-wrap{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:28px;align-items:start}
@@ -475,11 +481,9 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
   <div class="side-head"><div class="brand" style="cursor:default">BILY</div><button class="close" id="closeSide">×</button></div>
   <nav class="nav">
     <div class="nav-label">✦ MENU UTAMA</div>
-    <button class="nav-item" type="button" data-go="studio"><span class="ni-ic">😊</span><span class="ni-txt">Reaction Studio<small>Kirim reaksi ke channel WA</small></span></button>
-    <button class="nav-item" type="button" data-go="market"><span class="ni-ic">🛒</span><span class="ni-txt">Market<small>Beli paket Pro mulai Rp2K</small></span></button>
-    <button class="nav-item" type="button" data-go="profile"><span class="ni-ic">👤</span><span class="ni-txt">Profil<small>Paket, limit &amp; masa aktif</small></span></button>
+    <button class="nav-item" type="button" data-go="studio"><span class="ni-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 14a4 4 0 0 0 8 0M9 9h.01M15 9h.01"/></svg></span><span class="ni-txt">Reaction Studio<small>Kirim reaksi ke channel WA</small></span></button>
     <div class="nav-label">✦ FITUR BARU</div>
-    <button class="nav-item fresh" type="button" data-go="fakecall"><span class="ni-ic">📞</span><span class="ni-txt">Fake Call<small>Gambar layar panggilan palsu</small></span><span class="nav-badge">BARU</span></button>
+    <button class="nav-item fresh" type="button" data-go="fakecall"><span class="ni-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.4 19.4 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7l.4 2.8a2 2 0 0 1-.6 1.7L7.6 9.5a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 1.7-.6l2.8.4a2 2 0 0 1 1.6 2.9Z"/></svg></span><span class="ni-txt">Fake Call<small>Gambar layar panggilan palsu</small></span><span class="nav-badge">BARU</span></button>
     <button class="nav-item" type="button" data-go="control" id="sideControl" style="display:none"><span class="ni-ic">⌘</span><span class="ni-txt">Control Web<small>Khusus owner</small></span></button>
     <div class="nav-foot">✦ Bily Reaction — generate by Bily Developer. Pilih menu di atas untuk mulai.</div>
   </nav>
@@ -617,41 +621,28 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
   <!-- FAKE CALL -->
   <section class="view" id="v-fakecall">
     <div class="blob one"></div><div class="blob two"></div>
-    <div class="page-head"><span class="eyebrow">📞 FAKE CALL</span><h2>Fake call, seru-seruan.</h2><p>Buat gambar layar panggilan masuk palsu — cocok buat prank teman atau konten lucu. Isi detail panggilan, pilih tema, lalu buat gambarnya.</p></div>
+    <div class="page-head"><span class="eyebrow">FAKE CALL</span><h2>Fake call, seru-seruan.</h2><p>Buat gambar layar panggilan masuk palsu — cocok buat prank teman atau konten lucu. Isi detail panggilan, pilih tema, lalu buat gambarnya.</p></div>
     <div class="fc-wrap">
       <div class="panel">
         <div class="panel-head"><h2>Fake Call Studio</h2><span class="step">GENERATE</span></div>
         <div class="panel-body">
           <div class="fc-form">
-            <div class="fc-field"><label for="fcName">Nama / username</label><input id="fcName" type="text" maxlength="80" placeholder="Contoh: dede" required></div>
-            <div class="fc-field"><label for="fcDuration">Durasi telepon</label><input id="fcDuration" type="text" inputmode="decimal" maxlength="14" placeholder="Contoh: 20.12.09" pattern="[0-9]+\.[0-9]+\.[0-9]+" required><small>Gunakan angka dan titik, misalnya 20.12.09.</small></div>
-            <div class="fc-field"><label for="fcTheme">Tema panggilan</label><select id="fcTheme"><option value="android">🤖 Android</option><option value="ios">🍎 iOS</option></select></div>
+            <div class="fc-field"><label for="fcName">Nama / username</label><input id="fcName" type="text" maxlength="80" placeholder="Username" required></div>
+            <div class="fc-field"><label for="fcDuration">Durasi telepon</label><input id="fcDuration" type="text" inputmode="decimal" maxlength="14" placeholder="20.12.09" pattern="[0-9]+\.[0-9]+\.[0-9]+" required><small>Gunakan angka dan titik, misalnya 20.12.09.</small></div>
+            <div class="fc-field"><label for="fcTheme">Tema panggilan</label><select id="fcTheme"><option value="android">Android</option><option value="ios">iOS</option></select></div>
             <div class="fc-field fc-upload"><label for="fcPhoto">Foto profil <span style="font-weight:700">(opsional)</span></label><input id="fcPhoto" type="file" accept="image/png,image/jpeg,image/webp"><img id="fcPhotoPreview" class="fc-preview" alt="Pratinjau foto profil"><small>PNG, JPG, atau WebP, maksimal 5 MB. Foto ditambahkan di bagian atas gambar hasil pada perangkatmu.</small></div>
           </div>
-          <button class="btn send" id="fcGen" type="button"><span id="fcGenLabel">BUAT FAKE CALL 📞</span></button>
-          <p class="fc-note">✦ Gambar dibuat dengan API Fake Call. Setelah berhasil, buka hasilnya untuk menyimpan atau membagikannya.</p>
+          <button class="btn send" id="fcGen" type="button"><span id="fcGenLabel">BUAT FAKE CALL</span></button>
+          <div class="fc-message" id="fcMessage" role="status" aria-live="polite"></div>
         </div>
       </div>
-      <div>
-        <div class="fc-phone">
-          <div class="fc-notch"></div>
-          <div class="fc-screen" id="fcScreen" aria-live="polite">
-            <div class="fc-state" id="fcEmpty"><span class="big">📞</span><h3>Belum ada gambar</h3><p>Klik <b>BUAT FAKE CALL</b> di atas,<br>gambarnya langsung muncul di sini.</p></div>
-            <div class="fc-state" id="fcLoading" style="display:none"><div class="fc-spin"></div><h3>Membuat fake call…</h3><p>Sebentar ya, lagi nelpon API ✦</p></div>
-            <div class="fc-state" id="fcError" style="display:none"><span class="big">😢</span><h3>Gagal membuat</h3><p id="fcErrorText">Cek koneksi internet kamu, lalu coba lagi ya.</p></div>
-            <img id="fcImg" alt="Hasil fake call" style="display:none">
-          </div>
-        </div>
+      <div class="fc-result" id="fcResult">
+        <div class="fc-phone"><div class="fc-notch"></div><div class="fc-screen"><img id="fcImg" alt="Hasil fake call"></div></div>
         <div class="fc-actions">
-          <button class="btn" id="fcDownload" type="button" style="background:var(--green)" disabled>⬇ DOWNLOAD</button>
-          <button class="btn" id="fcOpen" type="button" disabled>🔍 LIHAT PENUH</button>
+          <button class="btn" id="fcDownload" type="button" style="background:var(--green)" disabled><svg class="fc-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M4 17v3h16v-3"/></svg>DOWNLOAD</button>
+          <button class="btn" id="fcOpen" type="button" disabled><svg class="fc-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12s3.3-6 9-6 9 6 9 6-3.3 6-9 6-9-6-9-6Z"/><circle cx="12" cy="12" r="3"/></svg>LIHAT PENUH</button>
         </div>
       </div>
-    </div>
-    <div class="fc-tips">
-      <div class="fc-tip"><span class="fc-tip-ic">⚡</span><b>Mudah dibuat</b><p>Klik tombol generate dan tunggu gambar selesai dibuat.</p></div>
-      <div class="fc-tip"><span class="fc-tip-ic">🤖</span><b>Android &amp; iOS</b><p>Pilih tampilan panggilan yang kamu suka.</p></div>
-      <div class="fc-tip"><span class="fc-tip-ic">🎭</span><b>Buat prank seru</b><p>Tunjukin ke teman seolah ada yang nelpon. Pakai dengan bijak ya!</p></div>
     </div>
   </section>
 
@@ -750,8 +741,8 @@ document.addEventListener('click',e=>{const t=e.target.closest('[data-go]');if(t
 /* Fake Call */
 let fcObjectUrl = null, fcResultUrl = '', fcExtension = '';
 function fcState(state, message){
-  ['Empty','Loading','Error','Img'].forEach(name => { $('#fc'+name).style.display = name.toLowerCase() === state ? (name === 'Img' ? 'block' : 'flex') : 'none'; });
-  if(message) $('#fcErrorText').textContent = message;
+  $('#fcResult').classList.toggle('show', state === 'img');
+  $('#fcMessage').textContent = state === 'loading' ? 'Sedang membuat gambar…' : (state === 'error' ? (message || 'Gagal membuat gambar. Coba lagi.') : '');
 }
 function fcFindUrl(value, depth){
   if(depth > 5 || value == null) return '';
@@ -838,7 +829,7 @@ $('#fcGen').addEventListener('click', async () => {
     if(fcObjectUrl){ URL.revokeObjectURL(fcObjectUrl); fcObjectUrl = null; }
     fcResultUrl = ''; fcState('error', err.name === 'AbortError' ? 'API terlalu lama merespons. Coba lagi.' : (err.message || 'Gagal menghubungi API. Coba lagi.'));
   } finally {
-    clearTimeout(timer); button.disabled = false; button.removeAttribute('aria-busy'); $('#fcGenLabel').textContent = 'BUAT FAKE CALL 📞';
+    clearTimeout(timer); button.disabled = false; button.removeAttribute('aria-busy'); $('#fcGenLabel').textContent = 'BUAT FAKE CALL';
   }
 });
 $('#fcOpen').addEventListener('click', () => { if(fcResultUrl) window.open(fcResultUrl, '_blank', 'noopener,noreferrer'); });

@@ -15,12 +15,15 @@ module.exports = async function handler(req, res) {
     return res.status(400).json({ message: 'Isi nama, durasi (contoh 20.12.09), dan tema Android atau iOS.' });
   }
   const target = new URL(endpoint);
-  target.search = new URLSearchParams({ nama: name, durasi: duration, theme, apikey: 'bilyapiforyou' }).toString();
+  target.search = new URLSearchParams({ nama: name, durasi: duration, theme, apikey: process.env.FAKECALL_API_KEY || 'bilyapiforyou' }).toString();
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), 50000);
   try {
     const upstream = await fetch(target.toString(), { signal: controller.signal, headers: { Accept: 'image/*, application/json, text/plain, */*' } });
-    if (!upstream.ok) return res.status(502).json({ message: 'API Fake Call membalas kode ' + upstream.status + '.' });
+    if (!upstream.ok) {
+      if (upstream.status === 403) return res.status(502).json({ message: 'API Fake Call menolak akses (403). Periksa API key atau izin akses dengan penyedia API.' });
+      return res.status(502).json({ message: 'API Fake Call membalas kode ' + upstream.status + '. Coba lagi nanti.' });
+    }
     const type = upstream.headers.get('content-type') || 'application/octet-stream';
     if (!/^image\/(png|jpeg|webp|gif)(?:\s*;|$)/i.test(type) && !/^(application\/json|text\/plain)(?:\s*;|$)/i.test(type)) {
       return res.status(502).json({ message: 'Format respons API tidak dikenali.' });
