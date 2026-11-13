@@ -839,7 +839,7 @@ $('#fcOpen').addEventListener('click', () => { if(fcResultUrl) window.open(fcRes
 $('#fcDownload').addEventListener('click', () => {
   if(!fcResultUrl) return;
   if(!fcObjectUrl){ window.open(fcResultUrl, '_blank', 'noopener,noreferrer'); toast('Simpan gambar dari halaman yang terbuka ya.'); return; }
-  const link = document.createElement('a'); link.href = fcObjectUrl; link.download = 'fake-call' + fcExtension; document.body.appendChild(link); link.click(); link.remove();
+  const link = document.createElement('a'); link.href = fcObjectUrl; link.download = 'bily-developed-fakecall-pro' + fcExtension; document.body.appendChild(link); link.click(); link.remove();
 });
 
 /* emoji */
