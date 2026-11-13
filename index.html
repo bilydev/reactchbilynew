@@ -429,6 +429,7 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
 
 .fc-form{display:grid;gap:17px;margin-bottom:20px}.fc-field label{display:block;font-size:13px;font-weight:950;margin-bottom:7px}.fc-field input,.fc-field select{width:100%;border:var(--line);border-radius:12px;background:#fff;padding:13px 14px;color:var(--ink);font:inherit;font-weight:750}.fc-field input:focus,.fc-field select:focus{outline:3px solid var(--purple);outline-offset:2px}.fc-field small{display:block;margin-top:7px;color:#665f6a;font-weight:700;line-height:1.5}.fc-upload{background:#fff8e4;border:2px dashed var(--ink);border-radius:12px;padding:14px}.fc-upload input{padding:8px;background:#fff;font-size:13px}.fc-preview{width:60px;height:60px;border:2px solid var(--ink);border-radius:50%;object-fit:cover;margin-top:10px;display:none}
 
+ .fc-theme-picker{position:relative}.fc-theme-picker summary{list-style:none;cursor:pointer;border:var(--line);border-radius:12px;background:#fff;padding:13px 14px;font-weight:850;display:flex;align-items:center;justify-content:space-between}.fc-theme-picker summary::-webkit-details-marker{display:none}.fc-theme-picker summary:focus-visible,.fc-theme-option:focus-visible,.fc-upload-label:focus-within{outline:3px solid var(--purple);outline-offset:2px}.fc-theme-list{margin-top:8px;display:grid;gap:7px;padding:8px;border:2px solid var(--ink);border-radius:12px;background:#fff;box-shadow:3px 3px 0 var(--ink)}.fc-theme-option{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;border:0;border-radius:8px;background:#fff;padding:10px 12px;font:inherit;font-weight:800;text-align:left;cursor:pointer}.fc-theme-option:hover,.fc-theme-option[aria-pressed="true"]{background:var(--soft)}.fc-theme-option svg,.fc-upload-label svg{width:20px;height:20px;flex:none}.fc-option-name{display:flex;gap:10px;align-items:center}.fc-check{visibility:hidden}.fc-theme-option[aria-pressed="true"] .fc-check{visibility:visible}.fc-upload{background:#fff;border:2px dashed #aaa0ad;border-radius:12px;padding:14px}.fc-field .fc-upload-label{display:flex;align-items:center;gap:12px;cursor:pointer;font-weight:850}.fc-upload-icon{display:grid;place-items:center;width:42px;height:42px;background:var(--soft);border:2px solid var(--ink);border-radius:10px;flex:none}.fc-upload-copy{min-width:0}.fc-upload-copy small{margin-top:3px}.fc-file{position:absolute!important;width:1px!important;height:1px!important;opacity:0;overflow:hidden}.fc-upload .fc-preview{margin-left:54px}
 .fc-wrap{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:28px;align-items:start}
 .fc-themes{display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:20px}
 .fc-theme{border:var(--line);border-radius:14px;background:#fff;padding:16px 10px;text-align:center;box-shadow:3px 3px 0 var(--ink);transition:.1s;cursor:pointer;color:var(--ink)}
@@ -629,8 +630,8 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
           <div class="fc-form">
             <div class="fc-field"><label for="fcName">Nama / username</label><input id="fcName" type="text" maxlength="80" placeholder="Username" required></div>
             <div class="fc-field"><label for="fcDuration">Durasi telepon</label><input id="fcDuration" type="text" inputmode="decimal" maxlength="14" placeholder="20.12.09" pattern="[0-9]+\.[0-9]+\.[0-9]+" required><small>Gunakan angka dan titik, misalnya 20.12.09.</small></div>
-            <div class="fc-field"><label for="fcTheme">Tema panggilan</label><select id="fcTheme"><option value="android">Android</option><option value="ios">iOS</option></select></div>
-            <div class="fc-field fc-upload"><label for="fcPhoto">Foto profil <span style="font-weight:700">(opsional)</span></label><input id="fcPhoto" type="file" accept="image/png,image/jpeg,image/webp"><img id="fcPhotoPreview" class="fc-preview" alt="Pratinjau foto profil"><small>PNG, JPG, atau WebP, maksimal 5 MB. Foto ditambahkan di bagian atas gambar hasil pada perangkatmu.</small></div>
+            <div class="fc-field"><label id="fcThemeLabel">Tema panggilan</label><details class="fc-theme-picker" id="fcThemePicker"><summary aria-labelledby="fcThemeLabel fcThemeText"><span id="fcThemeText">Android</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><div class="fc-theme-list" aria-label="Pilih tema"><button class="fc-theme-option" type="button" data-fc-theme="android" aria-pressed="true"><span class="fc-option-name"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M10 18h4"/></svg>Android</span><span class="fc-check" aria-hidden="true">✓</span></button><button class="fc-theme-option" type="button" data-fc-theme="ios" aria-pressed="false"><span class="fc-option-name"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M10 5h4M11 19h2"/></svg>iOS</span><span class="fc-check" aria-hidden="true">✓</span></button></div></details></div>
+            <div class="fc-field fc-upload"><label class="fc-upload-label" for="fcPhoto"><span class="fc-upload-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8" cy="8" r="1.5"/><path d="m3 17 5-5 4 4 3-3 6 6"/></svg></span><span class="fc-upload-copy">Pilih foto profil <small>Opsional · JPG, PNG, WebP · maks. 5 MB</small></span><input class="fc-file" id="fcPhoto" type="file" accept="image/png,image/jpeg,image/webp"></label><img id="fcPhotoPreview" class="fc-preview" alt="Pratinjau foto profil"></div>
           </div>
           <button class="btn send" id="fcGen" type="button"><span id="fcGenLabel">BUAT FAKE CALL</span></button>
           <div class="fc-message" id="fcMessage" role="status" aria-live="polite"></div>
@@ -739,7 +740,12 @@ function go(v){
 document.addEventListener('click',e=>{const t=e.target.closest('[data-go]');if(t){e.preventDefault();go(t.dataset.go)}});
 
 /* Fake Call */
-let fcObjectUrl = null, fcResultUrl = '', fcExtension = '';
+let fcObjectUrl = null, fcResultUrl = '', fcExtension = '', fcTheme = 'android';
+$$('[data-fc-theme]').forEach(option => option.addEventListener('click', () => {
+  fcTheme = option.dataset.fcTheme; $('#fcThemeText').textContent = fcTheme === 'ios' ? 'iOS' : 'Android';
+  $$('[data-fc-theme]').forEach(item => item.setAttribute('aria-pressed', String(item === option)));
+  $('#fcThemePicker').open = false; $('#fcThemePicker summary').focus();
+}));
 function fcState(state, message){
   $('#fcResult').classList.toggle('show', state === 'img');
   $('#fcMessage').textContent = state === 'loading' ? 'Sedang membuat gambar…' : (state === 'error' ? (message || 'Gagal membuat gambar. Coba lagi.') : '');
@@ -766,7 +772,7 @@ $('#fcPhoto').addEventListener('change', () => {
   preview.dataset.url = URL.createObjectURL(file); preview.src = preview.dataset.url; preview.style.display = 'block';
 });
 $('#fcGen').addEventListener('click', async () => {
-  const name = $('#fcName').value.trim(), duration = $('#fcDuration').value.trim(), theme = $('#fcTheme').value;
+  const name = $('#fcName').value.trim(), duration = $('#fcDuration').value.trim(), theme = fcTheme;
   if(!name){ toast('Isi nama atau username dulu ya.'); $('#fcName').focus(); return; }
   if(!/^\d{1,4}\.\d{1,4}\.\d{1,4}$/.test(duration)){ toast('Isi durasi dengan format angka.titik.angka.titik.angka, misalnya 20.12.09.'); $('#fcDuration').focus(); return; }
   const photo = $('#fcPhoto').files[0];
