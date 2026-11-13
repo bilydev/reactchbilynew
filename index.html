@@ -462,6 +462,19 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
 @media(max-width:900px){.fc-wrap{grid-template-columns:1fr}.fc-phone{max-width:340px;margin:auto;width:100%}}
 @media(max-width:640px){.fc-tips{grid-template-columns:1fr}.fc-screen{max-height:460px}}
 @media(prefers-reduced-motion:reduce){.fc-state .big{animation:none}.fc-spin{animation-duration:1.6s}}
+
+/* Fake Call: light, straight preview and centered avatar picker */
+.fc-phone{max-width:340px;margin:auto;border:3px solid var(--ink);border-radius:35px;background:#fff3f9;padding:10px;box-shadow:none;transform:none}
+.fc-notch{width:80px;height:13px;background:#dfc9d5;border-radius:0 0 10px 10px}
+.fc-screen{border:2px solid var(--ink);border-radius:25px;margin-top:-13px;max-height:none}
+.fc-upload{padding:0;border:2px dashed #b6a5b1;border-radius:16px;background:#fff9fc;transition:border-color .2s,background .2s}
+.fc-upload:hover,.fc-upload:focus-within{border-color:var(--ink);background:#fff1f8}
+.fc-field .fc-upload-label{min-height:180px;margin:0;padding:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center}
+.fc-upload-icon{width:54px;height:54px;border-radius:50%;background:var(--soft)}
+.fc-upload-label .fc-upload-icon svg{width:24px;height:24px}
+.fc-upload-copy{font-size:14px}.fc-upload-copy small{font-size:11px}
+.fc-upload .fc-preview{width:110px;height:110px;margin:0;border:3px solid var(--ink);border-radius:50%;object-fit:cover;background:#fff}
+.fc-upload.has-photo .fc-upload-icon,.fc-upload.has-photo .fc-upload-copy{display:none}
 </style>
 </head>
 <body>
@@ -628,10 +641,10 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
         <div class="panel-head"><h2>Fake Call Studio</h2><span class="step">GENERATE</span></div>
         <div class="panel-body">
           <div class="fc-form">
-            <div class="fc-field"><label for="fcName">Nama / username</label><input id="fcName" type="text" maxlength="80" placeholder="Username" required></div>
-            <div class="fc-field"><label for="fcDuration">Durasi telepon</label><input id="fcDuration" type="text" inputmode="decimal" maxlength="14" placeholder="20.12.09" pattern="[0-9]+\.[0-9]+\.[0-9]+" required><small>Gunakan angka dan titik, misalnya 20.12.09.</small></div>
+            <div class="fc-field"><label for="fcName">Nama / username</label><input id="fcName" type="text" maxlength="80" placeholder="Username" aria-describedby="fcNameHint" required><small id="fcNameHint">Masukan nama</small></div>
+            <div class="fc-field"><label for="fcDuration">Durasi telepon</label><input id="fcDuration" type="text" inputmode="decimal" maxlength="14" placeholder="24.12.05" pattern="[0-9]+\.[0-9]+\.[0-9]+" aria-describedby="fcDurationHint" required><small id="fcDurationHint">Masukan seperti ini 24.12.05</small></div>
             <div class="fc-field"><label id="fcThemeLabel">Tema panggilan</label><details class="fc-theme-picker" id="fcThemePicker"><summary aria-labelledby="fcThemeLabel fcThemeText"><span id="fcThemeText">Android</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><div class="fc-theme-list" aria-label="Pilih tema"><button class="fc-theme-option" type="button" data-fc-theme="android" aria-pressed="true"><span class="fc-option-name"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M10 18h4"/></svg>Android</span><span class="fc-check" aria-hidden="true">✓</span></button><button class="fc-theme-option" type="button" data-fc-theme="ios" aria-pressed="false"><span class="fc-option-name"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M10 5h4M11 19h2"/></svg>iOS</span><span class="fc-check" aria-hidden="true">✓</span></button></div></details></div>
-            <div class="fc-field fc-upload"><label class="fc-upload-label" for="fcPhoto"><span class="fc-upload-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8" cy="8" r="1.5"/><path d="m3 17 5-5 4 4 3-3 6 6"/></svg></span><span class="fc-upload-copy">Pilih foto profil <small>JPG, PNG, WebP · maks. 4 MB</small></span><input class="fc-file" id="fcPhoto" type="file" accept="image/png,image/jpeg,image/webp"></label><img id="fcPhotoPreview" class="fc-preview" alt="Pratinjau foto profil"></div>
+            <div class="fc-field fc-upload"><label class="fc-upload-label" for="fcPhoto"><span class="fc-upload-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8" cy="8" r="1.5"/><path d="m3 17 5-5 4 4 3-3 6 6"/></svg></span><span class="fc-upload-copy">Upload foto Anda ke sini<small>JPG, PNG, WebP · maks. 4 MB</small></span><img id="fcPhotoPreview" class="fc-preview" alt="Foto profil terpilih"><input class="fc-file" id="fcPhoto" type="file" accept="image/png,image/jpeg,image/webp" aria-label="Pilih atau ganti foto profil"></label></div>
           </div>
           <button class="btn send" id="fcGen" type="button"><span id="fcGenLabel">BUAT FAKE CALL</span></button>
           <div class="fc-message" id="fcMessage" role="status" aria-live="polite"></div>
@@ -765,16 +778,17 @@ $('#fcPhoto').addEventListener('change', () => {
   const file = $('#fcPhoto').files[0], preview = $('#fcPhotoPreview');
   if(preview.dataset.url) URL.revokeObjectURL(preview.dataset.url);
   preview.removeAttribute('src'); preview.style.display = 'none'; delete preview.dataset.url;
+  $('#fcPhoto').closest('.fc-upload').classList.remove('has-photo');
   if(!file) return;
   if(!['image/png','image/jpeg','image/webp'].includes(file.type) || file.size > 4 * 1024 * 1024){
     $('#fcPhoto').value = ''; toast('Pilih foto PNG, JPG, atau WebP maksimal 4 MB.'); return;
   }
-  preview.dataset.url = URL.createObjectURL(file); preview.src = preview.dataset.url; preview.style.display = 'block';
+  preview.dataset.url = URL.createObjectURL(file); preview.src = preview.dataset.url; preview.style.display = 'block'; $('#fcPhoto').closest('.fc-upload').classList.add('has-photo');
 });
 $('#fcGen').addEventListener('click', async () => {
   const name = $('#fcName').value.trim(), duration = $('#fcDuration').value.trim(), theme = fcTheme;
   if(!name){ toast('Isi nama atau username dulu ya.'); $('#fcName').focus(); return; }
-  if(!/^\d{1,4}\.\d{1,4}\.\d{1,4}$/.test(duration)){ toast('Isi durasi dengan format angka.titik.angka.titik.angka, misalnya 20.12.09.'); $('#fcDuration').focus(); return; }
+  if(!/^\d{1,4}\.\d{1,4}\.\d{1,4}$/.test(duration)){ toast('Isi durasi dengan format angka.titik.angka.titik.angka, misalnya 24.12.05.'); $('#fcDuration').focus(); return; }
   const photo = $('#fcPhoto').files[0];
   if(!photo){ toast('Pilih foto profil dulu ya.'); $('#fcPhoto').focus(); return; }
   const button = $('#fcGen'), image = $('#fcImg');
