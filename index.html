@@ -475,6 +475,10 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
 .fc-upload-copy{font-size:14px}.fc-upload-copy small{font-size:11px}
 .fc-upload .fc-preview{width:110px;height:110px;margin:0;border:3px solid var(--ink);border-radius:50%;object-fit:cover;background:#fff}
 .fc-upload.has-photo .fc-upload-icon,.fc-upload.has-photo .fc-upload-copy{display:none}
+
+/* Owner statistics and public update */
+.bily-announcement{display:none;max-width:1100px;margin:20px auto 0;padding:16px 20px;background:#fff2c8;border:var(--line);border-radius:14px;box-shadow:4px 4px 0 var(--ink)}.bily-announcement.show{display:block}.bily-announcement strong{display:block;font-size:12px;letter-spacing:1px}.bily-announcement p{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.55;margin:7px 0 0;font-weight:700;font-size:14px}
+.bily-stats{max-width:820px;margin:auto}.bily-stats h2{font-size:clamp(32px,5vw,48px);letter-spacing:-2px;margin:12px 0}.bily-stats>p{color:#665f6a;font-weight:700}.bily-stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0}.bily-stat{border:var(--line);border-radius:16px;padding:22px;background:var(--soft);box-shadow:var(--shadow)}.bily-stat:nth-child(2){background:var(--yellow)}.bily-stat small{display:block;font-size:12px;font-weight:950;letter-spacing:1px}.bily-stat b{display:block;font-size:38px;margin-top:6px}.bily-editor{border:var(--line);border-radius:16px;padding:22px;background:white;box-shadow:var(--shadow);margin-top:28px}.bily-editor h3{font-size:26px;letter-spacing:-1px;margin:0 0 6px}.bily-editor p{font-size:13px;line-height:1.5;color:#665f6a;font-weight:700}.bily-editor textarea{width:100%;min-height:120px;resize:vertical;border:var(--line);border-radius:12px;padding:12px;font:inherit;margin:8px 0 14px}.bily-editor .btn{margin-right:8px}.bily-stats-note{font-size:12px;line-height:1.5;color:#665f6a;font-weight:700}@media(max-width:480px){.bily-stats-grid{gap:10px}.bily-stat{padding:15px}.bily-stat b{font-size:30px}}
 </style>
 </head>
 <body>
@@ -490,6 +494,8 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
   </div>
 </header>
 <div class="ticker"><span>BILY ENGINEER &nbsp;✦&nbsp; WEBSITE REACT WA PREMIUM &nbsp;✦&nbsp; GENERATE BY BILY DEVELOPER &nbsp;✦&nbsp; FOR YOU &nbsp;✦&nbsp; WELCOME &nbsp;✦&nbsp; BILY ENGINEER &nbsp;✦&nbsp; WEBSITE REACT WA PREMIUM &nbsp;✦&nbsp; GENERATE BY BILY DEVELOPER &nbsp;✦&nbsp; FOR YOU &nbsp;✦&nbsp; WELCOME &nbsp;✦&nbsp; </span></div>
+
+<div class="bily-announcement" id="bilyAnnouncement" role="status"><strong>✦ UPDATE LOG</strong><p id="bilyAnnouncementText"></p></div>
 
 <aside class="sidebar" id="sidebar">
   <div class="side-head"><div class="brand" style="cursor:default">BILY</div><button class="close" id="closeSide">×</button></div>
@@ -599,7 +605,7 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
           <div class="astat"><small>SUKSES</small><b id="stSuccess">0</b></div>
           <div class="astat"><small>TOTAL MASUK</small><b id="stRevenue">Rp0</b></div>
         </div>
-        <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" type="button" data-go="control" style="background:#cceeff">⌘ CONTROL WEB</button><button class="btn" id="adminLogout">KELUAR</button></div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" type="button" data-go="statistics" style="background:var(--yellow)">✦ STATISTIK BILY</button><button class="btn" type="button" data-go="control" style="background:#cceeff">⌘ CONTROL WEB</button><button class="btn" id="adminLogout">KELUAR</button></div>
       </div>
 
       <div class="notif-card default" id="notifCard">
@@ -630,6 +636,15 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
     <div class="control-shell"><div class="control-top"><div><div class="control-lights">● ● ●</div><h2>CONTROL REACT BILY</h2><p>owner console / firebase realtime</p></div><button class="ctl-btn" data-go="profile">← KEMBALI</button></div>
     <div class="control-body"><div class="control-section"><div class="control-heading"><h3>01 / REACTION LOG <span id="logCount">(0)</span></h3><button class="ctl-btn danger" id="clearLogs">HAPUS SEMUA LOG</button></div><div class="control-list" id="controlLogs"><div class="control-empty">Menunggu data Firebase...</div></div></div>
     <div class="control-section"><div class="control-heading"><h3>02 / AKUN LOGIN <span id="userCount">(0)</span></h3></div><div class="control-list" id="controlUsers"><div class="control-empty">Menunggu data Firebase...</div></div></div></div></div>
+  </section>
+
+  <section class="view" id="v-statistics">
+    <div class="bily-stats"><span class="eyebrow">OWNER DASHBOARD</span><h2>Statistik Bily.</h2><p>Pantau aktivitas dan bagikan kabar terbaru.</p>
+      <div class="bily-stats-grid"><div class="bily-stat"><small>PENGGUNA / DEVICE</small><b id="bilyDevices">—</b></div><div class="bily-stat"><small>KLIK KIRIM API</small><b id="bilyClicks">—</b></div></div>
+      <p class="bily-stats-note">Device dihitung berdasarkan browser yang mengunjungi web. Klik dihitung saat permintaan dikirim, termasuk yang gagal. Angka dimulai setelah fitur ini aktif.</p>
+      <button class="btn" id="bilyStatsRefresh" type="button">PERBARUI STATISTIK</button>
+      <div class="bily-editor"><h3>Update Log <span aria-hidden="true">✦</span></h3><p>Tulis pengumuman yang akan tampil di bagian atas web untuk semua pengunjung.</p><label for="bilyUpdate">Deskripsi update</label><textarea id="bilyUpdate" maxlength="1000" placeholder="Ada yang baru di Bily..."></textarea><div><button class="btn" id="bilyPublish" type="button" style="background:var(--pink)">KIRIM UPDATE</button><button class="btn" id="bilyRemove" type="button">HAPUS UPDATE</button></div><p id="bilyEditorStatus" role="status"></p></div>
+    </div>
   </section>
 
   <!-- FAKE CALL -->
@@ -745,10 +760,10 @@ $('#menuBtn').onclick=()=>{sidebar.classList.add('open');overlay.classList.add('
 $('#closeSide').onclick=closeAll; overlay.onclick=closeAll; $('#modalX').onclick=closeAll;
 function openLogin(){modal.classList.add('show');overlay.classList.add('show')}
 function go(v){
-  if(v==='control'&&!(S.logged&&S.role==='owner')){toast('Halaman ini hanya untuk owner.');return}
+  if((v==='control'||v==='statistics')&&!(S.logged&&S.role==='owner')){toast('Halaman ini hanya untuk owner.');return}
   S.view=v;$$('.view').forEach(x=>x.classList.toggle('active',x.id==='v-'+v));
   $$('.dock button, .nav-item').forEach(b=>b.classList.toggle('on',b.dataset.go===v));
-  closeAll();window.scrollTo({top:0,behavior:'smooth'});render();
+  closeAll();window.scrollTo({top:0,behavior:'smooth'});render();if(v==='statistics'&&window.fbRefreshBilyStats)window.fbRefreshBilyStats();
 }
 document.addEventListener('click',e=>{const t=e.target.closest('[data-go]');if(t){e.preventDefault();go(t.dataset.go)}});
 
@@ -786,6 +801,8 @@ $('#fcPhoto').addEventListener('change', () => {
   preview.dataset.url = URL.createObjectURL(file); preview.src = preview.dataset.url; preview.style.display = 'block'; $('#fcPhoto').closest('.fc-upload').classList.add('has-photo');
 });
 $('#fcGen').addEventListener('click', async () => {
+  if(!S.logged){ go('profile'); toast('Login dengan Google dulu sebelum mengirim.'); return; }
+  if(S.banned)return toast('Akun ini diblokir oleh owner.');
   const name = $('#fcName').value.trim(), duration = $('#fcDuration').value.trim(), theme = fcTheme;
   if(!name){ toast('Isi nama atau username dulu ya.'); $('#fcName').focus(); return; }
   if(!/^\d{1,4}\.\d{1,4}\.\d{1,4}$/.test(duration)){ toast('Isi durasi dengan format angka.titik.angka.titik.angka, misalnya 24.12.05.'); $('#fcDuration').focus(); return; }
@@ -799,6 +816,9 @@ $('#fcGen').addEventListener('click', async () => {
   const controller = new AbortController(), timer = setTimeout(() => controller.abort(), 55000);
   try {
     const params = new URLSearchParams({nama:name, durasi:duration, theme});
+    if(!window.fbCheckAccess) throw new Error('Firebase belum siap. Coba lagi.');
+    await window.fbCheckAccess();
+    window.fbCountApiClick && window.fbCountApiClick('fakecall');
     const response = await fetch('/api/fakecall?' + params, { method:'POST', headers:{'Content-Type':photo.type}, body:photo, signal: controller.signal, cache:'no-store' });
     const type = (response.headers.get('content-type') || '').toLowerCase();
     if(!response.ok) {
@@ -1156,6 +1176,7 @@ $('#okToast').onclick=hideSuccess;
 
 $('#send').onclick=async()=>{
   if(sending)return;
+  if(!S.logged){go('profile');toast('Login dengan Google dulu sebelum mengirim.');return}
   const cd=cdLeft();if(cd>0)return toast('Tunggu '+Math.ceil(cd/1000)+' detik dulu sebelum kirim lagi.');
   if(S.logged&&S.banned)return toast('Akun ini diblokir oleh owner.');
   const link=$('#link').value.trim(),isAnon=!S.logged;
@@ -1173,7 +1194,8 @@ $('#send').onclick=async()=>{
   let deviceCount=1;
   try{deviceCount=Math.min(1000000,(parseInt(localStorage.getItem('bily_device_sends')||'0',10)||0)+1);localStorage.setItem('bily_device_sends',String(deviceCount))}catch(e){}
   // pemanggilan API ada di apibily.js
-  const r=await window.ApiBily.send(link,reaction);
+  if(window.fbCountApiClick)window.fbCountApiClick('react');
+  let r;try{r=await window.ApiBily.send(link,reaction)}catch(e){console.error(e);r={ok:false,outcome:'failed',msg:'Koneksi bermasalah. Coba lagi.'}}
   const ok=r.ok,outcome=r.outcome,msg=r.msg;
   setSending(false);startCooldown();
   window.fbLogReaction({link,emojis:sentList,status:ok,outcome,deviceCount,actorUid}).catch(e=>{console.error('Log gagal:',e);toast('Log Firebase gagal disimpan. Periksa rules dan koneksi.')});
@@ -1282,7 +1304,7 @@ renderEmoji();go('studio');
 import { initializeApp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-app.js";
 import { getAnalytics, isSupported as analyticsSupported } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-analytics.js";
 import { initializeAuth, indexedDBLocalPersistence, browserLocalPersistence, browserSessionPersistence, browserPopupRedirectResolver, GoogleAuthProvider, signInWithPopup, signInWithRedirect, getRedirectResult, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
-import { initializeFirestore, doc, getDoc, setDoc, updateDoc, deleteDoc, collection, addDoc, query, where, getDocs, getDocFromServer, onSnapshot, writeBatch, serverTimestamp, runTransaction } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
+import { initializeFirestore, doc, getDoc, setDoc, updateDoc, deleteDoc, collection, addDoc, query, where, getDocs, getDocFromServer, onSnapshot, writeBatch, serverTimestamp, runTransaction, getCountFromServer } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
 
 // Firebase — project webreactcontrol
 const firebaseConfig = {
@@ -1314,6 +1336,49 @@ if(app){
   });
   // Firestore: auto-detect long polling supaya tetap konek di jaringan Android/seluler/kantor yang memblokir WebChannel
   const db=initializeFirestore(app,{experimentalAutoDetectLongPolling:true});
+  // Each browser installation keeps a random identifier. Clearing storage creates a new device.
+  (async()=>{
+    try {
+      let id = localStorage.getItem('bily_device_id');
+      if(!id || !/^[a-f0-9]{32}$/.test(id)){
+        const bytes = crypto.getRandomValues(new Uint8Array(16));
+        id = Array.from(bytes, b=>b.toString(16).padStart(2,'0')).join('');
+        localStorage.setItem('bily_device_id',id);
+      }
+      await setDoc(doc(db,'bily_devices',id),{lastSeen:serverTimestamp()},{merge:true});
+    } catch(e){ console.warn('Statistik perangkat tidak tersimpan:',e); }
+  })();
+  onSnapshot(doc(db,'bily_public','announcement'), snap=>{
+    const text=snap.exists() && typeof snap.data().text==='string' ? snap.data().text.trim() : '';
+    document.getElementById('bilyAnnouncementText').textContent=text;
+    document.getElementById('bilyAnnouncement').classList.toggle('show',!!text);
+  }, e=>console.warn('Pengumuman tidak tersedia:',e));
+  window.fbCountApiClick=(kind)=>{
+    const user=auth.currentUser;
+    if(!user)return;
+    addDoc(collection(db,'bily_api_clicks'),{uid:user.uid,kind,createdAt:serverTimestamp()}).catch(e=>console.warn('Statistik klik tidak tersimpan:',e));
+  };
+  window.fbRefreshBilyStats=async()=>{
+    if(!auth.currentUser || (auth.currentUser.email||'').toLowerCase()!==OWNER_EMAIL)return;
+    const button=document.getElementById('bilyStatsRefresh');button.disabled=true;
+    try{
+      const [devices,clicks]=await Promise.all([getCountFromServer(collection(db,'bily_devices')),getCountFromServer(collection(db,'bily_api_clicks'))]);
+      document.getElementById('bilyDevices').textContent=devices.data().count.toLocaleString('id-ID');
+      document.getElementById('bilyClicks').textContent=clicks.data().count.toLocaleString('id-ID');
+    }catch(e){console.error('Statistik gagal:',e);window.toast('Gagal memuat statistik. Periksa koneksi dan rules Firestore.');}
+    finally{button.disabled=false;}
+  };
+  document.getElementById('bilyStatsRefresh').onclick=window.fbRefreshBilyStats;
+  async function saveAnnouncement(text){
+    const status=document.getElementById('bilyEditorStatus');
+    if(!auth.currentUser || (auth.currentUser.email||'').toLowerCase()!==OWNER_EMAIL){status.textContent='Hanya owner yang dapat mengubah update.';return;}
+    const buttons=[document.getElementById('bilyPublish'),document.getElementById('bilyRemove')];buttons.forEach(b=>b.disabled=true);status.textContent='Menyimpan…';
+    try{await setDoc(doc(db,'bily_public','announcement'),{text,updatedAt:serverTimestamp()});status.textContent=text?'Update berhasil dikirim.':'Update berhasil dihapus.';if(!text)document.getElementById('bilyUpdate').value='';}
+    catch(e){console.error('Update gagal:',e);status.textContent='Gagal menyimpan. Periksa koneksi dan rules Firestore.';}
+    finally{buttons.forEach(b=>b.disabled=false);}
+  }
+  document.getElementById('bilyPublish').onclick=()=>{const text=document.getElementById('bilyUpdate').value.trim();if(!text){document.getElementById('bilyEditorStatus').textContent='Tulis deskripsi update dulu.';return;}saveAnnouncement(text)};
+  document.getElementById('bilyRemove').onclick=()=>saveAnnouncement('');
   const provider=new GoogleAuthProvider();
   provider.setCustomParameters({prompt:'select_account'});
   // Google memblokir login di browser dalam aplikasi (WhatsApp/Instagram/TikTok/Telegram/dll)

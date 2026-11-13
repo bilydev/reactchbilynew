@@ -1,0 +1,61 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function owner() {
+      return signedIn() && request.auth.token.email_verified == true &&
+        request.auth.token.email == 'chatgptshurfshark@gmail.com';
+    }
+    function me(uid) { return signedIn() && request.auth.uid == uid; }
+    function notBanned() {
+      return signedIn() && exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.get('banned', false) != true;
+    }
+    match /users/{uid} {
+      allow read: if owner() || me(uid);
+      allow create: if owner() || (me(uid) && request.resource.data.email == request.auth.token.email &&
+        request.resource.data.role == 'free' && request.resource.data.dailyLimit == 3 &&
+        request.resource.data.proExpiry == null && request.resource.data.planName == null &&
+        request.resource.data.usedCount == 0 && request.resource.data.get('banned', false) == false);
+      allow update: if owner() || (me(uid) && request.resource.data.usedCount is int &&
+        request.resource.data.usedCount >= 0 && (
+          request.resource.data.diff(resource.data).affectedKeys().hasOnly(['displayName','lastLoginAt','usedDate','usedCount']) ||
+          (resource.data.role == 'pro' && resource.data.proExpiry is number &&
+           resource.data.proExpiry <= request.time.toMillis() && request.resource.data.role == 'free' &&
+           request.resource.data.proExpiry == null && request.resource.data.planName == null && request.resource.data.dailyLimit == 3 &&
+           request.resource.data.diff(resource.data).affectedKeys().hasOnly(['usedDate','usedCount','role','proExpiry','planName','dailyLimit']))
+        ));
+      allow delete: if owner();
+    }
+    match /payments/{id} {
+      allow read: if owner() || (signedIn() && resource.data.uid == request.auth.uid);
+      allow create: if owner() || (notBanned() && request.resource.data.uid == request.auth.uid &&
+        request.resource.data.email == request.auth.token.email && request.resource.data.status == 'pending');
+      allow update, delete: if owner();
+    }
+    match /reaction_logs/{id} {
+      allow create: if notBanned() && request.resource.data.uid == request.auth.uid &&
+        request.resource.data.email == request.auth.token.email;
+      allow read, update, delete: if owner();
+    }
+    match /bily_devices/{id} {
+      // Random browser IDs only; no identity, fingerprint or IP is stored.
+      allow create, update: if id.matches('^[a-f0-9]{32}$') &&
+        request.resource.data.keys().hasOnly(['lastSeen']) && request.resource.data.lastSeen == request.time;
+      allow read, delete: if owner();
+    }
+    match /bily_api_clicks/{id} {
+      allow create: if notBanned() && request.resource.data.keys().hasOnly(['uid','kind','createdAt']) &&
+        request.resource.data.uid == request.auth.uid && request.resource.data.kind in ['react','fakecall'] &&
+        request.resource.data.createdAt == request.time;
+      allow read, update, delete: if owner();
+    }
+    match /bily_public/announcement {
+      allow read: if true;
+      allow create, update: if owner() && request.resource.data.keys().hasOnly(['text','updatedAt']) &&
+        request.resource.data.text is string && request.resource.data.text.size() <= 1000 &&
+        request.resource.data.updatedAt == request.time;
+      allow delete: if owner();
+    }
+  }
+}

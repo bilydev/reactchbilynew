@@ -3,9 +3,7 @@
    Alurnya:
      1) Panggil /api/apibily (server Vercel, lihat api/apibily.js) -> hasil asli
         API terbaca, tidak kena CORS.
-     2) Kalau /api/apibily tidak ada (404/405, mis. file api/ belum ter-deploy),
-        pakai cadangan: panggil API langsung (mode no-cors). Request tetap
-        terkirim, tapi balasannya tidak bisa dibaca browser.
+     2) Jika proxy tidak tersedia, tampilkan error agar hasil tidak salah dianggap berhasil.
    Mau ganti API / apikey? Ubah CONFIG di sini DAN di api/apibily.js.
    ============================================================ */
 (function (global) {
@@ -69,16 +67,11 @@
         return { ok: false, outcome: 'failed', msg: 'server tidak terhubung' };
       }
 
-      // /api/apibily belum ada -> jalur cadangan (langsung ke API)
+      // Respons no-cors tidak dapat diverifikasi, jadi jangan mengklaim berhasil.
       if (res.status === 404 || res.status === 405) {
-        try {
-          await fetch(directUrl(link, reaction), { mode: 'no-cors', cache: 'no-store', signal: ctrl.signal });
-          return { ok: true, outcome: 'sent', msg: '' };
-        } catch (err) {
-          if (err && err.name === 'AbortError') return { ok: false, outcome: 'failed', msg: 'server lama membalas' };
-          return { ok: false, outcome: 'failed', msg: navigator.onLine ? 'API tidak terhubung' : 'koneksi terputus' };
-        }
+        return { ok: false, outcome: 'failed', msg: 'proxy API belum tersedia' };
       }
+      if (res.status === 429) return { ok: false, outcome: 'failed', msg: 'terlalu banyak permintaan, coba lagi nanti' };
 
       var j = null;
       try { j = await res.json(); } catch (_) {}
