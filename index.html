@@ -401,6 +401,60 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
 .control-shell{max-width:1050px;margin:auto;border:2px solid #253b59;border-radius:18px;overflow:hidden;background:#0a1220;color:#d9e8fb;box-shadow:7px 7px 0 #172a42;font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
 .control-top{padding:18px 22px;background:#111f32;border-bottom:1px solid #29415d;display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}.control-top h2{font-size:clamp(17px,4vw,25px);letter-spacing:-1px;margin:0;color:#e8f5ff}.control-top p{color:#81a2c5;font-size:11px;margin:7px 0 0}.control-lights{color:#55b5ff;letter-spacing:5px}.control-body{padding:clamp(14px,3vw,24px)}
 .control-section{margin-bottom:28px}.control-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:13px}.control-heading h3{font-size:14px;margin:0;color:#8fcaff}.ctl-btn{font:700 11px ui-monospace,monospace;letter-spacing:.3px;border:1px solid #3f6286;border-radius:8px;background:#192e46;color:#cfe8ff;padding:9px 11px;cursor:pointer}.ctl-btn:hover{background:#254565}.ctl-btn.danger{color:#ffc2c8;border-color:#8d4551;background:#391f2d}.ctl-btn:disabled{opacity:.45;cursor:not-allowed}.control-list{display:grid;gap:10px}.control-empty{color:#7895b4;border:1px dashed #34516e;border-radius:10px;padding:18px;font-size:12px}.log-card,.user-card{border:1px solid #2a4462;background:#101e30;border-radius:11px;padding:15px;overflow-wrap:anywhere}.log-head,.user-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}.log-head strong,.user-head strong{font-size:12px;color:#b7ddff}.log-time{color:#809dbb;font-size:10px}.log-code{font-size:12px;line-height:1.7;margin:0;white-space:pre-wrap;overflow-wrap:anywhere;color:#b7d0ea}.code-key{color:#76baff}.code-string{color:#9de3bb}.code-true{color:#70e9bd}.code-false{color:#ff8e9f}.code-number{color:#efbe80}.control-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}.control-badge{color:#8feac6;background:#173c37;border:1px solid #286e5a;border-radius:20px;padding:4px 8px;font-size:10px}.control-badge.banned{color:#ffbac1;background:#492430;border-color:#8f4553}.user-meta{font-size:11px;line-height:1.7;color:#91aecb}.privacy-note{font-size:11px;color:#6a6270;line-height:1.5;margin:12px 0 0}
+
+/* ===== hamburger nav ===== */
+.nav{display:flex;flex-direction:column;gap:12px}
+.nav-label{font-size:11px;font-weight:1000;letter-spacing:1.5px;color:#8a8390;margin:6px 2px 0}
+.nav-item{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border:var(--line);background:#fff;border-radius:12px;padding:12px 14px;font-weight:950;font-size:14px;box-shadow:3px 3px 0 var(--ink);transition:.1s;color:var(--ink)}
+.nav-item:active{transform:translate(3px,3px);box-shadow:none}
+.nav-item.on{background:var(--yellow);transform:translate(3px,3px);box-shadow:none}
+.nav-item .ni-ic{width:38px;height:38px;flex:none;border:2px solid var(--ink);border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--soft)}
+.nav-item.on .ni-ic{background:#fff}
+.nav-item .ni-txt{flex:1;min-width:0;line-height:1.25}
+.nav-item .ni-txt small{display:block;font-size:11px;font-weight:700;color:#6a636e;margin-top:2px}
+.nav-item.on .ni-txt small{color:#4d4752}
+.nav-badge{flex:none;background:var(--pink);border:2px solid var(--ink);border-radius:100px;font-size:10px;font-weight:1000;padding:3px 9px;letter-spacing:.6px;animation:navBadgePulse 1.6s ease-in-out infinite}
+@keyframes navBadgePulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12) rotate(-3deg)}}
+.nav-item.fresh{background:linear-gradient(120deg,#fff 0%,#ffe9f3 100%)}
+.nav-item.fresh.on{background:var(--yellow)}
+.nav-foot{margin-top:18px;border:2px dashed var(--ink);border-radius:12px;padding:12px 14px;font-size:11px;font-weight:700;color:#6a636e;line-height:1.6;background:#fff}
+@media(prefers-reduced-motion:reduce){.nav-badge{animation:none}}
+
+/* ===== fake call ===== */
+.fc-form{display:grid;gap:17px;margin-bottom:20px}.fc-field label{display:block;font-size:13px;font-weight:950;margin-bottom:7px}.fc-field input,.fc-field select{width:100%;border:var(--line);border-radius:12px;background:#fff;padding:13px 14px;color:var(--ink);font:inherit;font-weight:750}.fc-field input:focus,.fc-field select:focus{outline:3px solid var(--purple);outline-offset:2px}.fc-field small{display:block;margin-top:7px;color:#665f6a;font-weight:700;line-height:1.5}.fc-upload{background:#fff8e4;border:2px dashed var(--ink);border-radius:12px;padding:14px}.fc-upload input{padding:8px;background:#fff;font-size:13px}.fc-preview{width:60px;height:60px;border:2px solid var(--ink);border-radius:50%;object-fit:cover;margin-top:10px;display:none}
+
+.fc-wrap{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:28px;align-items:start}
+.fc-themes{display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:20px}
+.fc-theme{border:var(--line);border-radius:14px;background:#fff;padding:16px 10px;text-align:center;box-shadow:3px 3px 0 var(--ink);transition:.1s;cursor:pointer;color:var(--ink)}
+.fc-theme:active{transform:translate(3px,3px);box-shadow:none}
+.fc-theme .fc-t-ic{font-size:32px;display:block;margin-bottom:6px;line-height:1}
+.fc-theme b{display:block;font-size:15px;letter-spacing:-.3px}
+.fc-theme small{display:block;font-size:11px;font-weight:700;color:#6a636e;margin-top:3px}
+.fc-theme.on{background:var(--yellow);transform:translate(3px,3px);box-shadow:none}
+.fc-theme.on small{color:#4d4752}
+.fc-note{font-size:12px;font-weight:700;color:#6a636e;line-height:1.6;margin:14px 0 0}
+.fc-phone{border:var(--line);border-radius:32px;background:var(--ink);padding:10px;box-shadow:var(--shadow);transform:rotate(1.5deg)}
+.fc-notch{width:110px;height:18px;background:var(--ink);border-radius:0 0 12px 12px;margin:0 auto;position:relative;z-index:2}
+.fc-screen{background:#fff;border-radius:24px;overflow:hidden;aspect-ratio:9/16;max-height:540px;display:flex;flex-direction:column;position:relative;margin-top:-18px}
+.fc-screen img{width:100%;height:100%;object-fit:contain;display:block}
+.fc-state{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:24px;text-align:center}
+.fc-state .big{font-size:54px;line-height:1;animation:fcRing 1.6s ease-in-out infinite}
+@keyframes fcRing{0%,100%{transform:rotate(0)}20%{transform:rotate(14deg)}40%{transform:rotate(-12deg)}60%{transform:rotate(8deg)}}
+.fc-state h3{margin:0;font-size:19px;letter-spacing:-.5px}
+.fc-state p{margin:0;font-weight:700;color:#665f6a;font-size:13px;line-height:1.6}
+.fc-spin{width:46px;height:46px;border:5px solid var(--soft);border-top-color:var(--pink);border-radius:50%;animation:fcSpin .8s linear infinite}
+@keyframes fcSpin{to{transform:rotate(360deg)}}
+.fc-actions{display:flex;gap:10px;margin-top:16px}
+.fc-actions .btn{flex:1;padding:13px 8px;font-size:13px}
+.fc-actions .btn:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:4px 4px 0 var(--ink)}
+.fc-tips{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
+.fc-tip{border:var(--line);border-radius:14px;background:#fff;padding:16px;box-shadow:4px 4px 0 var(--ink)}
+.fc-tip .fc-tip-ic{font-size:22px;display:block;margin-bottom:6px}
+.fc-tip b{display:block;font-size:14px;margin-bottom:4px}
+.fc-tip p{margin:0;font-size:12px;font-weight:650;color:#665f6a;line-height:1.55}
+@media(max-width:900px){.fc-wrap{grid-template-columns:1fr}.fc-phone{max-width:340px;margin:auto;width:100%}}
+@media(max-width:640px){.fc-tips{grid-template-columns:1fr}.fc-screen{max-height:460px}}
+@media(prefers-reduced-motion:reduce){.fc-state .big{animation:none}.fc-spin{animation-duration:1.6s}}
 </style>
 </head>
 <body>
@@ -420,7 +474,14 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
 <aside class="sidebar" id="sidebar">
   <div class="side-head"><div class="brand" style="cursor:default">BILY</div><button class="close" id="closeSide">×</button></div>
   <nav class="nav">
-    <div class="side-empty">✦ Menu sementara dikosongkan ✦<span>Fitur baru segera hadir di sini…</span></div>
+    <div class="nav-label">✦ MENU UTAMA</div>
+    <button class="nav-item" type="button" data-go="studio"><span class="ni-ic">😊</span><span class="ni-txt">Reaction Studio<small>Kirim reaksi ke channel WA</small></span></button>
+    <button class="nav-item" type="button" data-go="market"><span class="ni-ic">🛒</span><span class="ni-txt">Market<small>Beli paket Pro mulai Rp2K</small></span></button>
+    <button class="nav-item" type="button" data-go="profile"><span class="ni-ic">👤</span><span class="ni-txt">Profil<small>Paket, limit &amp; masa aktif</small></span></button>
+    <div class="nav-label">✦ FITUR BARU</div>
+    <button class="nav-item fresh" type="button" data-go="fakecall"><span class="ni-ic">📞</span><span class="ni-txt">Fake Call<small>Gambar layar panggilan palsu</small></span><span class="nav-badge">BARU</span></button>
+    <button class="nav-item" type="button" data-go="control" id="sideControl" style="display:none"><span class="ni-ic">⌘</span><span class="ni-txt">Control Web<small>Khusus owner</small></span></button>
+    <div class="nav-foot">✦ Bily Reaction — generate by Bily Developer. Pilih menu di atas untuk mulai.</div>
   </nav>
 
 </aside>
@@ -553,6 +614,47 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
     <div class="control-section"><div class="control-heading"><h3>02 / AKUN LOGIN <span id="userCount">(0)</span></h3></div><div class="control-list" id="controlUsers"><div class="control-empty">Menunggu data Firebase...</div></div></div></div></div>
   </section>
 
+  <!-- FAKE CALL -->
+  <section class="view" id="v-fakecall">
+    <div class="blob one"></div><div class="blob two"></div>
+    <div class="page-head"><span class="eyebrow">📞 FAKE CALL</span><h2>Fake call, seru-seruan.</h2><p>Buat gambar layar panggilan masuk palsu — cocok buat prank teman atau konten lucu. Isi detail panggilan, pilih tema, lalu buat gambarnya.</p></div>
+    <div class="fc-wrap">
+      <div class="panel">
+        <div class="panel-head"><h2>Fake Call Studio</h2><span class="step">GENERATE</span></div>
+        <div class="panel-body">
+          <div class="fc-form">
+            <div class="fc-field"><label for="fcName">Nama / username</label><input id="fcName" type="text" maxlength="80" placeholder="Contoh: dede" required></div>
+            <div class="fc-field"><label for="fcDuration">Durasi telepon</label><input id="fcDuration" type="text" inputmode="decimal" maxlength="14" placeholder="Contoh: 20.12.09" pattern="[0-9]+\.[0-9]+\.[0-9]+" required><small>Gunakan angka dan titik, misalnya 20.12.09.</small></div>
+            <div class="fc-field"><label for="fcTheme">Tema panggilan</label><select id="fcTheme"><option value="android">🤖 Android</option><option value="ios">🍎 iOS</option></select></div>
+            <div class="fc-field fc-upload"><label for="fcPhoto">Foto profil <span style="font-weight:700">(opsional)</span></label><input id="fcPhoto" type="file" accept="image/png,image/jpeg,image/webp"><img id="fcPhotoPreview" class="fc-preview" alt="Pratinjau foto profil"><small>PNG, JPG, atau WebP, maksimal 5 MB. Foto ditambahkan di bagian atas gambar hasil pada perangkatmu.</small></div>
+          </div>
+          <button class="btn send" id="fcGen" type="button"><span id="fcGenLabel">BUAT FAKE CALL 📞</span></button>
+          <p class="fc-note">✦ Gambar dibuat dengan API Fake Call. Setelah berhasil, buka hasilnya untuk menyimpan atau membagikannya.</p>
+        </div>
+      </div>
+      <div>
+        <div class="fc-phone">
+          <div class="fc-notch"></div>
+          <div class="fc-screen" id="fcScreen" aria-live="polite">
+            <div class="fc-state" id="fcEmpty"><span class="big">📞</span><h3>Belum ada gambar</h3><p>Klik <b>BUAT FAKE CALL</b> di atas,<br>gambarnya langsung muncul di sini.</p></div>
+            <div class="fc-state" id="fcLoading" style="display:none"><div class="fc-spin"></div><h3>Membuat fake call…</h3><p>Sebentar ya, lagi nelpon API ✦</p></div>
+            <div class="fc-state" id="fcError" style="display:none"><span class="big">😢</span><h3>Gagal membuat</h3><p id="fcErrorText">Cek koneksi internet kamu, lalu coba lagi ya.</p></div>
+            <img id="fcImg" alt="Hasil fake call" style="display:none">
+          </div>
+        </div>
+        <div class="fc-actions">
+          <button class="btn" id="fcDownload" type="button" style="background:var(--green)" disabled>⬇ DOWNLOAD</button>
+          <button class="btn" id="fcOpen" type="button" disabled>🔍 LIHAT PENUH</button>
+        </div>
+      </div>
+    </div>
+    <div class="fc-tips">
+      <div class="fc-tip"><span class="fc-tip-ic">⚡</span><b>Mudah dibuat</b><p>Klik tombol generate dan tunggu gambar selesai dibuat.</p></div>
+      <div class="fc-tip"><span class="fc-tip-ic">🤖</span><b>Android &amp; iOS</b><p>Pilih tampilan panggilan yang kamu suka.</p></div>
+      <div class="fc-tip"><span class="fc-tip-ic">🎭</span><b>Buat prank seru</b><p>Tunjukin ke teman seolah ada yang nelpon. Pakai dengan bijak ya!</p></div>
+    </div>
+  </section>
+
 </main>
 
 
@@ -640,10 +742,111 @@ function openLogin(){modal.classList.add('show');overlay.classList.add('show')}
 function go(v){
   if(v==='control'&&!(S.logged&&S.role==='owner')){toast('Halaman ini hanya untuk owner.');return}
   S.view=v;$$('.view').forEach(x=>x.classList.toggle('active',x.id==='v-'+v));
-  $$('.dock button').forEach(b=>b.classList.toggle('on',b.dataset.go===v));
+  $$('.dock button, .nav-item').forEach(b=>b.classList.toggle('on',b.dataset.go===v));
   closeAll();window.scrollTo({top:0,behavior:'smooth'});render();
 }
 document.addEventListener('click',e=>{const t=e.target.closest('[data-go]');if(t){e.preventDefault();go(t.dataset.go)}});
+
+/* Fake Call */
+let fcObjectUrl = null, fcResultUrl = '', fcExtension = '';
+function fcState(state, message){
+  ['Empty','Loading','Error','Img'].forEach(name => { $('#fc'+name).style.display = name.toLowerCase() === state ? (name === 'Img' ? 'block' : 'flex') : 'none'; });
+  if(message) $('#fcErrorText').textContent = message;
+}
+function fcFindUrl(value, depth){
+  if(depth > 5 || value == null) return '';
+  if(typeof value === 'string') {
+    try { const url = new URL(value.trim()); return /^https?:$/.test(url.protocol) ? url.href : ''; } catch (_) { return ''; }
+  }
+  if(typeof value !== 'object') return '';
+  for(const key of ['url','image','imageUrl','image_url','result','data','output']) {
+    const url = fcFindUrl(value[key], depth + 1); if(url) return url;
+  }
+  return '';
+}
+$('#fcPhoto').addEventListener('change', () => {
+  const file = $('#fcPhoto').files[0], preview = $('#fcPhotoPreview');
+  if(preview.dataset.url) URL.revokeObjectURL(preview.dataset.url);
+  preview.removeAttribute('src'); preview.style.display = 'none'; delete preview.dataset.url;
+  if(!file) return;
+  if(!['image/png','image/jpeg','image/webp'].includes(file.type) || file.size > 5 * 1024 * 1024){
+    $('#fcPhoto').value = ''; toast('Pilih foto PNG, JPG, atau WebP maksimal 5 MB.'); return;
+  }
+  preview.dataset.url = URL.createObjectURL(file); preview.src = preview.dataset.url; preview.style.display = 'block';
+});
+$('#fcGen').addEventListener('click', async () => {
+  const name = $('#fcName').value.trim(), duration = $('#fcDuration').value.trim(), theme = $('#fcTheme').value;
+  if(!name){ toast('Isi nama atau username dulu ya.'); $('#fcName').focus(); return; }
+  if(!/^\d{1,4}\.\d{1,4}\.\d{1,4}$/.test(duration)){ toast('Isi durasi dengan format angka.titik.angka.titik.angka, misalnya 20.12.09.'); $('#fcDuration').focus(); return; }
+  const photo = $('#fcPhoto').files[0];
+  const button = $('#fcGen'), image = $('#fcImg');
+  button.disabled = true; button.setAttribute('aria-busy','true'); $('#fcGenLabel').textContent = 'MEMBUAT…';
+  $('#fcDownload').disabled = true; $('#fcOpen').disabled = true;
+  if(fcObjectUrl){ URL.revokeObjectURL(fcObjectUrl); fcObjectUrl = null; }
+  fcResultUrl = ''; image.removeAttribute('src'); fcState('loading');
+  const controller = new AbortController(), timer = setTimeout(() => controller.abort(), 55000);
+  try {
+    const params = new URLSearchParams({nama:name, durasi:duration, theme});
+    const response = await fetch('/api/fakecall?' + params, { signal: controller.signal, cache:'no-store' });
+    const type = (response.headers.get('content-type') || '').toLowerCase();
+    if(!response.ok) {
+      let message = 'API sedang tidak tersedia. Coba lagi nanti.';
+      try { const error = await response.json(); if(typeof error.message === 'string') message = error.message; } catch (_) {}
+      throw new Error(message);
+    }
+    if(type.startsWith('image/')) {
+      const blob = await response.blob();
+      if(!blob.size) throw new Error('Gambar dari API kosong. Coba lagi.');
+      fcObjectUrl = URL.createObjectURL(blob); fcResultUrl = fcObjectUrl;
+      fcExtension = ({'image/png':'.png','image/jpeg':'.jpg','image/webp':'.webp','image/gif':'.gif'})[blob.type.split(';')[0]] || '';
+    } else {
+      let data;
+      if(type.includes('application/json')) data = await response.json();
+      else data = await response.text();
+      if(data && typeof data === 'object' && (data.success === false || data.status === false || data.ok === false || data.error))
+        throw new Error(typeof data.message === 'string' ? data.message : 'API belum berhasil membuat gambar.');
+      fcResultUrl = fcFindUrl(data, 0);
+      if(!fcResultUrl) throw new Error('API tidak mengembalikan gambar yang bisa ditampilkan.');
+    }
+    await new Promise((resolve, reject) => {
+      const imageTimer = setTimeout(() => { image.onload = image.onerror = null; reject(new Error('Gambar terlalu lama dimuat. Coba lagi.')); }, 15000);
+      image.onload = () => { clearTimeout(imageTimer); resolve(); };
+      image.onerror = () => { clearTimeout(imageTimer); reject(new Error('Gambar tidak bisa dimuat. Coba lagi.')); };
+      if(photo && !fcObjectUrl) image.crossOrigin = 'anonymous'; else image.removeAttribute('crossorigin');
+      image.src = fcResultUrl;
+    });
+    if(photo){
+      const photoUrl = URL.createObjectURL(photo);
+      try {
+        const avatar = new Image();
+        await new Promise((resolve, reject) => { avatar.onload = resolve; avatar.onerror = () => reject(new Error('Foto profil tidak bisa dibaca.')); avatar.src = photoUrl; });
+        const canvas = document.createElement('canvas'); canvas.width = image.naturalWidth; canvas.height = image.naturalHeight;
+        if(!canvas.width || !canvas.height || canvas.width * canvas.height > 40000000) throw new Error('Ukuran gambar hasil tidak didukung.');
+        const ctx = canvas.getContext('2d'); ctx.drawImage(image, 0, 0);
+        const size = Math.min(canvas.width * .25, canvas.height * .16), x = canvas.width / 2, y = canvas.height * .23;
+        ctx.save(); ctx.beginPath(); ctx.arc(x, y, size / 2, 0, Math.PI * 2); ctx.clip();
+        const side = Math.min(avatar.naturalWidth, avatar.naturalHeight);
+        ctx.drawImage(avatar, (avatar.naturalWidth-side)/2, (avatar.naturalHeight-side)/2, side, side, x-size/2, y-size/2, size, size); ctx.restore();
+        const result = await new Promise((resolve, reject) => { try { canvas.toBlob(blob => blob ? resolve(blob) : reject(new Error('Gagal menyimpan gambar.')), 'image/png'); } catch (_) { reject(new Error('Foto tidak dapat ditambahkan karena sumber gambar membatasi akses. Coba tanpa foto.')); } });
+        if(fcObjectUrl) URL.revokeObjectURL(fcObjectUrl);
+        fcObjectUrl = URL.createObjectURL(result); fcResultUrl = fcObjectUrl; fcExtension = '.png';
+        image.removeAttribute('crossorigin'); image.src = fcResultUrl;
+      } finally { URL.revokeObjectURL(photoUrl); }
+    }
+    fcState('img'); $('#fcDownload').disabled = false; $('#fcOpen').disabled = false;
+  } catch(err) {
+    if(fcObjectUrl){ URL.revokeObjectURL(fcObjectUrl); fcObjectUrl = null; }
+    fcResultUrl = ''; fcState('error', err.name === 'AbortError' ? 'API terlalu lama merespons. Coba lagi.' : (err.message || 'Gagal menghubungi API. Coba lagi.'));
+  } finally {
+    clearTimeout(timer); button.disabled = false; button.removeAttribute('aria-busy'); $('#fcGenLabel').textContent = 'BUAT FAKE CALL 📞';
+  }
+});
+$('#fcOpen').addEventListener('click', () => { if(fcResultUrl) window.open(fcResultUrl, '_blank', 'noopener,noreferrer'); });
+$('#fcDownload').addEventListener('click', () => {
+  if(!fcResultUrl) return;
+  if(!fcObjectUrl){ window.open(fcResultUrl, '_blank', 'noopener,noreferrer'); toast('Simpan gambar dari halaman yang terbuka ya.'); return; }
+  const link = document.createElement('a'); link.href = fcObjectUrl; link.download = 'fake-call' + fcExtension; document.body.appendChild(link); link.click(); link.remove();
+});
 
 /* emoji */
 // cocok untuk emoji tunggal, emoji + warna kulit, gabungan (ZWJ) dan bendera
@@ -1014,6 +1217,7 @@ function render(){
   $('#bar').style.width=lim===Infinity?'100%':Math.min(100,used/lim*100)+'%';
   // profile / admin
   const isOwner=S.logged&&r==='owner';
+  $('#sideControl').style.display=isOwner?'':'none';
   $('#profileTab').classList.toggle('owner-tab',isOwner);
   $('#profileTabLabel').textContent=isOwner?'OWNER':'PROFIL';
   $('#profileLocked').style.display=S.logged?'none':'block';

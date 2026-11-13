@@ -1,7 +1,8 @@
 {
   "cleanUrls": true,
   "functions": {
-    "api/apibily.js": { "maxDuration": 60 }
+    "api/apibily.js": { "maxDuration": 60 },
+    "api/fakecall.js": { "maxDuration": 60 }
   },
   "headers": [
     {
