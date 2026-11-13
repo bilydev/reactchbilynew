@@ -1,10 +1,13 @@
 // Same-origin bridge for the Fake Call API (which may not allow browser CORS).
 const endpoint = 'https://api.izzxd.my.id/api/maker/fakecall';
+const MAX_AVATAR = 4 * 1024 * 1024;
+
+// Read the raw image from the browser; the server builds multipart for the upstream API.
 
 module.exports = async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store');
-  if (req.method !== 'GET') {
-    res.setHeader('Allow', 'GET');
+  if (req.method !== 'POST') {
+    res.setHeader('Allow', 'POST');
     return res.status(405).json({ message: 'Metode tidak didukung.' });
   }
   const query = req.query || {};
@@ -14,12 +17,28 @@ module.exports = async function handler(req, res) {
   if (!name || name.length > 80 || !/^\d{1,4}\.\d{1,4}\.\d{1,4}$/.test(duration) || !['android', 'ios'].includes(theme)) {
     return res.status(400).json({ message: 'Isi nama, durasi (contoh 20.12.09), dan tema Android atau iOS.' });
   }
+  const imageType = String(req.headers['content-type'] || '').toLowerCase().split(';')[0].trim();
+  const extensions = { 'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp' };
+  if (!extensions[imageType]) return res.status(415).json({ message: 'Pilih foto JPG, PNG, atau WebP.' });
+  if (Number(req.headers['content-length']) > MAX_AVATAR) return res.status(413).json({ message: 'Ukuran foto maksimal 4 MB.' });
+  let chunks = [], size = 0;
+  try {
+    for await (const chunk of req) {
+      size += chunk.length;
+      if (size > MAX_AVATAR) return res.status(413).json({ message: 'Ukuran foto maksimal 4 MB.' });
+      chunks.push(chunk);
+    }
+  } catch (_) { return res.status(400).json({ message: 'Foto tidak dapat dibaca. Coba unggah ulang.' }); }
+  if (!size) return res.status(400).json({ message: 'Pilih foto profil terlebih dahulu.' });
+  const form = new FormData();
+  form.append('avatar', new Blob(chunks, { type: imageType }), 'avatar.' + extensions[imageType]);
+  chunks = [];
   const target = new URL(endpoint);
   target.search = new URLSearchParams({ nama: name, durasi: duration, theme, apikey: process.env.FAKECALL_API_KEY || 'bilyapiforyou' }).toString();
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), 50000);
   try {
-    const upstream = await fetch(target.toString(), { signal: controller.signal, headers: { Accept: 'application/json, text/plain, image/*, */*', 'User-Agent': 'Mozilla/5.0 (compatible; BilyReaction/1.0)' } });
+    const upstream = await fetch(target.toString(), { method: 'POST', body: form, signal: controller.signal, headers: { Accept: 'application/json, text/plain, image/*, */*', 'User-Agent': 'Mozilla/5.0 (compatible; BilyReaction/1.0)' } });
     const type = upstream.headers.get('content-type') || 'application/octet-stream';
     if (!upstream.ok) {
       // Forward a short, plain API message when available, like the React proxy.
@@ -50,3 +69,5 @@ module.exports = async function handler(req, res) {
     clearTimeout(timer);
   }
 };
+
+module.exports.config = { api: { bodyParser: false } };
