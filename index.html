@@ -968,7 +968,7 @@ $('#send').onclick=async()=>{
   if(!/^https?:\/\//i.test(link)||link.length>2048)return toast('Link saluran belum valid atau terlalu panjang.');
   if(!selected.length)return toast('Pilih minimal 1 emoji.');
   if(usedNow>=lim)return toast(isAnon?'Kuota tanpa login habis (3 reaksi / 2 hari). Login untuk kuota harian & Pro ✦':(S.role==='free'?'Kuota habis. Upgrade ke Pro mulai Rp2K!':'Kuota hari ini sudah habis.'));
-  const sentList=selected.slice(), reaction=sentList.join(''), actorUid=S.logged?S.uid:null;
+  const sentList=selected.slice(), reaction=sentList.slice(), actorUid=S.logged?S.uid:null;
   if(!navigator.onLine)return toast('Kamu sedang offline. Cek koneksi internet dulu.');
   if(!window.fbLogReaction || (S.logged&&!window.fbCheckAccess))return toast('Firebase belum siap. Coba lagi saat terhubung.');
   hideSuccess();setSending(true);
@@ -980,7 +980,7 @@ $('#send').onclick=async()=>{
   const ok=r.ok,outcome=r.outcome,msg=r.msg;
   setSending(false);startCooldown();
   window.fbLogReaction({link,emojis:sentList,status:ok,outcome,deviceCount,actorUid}).catch(e=>{console.error('Log gagal:',e);toast('Log Firebase gagal disimpan. Periksa rules dan koneksi.')});
-  if(!ok)return toast('Hasil kirim: '+msg+'. Periksa sebelum mencoba lagi.');
+  if(!ok)return toast('Gagal: '+msg);
   if(isAnon){anonUse()}else{S.used++;if(window.fbSaveUsage)window.fbSaveUsage()}
   render();
   showSuccess(sentList);
