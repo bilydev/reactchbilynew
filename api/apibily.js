@@ -31,9 +31,9 @@ module.exports = async function handler(req, res) {
   const reaction = String(q.reaction || '').trim();
 
   if (!/^https?:\/\/(www\.)?whatsapp\.com\/channel\//i.test(link) || link.length > 2048)
-    return reply(res, 400, { ok: false, message: 'link saluran tidak valid (harus link whatsapp.com/channel/...)' });
+    return reply(res, 400, { ok: false, message: 'link saluran tidak valid' });
   if (!reaction || reaction.length > 120)
-    return reply(res, 400, { ok: false, message: 'emoji kosong atau terlalu panjang' });
+    return reply(res, 400, { ok: false, message: 'emoji tidak valid' });
 
   const target = CONFIG.endpoint +
     '?url=' + encodeURIComponent(link) +
@@ -59,11 +59,12 @@ module.exports = async function handler(req, res) {
     } else {
       message = text.slice(0, 200);
     }
+    message = message.replace(/[*_]/g, '').replace(/\u274C/g, '').replace(/\s+/g, ' ').trim();
     if (!ok && !message) message = 'API membalas kode ' + up.status;
     return reply(res, 200, { ok, upstreamStatus: up.status, message, data: data || undefined });
   } catch (err) {
     const timeout = err && err.name === 'AbortError';
-    return reply(res, 502, { ok: false, message: timeout ? 'API react terlalu lama membalas' : 'server tidak bisa menghubungi API react' });
+    return reply(res, 502, { ok: false, message: timeout ? 'server lama membalas' : 'API tidak terhubung' });
   } finally {
     clearTimeout(timer);
   }
