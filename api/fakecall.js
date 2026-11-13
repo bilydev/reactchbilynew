@@ -19,12 +19,26 @@ module.exports = async function handler(req, res) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), 50000);
   try {
-    const upstream = await fetch(target.toString(), { signal: controller.signal, headers: { Accept: 'image/*, application/json, text/plain, */*' } });
-    if (!upstream.ok) {
-      if (upstream.status === 403) return res.status(502).json({ message: 'API Fake Call menolak akses (403). Periksa API key atau izin akses dengan penyedia API.' });
-      return res.status(502).json({ message: 'API Fake Call membalas kode ' + upstream.status + '. Coba lagi nanti.' });
-    }
+    const upstream = await fetch(target.toString(), { signal: controller.signal, headers: { Accept: 'application/json, text/plain, image/*, */*', 'User-Agent': 'Mozilla/5.0 (compatible; BilyReaction/1.0)' } });
     const type = upstream.headers.get('content-type') || 'application/octet-stream';
+    if (!upstream.ok) {
+      // Forward a short, plain API message when available, like the React proxy.
+      let message = '';
+      if (/^(application\/json|text\/plain)(?:\s*;|$)/i.test(type)) {
+        const text = (await upstream.text()).slice(0, 1000);
+        try {
+          const data = JSON.parse(text);
+          const value = data.message || data.msg || data.error;
+          if (typeof value === 'string') message = value;
+        } catch (_) { if (!text.trim().startsWith('<')) message = text; }
+      }
+      message = message.replace(/[*_]/g, '').replace(/\s+/g, ' ').trim().slice(0, 200);
+      // Avoid exposing the configured key if the upstream echoes it.
+      const key = process.env.FAKECALL_API_KEY || 'bilyapiforyou';
+      if (message.includes(key)) message = '';
+      if (!message) message = upstream.status === 403 ? 'API Fake Call menolak akses. Periksa API key atau izin akses dengan penyedia API.' : 'API Fake Call tidak dapat memproses permintaan.';
+      return res.status(502).json({ ok: false, upstreamStatus: upstream.status, message });
+    }
     if (!/^image\/(png|jpeg|webp|gif)(?:\s*;|$)/i.test(type) && !/^(application\/json|text\/plain)(?:\s*;|$)/i.test(type)) {
       return res.status(502).json({ message: 'Format respons API tidak dikenali.' });
     }
