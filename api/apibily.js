@@ -47,6 +47,7 @@ module.exports = async function handler(req, res) {
       signal: ctrl.signal,
       headers: { 'Accept': 'application/json, text/plain, */*', 'User-Agent': 'Mozilla/5.0 (compatible; BilyReaction/1.0)' }
     });
+    if (up.status === 429) return reply(res, 200, { ok: false, upstreamStatus: 429, message: 'Terlalu banyak permintaan. Tunggu sebentar lalu coba lagi.' });
     const text = await up.text();
     let data = null;
     try { data = JSON.parse(text); } catch (_) {}

@@ -40,6 +40,7 @@ module.exports = async function handler(req, res) {
   try {
     const upstream = await fetch(target.toString(), { method: 'POST', body: form, signal: controller.signal, headers: { Accept: 'application/json, text/plain, image/*, */*', 'User-Agent': 'Mozilla/5.0 (compatible; BilyReaction/1.0)' } });
     const type = upstream.headers.get('content-type') || 'application/octet-stream';
+    if (upstream.status === 429) return res.status(429).json({ ok: false, upstreamStatus: 429, message: 'Terlalu banyak permintaan. Tunggu sebentar lalu coba lagi.' });
     if (!upstream.ok) {
       // Forward a short, plain API message when available, like the React proxy.
       let message = '';
