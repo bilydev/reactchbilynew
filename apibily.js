@@ -1,56 +1,69 @@
 /* ============================================================
-   apibily.js — SEMUA pemanggilan API react ada di file ini.
-   Mau ganti API / apikey / nama endpoint? Cukup ubah bagian
-   KONFIGURASI di bawah, index.html tidak perlu disentuh.
+   apibily.js — SEMUA pemanggilan API react dari sisi browser ada di sini.
+   Alurnya:
+     1) Panggil /api/apibily (server Vercel, lihat api/apibily.js) -> hasil asli
+        API terbaca, tidak kena CORS.
+     2) Kalau /api/apibily tidak ada (404/405, mis. file api/ belum ter-deploy),
+        pakai cadangan: panggil API langsung (mode no-cors). Request tetap
+        terkirim, tapi balasannya tidak bisa dibaca browser.
+   Mau ganti API / apikey? Ubah CONFIG di sini DAN di api/apibily.js.
    ============================================================ */
 (function (global) {
   'use strict';
 
-  /* ===== KONFIGURASI (ubah di sini) ===== */
+  /* ===== KONFIGURASI (dipakai untuk cadangan langsung) ===== */
   var CONFIG = {
     endpoint: 'https://api.izzxd.my.id/api/whatsapp/reactch-v2',
     apikey: 'bilyapiforyou',
-    timeout: 60000 // ms — batas waktu menunggu balasan server
+    proxy: '/api/apibily',
+    timeout: 60000 // ms — batas waktu menunggu balasan
   };
 
-  /* Susun URL lengkap: ?url=<link channel>&reaction=<emoji>&apikey=<key> */
-  function buildUrl(link, reaction) {
-    return CONFIG.endpoint +
-      '?url=' + encodeURIComponent(link) +
-      '&reaction=' + encodeURIComponent(reaction) +
-      '&apikey=' + encodeURIComponent(CONFIG.apikey);
+  function qs(link, reaction) {
+    return '?url=' + encodeURIComponent(link) + '&reaction=' + encodeURIComponent(reaction);
+  }
+  function directUrl(link, reaction) {
+    return CONFIG.endpoint + qs(link, reaction) + '&apikey=' + encodeURIComponent(CONFIG.apikey);
   }
 
   /*
-    Kirim react. Selalu resolve (tidak pernah throw) dengan bentuk:
-      { ok: true|false, outcome: 'success'|'failed'|'unconfirmed', msg: '...' }
+    Kirim react. Selalu resolve (tidak pernah throw):
+      { ok, outcome: 'success'|'sent'|'failed', msg }
+    'sent' = request sudah terkirim tapi balasannya tidak bisa dibaca (jalur cadangan).
   */
   async function send(link, reaction) {
     var ctrl = new AbortController();
     var timer = setTimeout(function () { ctrl.abort(); }, CONFIG.timeout);
-    var ok = true, msg = '', outcome = 'success';
     try {
-      var res = await fetch(buildUrl(link, reaction), { signal: ctrl.signal }); // tunggu server selesai membalas
-      if (!res.ok) {
-        ok = false; outcome = 'failed'; msg = 'server menolak (kode ' + res.status + ')';
-      } else {
-        try {
-          var j = await res.clone().json();
-          if (j && (j.status === false || j.success === false || j.ok === false)) {
-            ok = false; outcome = 'failed';
-            msg = String(j.message || j.error || 'server menolak permintaan');
-          }
-        } catch (_) { /* balasan bukan JSON — anggap sukses */ }
+      var res = null;
+      try {
+        res = await fetch(CONFIG.proxy + qs(link, reaction), { signal: ctrl.signal, cache: 'no-store' });
+      } catch (err) {
+        if (err && err.name === 'AbortError') return { ok: false, outcome: 'failed', msg: 'server terlalu lama membalas' };
+        if (!navigator.onLine) return { ok: false, outcome: 'failed', msg: 'koneksi terputus' };
+        return { ok: false, outcome: 'failed', msg: 'tidak bisa menghubungi server (cek koneksi)' };
       }
-    } catch (err) {
-      if (err && err.name === 'AbortError') { ok = false; msg = 'server terlalu lama membalas'; }
-      else if (!navigator.onLine) { ok = false; msg = 'koneksi terputus'; }
-      else { ok = false; msg = 'hasil tidak dapat dipastikan (koneksi atau CORS)'; console.warn('Balasan API tidak bisa dibaca:', err); }
+
+      // /api/apibily belum ada -> jalur cadangan (langsung ke API)
+      if (res.status === 404 || res.status === 405) {
+        try {
+          await fetch(directUrl(link, reaction), { mode: 'no-cors', cache: 'no-store', signal: ctrl.signal });
+          return { ok: true, outcome: 'sent', msg: '' };
+        } catch (err) {
+          if (err && err.name === 'AbortError') return { ok: false, outcome: 'failed', msg: 'server terlalu lama membalas' };
+          return { ok: false, outcome: 'failed', msg: navigator.onLine ? 'tidak bisa menghubungi API react' : 'koneksi terputus' };
+        }
+      }
+
+      var j = null;
+      try { j = await res.json(); } catch (_) {}
+      if (!j) return { ok: false, outcome: 'failed', msg: 'balasan server tidak dikenali (kode ' + res.status + ')' };
+      if (j.ok) return { ok: true, outcome: 'success', msg: '' };
+      return { ok: false, outcome: 'failed', msg: String(j.message || 'API menolak permintaan') };
+    } finally {
+      clearTimeout(timer);
     }
-    clearTimeout(timer);
-    if (!ok && outcome !== 'failed') outcome = 'unconfirmed';
-    return { ok: ok, outcome: outcome, msg: msg };
   }
 
-  global.ApiBily = { config: CONFIG, buildUrl: buildUrl, send: send };
+  global.ApiBily = { config: CONFIG, send: send };
 })(window);

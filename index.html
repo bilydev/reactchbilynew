@@ -649,7 +649,7 @@ document.addEventListener('click',e=>{const t=e.target.closest('[data-go]');if(t
 // cocok untuk emoji tunggal, emoji + warna kulit, gabungan (ZWJ) dan bendera
 const EMOJI_RE=/\p{Regional_Indicator}{2}|\p{Extended_Pictographic}(?:\uFE0F|[\u{1F3FB}-\u{1F3FF}])?(?:\u200D\p{Extended_Pictographic}(?:\uFE0F|[\u{1F3FB}-\u{1F3FF}])?)*/gu;
 let lastAdded='', sending=false;
-function setSendLabel(){if(sending)return;$('#sendLabel').textContent='SEND REACT'}
+function setSendLabel(){if(sending)return;const l=cdLeft();$('#sendLabel').textContent=l>0?'TUNGGU '+Math.ceil(l/1000)+' DETIK':'SEND REACT'}
 function renderEmoji(){
   const g=$('#emojiGrid');g.innerHTML='';
   [...PRESETS,...custom].forEach(e=>{
@@ -914,6 +914,24 @@ function setSending(on){
   if(on){nextLoadLine();loadTimer=setInterval(nextLoadLine,1050)}
   else setSendLabel();
 }
+/* cooldown 3 detik antar kirim (free, pro, dan tamu — owner bebas) */
+var COOLDOWN_MS=3000,CD_KEY='bily_send_cd_until',cdTimer=null;
+function isOwnerNow(){return !!(S.logged&&S.role==='owner')}
+function getCdUntil(){try{return parseInt(localStorage.getItem(CD_KEY)||'0',10)||0}catch(e){return window.__bilyCd||0}}
+function setCdUntil(t){window.__bilyCd=t;try{localStorage.setItem(CD_KEY,String(t))}catch(e){}}
+function cdLeft(){return isOwnerNow()?0:Math.max(0,getCdUntil()-Date.now())}
+function tickCooldown(){
+  const btn=$('#send'),lab=$('#sendLabel');if(!btn||!lab||sending)return;
+  const left=cdLeft();
+  if(left>0){btn.disabled=true;lab.textContent='TUNGGU '+Math.ceil(left/1000)+' DETIK'}
+  else{clearInterval(cdTimer);cdTimer=null;btn.disabled=false;setSendLabel()}
+}
+function startCooldown(){
+  if(isOwnerNow())return;
+  setCdUntil(Date.now()+COOLDOWN_MS);
+  clearInterval(cdTimer);tickCooldown();cdTimer=setInterval(tickCooldown,250);
+}
+if(cdLeft()>0){clearInterval(cdTimer);tickCooldown();cdTimer=setInterval(tickCooldown,250)}
 /* tempel link saluran dari papan klip */
 $('#pasteLink').onclick=async()=>{
   const f=$('#link');
@@ -941,6 +959,7 @@ $('#okToast').onclick=hideSuccess;
 
 $('#send').onclick=async()=>{
   if(sending)return;
+  const cd=cdLeft();if(cd>0)return toast('Tunggu '+Math.ceil(cd/1000)+' detik dulu sebelum kirim lagi.');
   if(S.logged&&S.banned)return toast('Akun ini diblokir oleh owner.');
   const link=$('#link').value.trim(),isAnon=!S.logged;
   const lim=isAnon?ANON_MAX:limitNow();
@@ -959,7 +978,7 @@ $('#send').onclick=async()=>{
   // pemanggilan API ada di apibily.js
   const r=await window.ApiBily.send(link,reaction);
   const ok=r.ok,outcome=r.outcome,msg=r.msg;
-  setSending(false);
+  setSending(false);startCooldown();
   window.fbLogReaction({link,emojis:sentList,status:ok,outcome,deviceCount,actorUid}).catch(e=>{console.error('Log gagal:',e);toast('Log Firebase gagal disimpan. Periksa rules dan koneksi.')});
   if(!ok)return toast('Hasil kirim: '+msg+'. Periksa sebelum mencoba lagi.');
   if(isAnon){anonUse()}else{S.used++;if(window.fbSaveUsage)window.fbSaveUsage()}
