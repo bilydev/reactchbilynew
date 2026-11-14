@@ -20,10 +20,12 @@ button,input{font:inherit;color:inherit}button{cursor:pointer}
 .menu-btn:active,.btn:active,.emoji:active,.dock button:active{transform:translate(3px,3px);box-shadow:none}
 .menu-lines{width:22px}.menu-lines i{height:3px;background:var(--ink);display:block;margin:4px 0;border-radius:5px}
 .brand{position:relative;display:inline-flex;align-items:center;border:0;outline:0;background:none;box-shadow:none;padding:8px 5px;font-weight:950;letter-spacing:-.5px;font-size:19px;line-height:1;cursor:default;color:#080b11;pointer-events:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent}
-.brand-letter{display:inline-block;color:#080b11;-webkit-text-fill-color:#080b11;text-shadow:none;animation:brandIn 8s ease-out infinite,brandOut 8s ease-in infinite;animation-delay:calc(var(--i) * .13s),calc((12 - var(--i)) * .13s);animation-fill-mode:both;will-change:opacity,transform}
+.brand-letter{display:inline-block;color:#080b11;-webkit-text-fill-color:#080b11;text-shadow:none;animation:brandAppear 10s ease-in-out infinite;animation-delay:calc(var(--i) * .16s);animation-fill-mode:both;will-change:opacity,transform}
+.brand-letter-inner{display:inline-block;animation:brandDisappear 10s ease-in-out infinite;animation-delay:calc((12 - var(--i)) * .16s);animation-fill-mode:both;will-change:opacity,transform}
 .brand-space{display:inline-block;width:.34em}
-@keyframes brandIn{0%,2%{visibility:hidden}8%,100%{visibility:visible}}@keyframes brandOut{0%,52%{opacity:1}59%,100%{opacity:0}}
-@media(prefers-reduced-motion:reduce){.brand-letter{animation:none}}
+@keyframes brandAppear{0%,3%{opacity:0;transform:translateY(4px)}12%,100%{opacity:1;transform:translateY(0)}}
+@keyframes brandDisappear{0%,62%{opacity:1;transform:translateY(0)}72%,100%{opacity:0;transform:translateY(-4px)}}
+@media(prefers-reduced-motion:reduce){.brand-letter,.brand-letter-inner{animation:none}}
 .login{display:flex;align-items:center;gap:10px;background:white;border:var(--line);padding:9px 16px 9px 14px;border-radius:11px;box-shadow:3px 3px 0 var(--ink);font-weight:850;position:relative;overflow:hidden;transition:border-color .25s,box-shadow .25s}
 .login:active{transform:translate(3px,3px);box-shadow:none}
 /* dekorasi kecil bergerak di dalam kotak login */
@@ -485,6 +487,9 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
 
 /* To URL */
 .tu-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,.7fr);gap:24px;align-items:start}.tu-panel{background:#fff;border:var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}.tu-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 22px;background:var(--soft);border-bottom:var(--line)}.tu-head h3{margin:0;font-size:20px;letter-spacing:-.6px}.tu-head span{font-size:11px;font-weight:950;letter-spacing:1px}.tu-body{padding:22px}.tu-drop{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:240px;padding:24px;border:2px dashed #a794a5;border-radius:14px;background:#fff9fc;cursor:pointer;transition:background .2s,border-color .2s}.tu-drop:hover,.tu-drop.drag,.tu-drop:focus-within{background:#fff0f7;border-color:var(--ink)}.tu-icon{display:grid;place-items:center;width:64px;height:64px;border:var(--line);border-radius:20px;background:var(--yellow);margin-bottom:16px}.tu-icon svg{width:30px;height:30px}.tu-drop strong{font-size:17px}.tu-drop small{font-size:12px;color:#706572;font-weight:700;line-height:1.6;margin-top:6px}.tu-file{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}.tu-preview{display:block;width:100%;height:170px;object-fit:contain;border-radius:12px;background:#f5edf3;margin-bottom:12px}.tu-icon[hidden],.tu-preview[hidden],.tu-result[hidden],.tu-empty[hidden]{display:none}.tu-filename{max-width:100%;overflow-wrap:anywhere}.tu-action{width:100%;margin-top:20px}.tu-action:disabled{opacity:.65;cursor:wait}.tu-status{font-size:13px;font-weight:750;line-height:1.5;color:#665f6a;margin:12px 0 0}.tu-status:empty{display:none}.tu-resultbox{padding:24px;background:#f5efff;border:var(--line);border-radius:18px;box-shadow:var(--shadow)}.tu-resultbox h3{margin:0 0 8px;font-size:20px}.tu-resultbox p{margin:0;color:#665f6a;line-height:1.55;font-size:13px;font-weight:700}.tu-link{display:block;overflow-wrap:anywhere;border:2px solid var(--ink);border-radius:10px;background:#fff;padding:12px;margin:16px 0;color:#3e248b;font-size:13px;font-weight:800}.tu-actions{display:flex;gap:10px;flex-wrap:wrap}.tu-actions .btn{flex:1;text-align:center;font-size:12px;padding:12px}.tu-empty-icon{display:grid;place-items:center;width:48px;height:48px;border:2px solid var(--ink);border-radius:14px;background:var(--purple);margin-bottom:15px}.tu-empty-icon svg{width:23px;height:23px}@media(max-width:800px){.tu-layout{grid-template-columns:1fr}.tu-body{padding:18px}.tu-drop{min-height:200px}}
+
+/* Downloader All Link */
+.dl-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,.8fr);gap:24px;align-items:start}.dl-card,.dl-result{border:var(--line);border-radius:18px;background:#fff;box-shadow:var(--shadow);overflow:hidden}.dl-card-head{background:var(--soft);padding:18px 22px;border-bottom:var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px}.dl-card-head h3{font-size:20px;letter-spacing:-.5px;margin:0}.dl-card-head span{font-size:11px;font-weight:950;letter-spacing:1px}.dl-body{padding:24px}.dl-label{display:block;font-weight:950;font-size:13px;margin-bottom:8px}.dl-input{width:100%;border:var(--line);border-radius:12px;padding:14px;font:inherit;font-weight:700;color:var(--ink);background:#fff}.dl-input:focus{outline:3px solid var(--purple);outline-offset:2px}.dl-help{color:#6a636e;font-size:12px;font-weight:700;line-height:1.5;margin:9px 0 20px}.dl-submit{width:100%}.dl-submit:disabled{opacity:.7;cursor:wait}.dl-status{font-size:13px;font-weight:750;line-height:1.5;margin:12px 0 0;color:#665f6a}.dl-status:empty{display:none}.dl-result{background:#f3eeff;padding:24px}.dl-result h3{font-size:20px;letter-spacing:-.5px;margin:0 0 8px}.dl-result p{margin:0;color:#665f6a;font-size:13px;line-height:1.55;font-weight:700}.dl-icon{display:grid;place-items:center;width:52px;height:52px;background:var(--purple);border:2px solid var(--ink);border-radius:14px;margin-bottom:16px}.dl-icon svg{width:26px;height:26px}.dl-thumbnail{display:block;width:100%;max-height:240px;object-fit:contain;border:2px solid var(--ink);border-radius:12px;background:#fff;margin-bottom:16px}.dl-list{display:grid;gap:10px;margin-top:18px}.dl-link{display:flex;align-items:center;justify-content:space-between;gap:10px;color:var(--ink);text-decoration:none;background:var(--green);border:2px solid var(--ink);border-radius:10px;padding:12px 14px;font-size:13px;font-weight:900;overflow-wrap:anywhere}.dl-link:hover{background:#8ee5be}.dl-result [hidden]{display:none!important}@media(max-width:800px){.dl-layout{grid-template-columns:1fr}.dl-body,.dl-result{padding:18px}}
 </style>
 </head>
 <body>
@@ -493,7 +498,7 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
 <header class="topbar">
   <div class="top-left">
     <button class="menu-btn" id="menuBtn" aria-label="Buka menu"><span class="menu-lines"><i></i><i></i><i></i></span></button>
-    <div class="brand" id="brand" role="img" aria-label="BILY ENGINEER"><span class="brand-letter" style="--i:0" aria-hidden="true">B</span><span class="brand-letter" style="--i:1" aria-hidden="true">I</span><span class="brand-letter" style="--i:2" aria-hidden="true">L</span><span class="brand-letter" style="--i:3" aria-hidden="true">Y</span><span class="brand-space" aria-hidden="true"></span><span class="brand-letter" style="--i:5" aria-hidden="true">E</span><span class="brand-letter" style="--i:6" aria-hidden="true">N</span><span class="brand-letter" style="--i:7" aria-hidden="true">G</span><span class="brand-letter" style="--i:8" aria-hidden="true">I</span><span class="brand-letter" style="--i:9" aria-hidden="true">N</span><span class="brand-letter" style="--i:10" aria-hidden="true">E</span><span class="brand-letter" style="--i:11" aria-hidden="true">E</span><span class="brand-letter" style="--i:12" aria-hidden="true">R</span></div>
+    <div class="brand" id="brand" role="img" aria-label="BILY ENGINEER"><span class="brand-letter" style="--i:0" aria-hidden="true"><span class="brand-letter-inner">B</span></span><span class="brand-letter" style="--i:1" aria-hidden="true"><span class="brand-letter-inner">I</span></span><span class="brand-letter" style="--i:2" aria-hidden="true"><span class="brand-letter-inner">L</span></span><span class="brand-letter" style="--i:3" aria-hidden="true"><span class="brand-letter-inner">Y</span></span><span class="brand-space" aria-hidden="true"></span><span class="brand-letter" style="--i:5" aria-hidden="true"><span class="brand-letter-inner">E</span></span><span class="brand-letter" style="--i:6" aria-hidden="true"><span class="brand-letter-inner">N</span></span><span class="brand-letter" style="--i:7" aria-hidden="true"><span class="brand-letter-inner">G</span></span><span class="brand-letter" style="--i:8" aria-hidden="true"><span class="brand-letter-inner">I</span></span><span class="brand-letter" style="--i:9" aria-hidden="true"><span class="brand-letter-inner">N</span></span><span class="brand-letter" style="--i:10" aria-hidden="true"><span class="brand-letter-inner">E</span></span><span class="brand-letter" style="--i:11" aria-hidden="true"><span class="brand-letter-inner">E</span></span><span class="brand-letter" style="--i:12" aria-hidden="true"><span class="brand-letter-inner">R</span></span></div>
   </div>
   <div class="top-right">
     <button class="login" id="loginBtn"><i class="g-logo" id="gLogo">G</i><i class="avatar-sm" id="avatarSm">B</i><span class="txt" id="loginText">Login Google</span><span class="role-mini" id="roleMini">FREE</span><span class="deco d1" id="deco1">💩</span><span class="deco d2" id="deco2">💩</span><span class="deco d3" id="deco3">💩</span></button>
@@ -511,6 +516,7 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
     <div class="nav-label">✦ FITUR BARU</div>
     <button class="nav-item fresh" type="button" data-go="fakecall"><span class="ni-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.4 19.4 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7l.4 2.8a2 2 0 0 1-.6 1.7L7.6 9.5a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 1.7-.6l2.8.4a2 2 0 0 1 1.6 2.9Z"/></svg></span><span class="ni-txt">Fake Call<small>Gambar layar panggilan palsu</small></span><span class="nav-badge">BARU</span></button>
     <button class="nav-item fresh" type="button" data-go="tourl"><span class="ni-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.1 0l2-2a5 5 0 0 0-7.1-7.1l-1.1 1.1M14 11a5 5 0 0 0-7.1 0l-2 2a5 5 0 0 0 7.1 7.1l1.1-1.1"/></svg></span><span class="ni-txt">To URL<small>Ubah gambar &amp; video jadi link</small></span><span class="nav-badge">BARU</span></button>
+    <button class="nav-item fresh" type="button" data-go="downloader"><span class="ni-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M4 17v3h16v-3"/></svg></span><span class="ni-txt">Downloader All Link<small>Ambil media dari tautan</small></span><span class="nav-badge">BARU</span></button>
     <button class="nav-item" type="button" data-go="control" id="sideControl" style="display:none"><span class="ni-ic">⌘</span><span class="ni-txt">Control Web<small>Khusus owner</small></span></button>
     <div class="nav-foot">✦ Bily Reaction — generate by Bily Developer. Pilih menu di atas untuk mulai.</div>
   </nav>
@@ -652,6 +658,17 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
     </div>
   </section>
 
+  <!-- DOWNLOADER -->
+  <section class="view" id="v-downloader">
+    <div class="page-head"><span class="eyebrow">✦ DOWNLOADER ALL LINK</span><h2>Link masuk, media keluar.</h2><p>Tempel tautan konten, lalu lihat pilihan media yang tersedia untuk dibuka atau diunduh.</p></div>
+    <div class="dl-layout"><div class="dl-card"><div class="dl-card-head"><h3>Downloader Studio</h3><span>ALL LINK ✦</span></div><div class="dl-body">
+      <form id="dlForm"><label class="dl-label" for="dlInput">Link konten</label><input class="dl-input" id="dlInput" type="url" inputmode="url" placeholder="https://..." maxlength="2048" required><p class="dl-help">Masukkan link publik yang didukung oleh layanan downloader.</p><button class="btn send dl-submit" id="dlSubmit" type="submit">CARI MEDIA ↗</button></form>
+      <p class="dl-status" id="dlStatus" role="status" aria-live="polite"></p>
+    </div></div><div class="dl-result" aria-live="polite"><div id="dlEmpty"><span class="dl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M4 17v3h16v-3"/></svg></span><h3>Hasilnya di sini.</h3><p>Masukkan link dan klik cari media untuk melihat hasilnya.</p></div>
+      <div id="dlResult" hidden><img class="dl-thumbnail" id="dlThumb" alt="Pratinjau konten" referrerpolicy="no-referrer" hidden><h3 id="dlTitle">Media siap dibuka</h3><p id="dlMeta"></p><div class="dl-list" id="dlList"></div></div>
+    </div></div>
+  </section>
+
   <!-- TO URL -->
   <section class="view" id="v-tourl">
     <div class="page-head"><span class="eyebrow">✦ TO URL</span><h2>File jadi link.</h2><p>Ubah gambar atau video menjadi tautan yang siap kamu bagikan. Pilih file, upload, lalu salin link-nya.</p></div>
@@ -786,6 +803,60 @@ function go(v){
   closeAll();window.scrollTo({top:0,behavior:'smooth'});render();if(v==='statistics'&&window.fbRefreshBilyStats)window.fbRefreshBilyStats();
 }
 document.addEventListener('click',e=>{const t=e.target.closest('[data-go]');if(t){e.preventDefault();go(t.dataset.go)}});
+
+/* Downloader All Link */
+function dlSafeUrl(value){
+  if(typeof value!=='string')return '';
+  try{const url=new URL(value.trim());return ['http:','https:'].includes(url.protocol)&&!url.username&&!url.password?url.href:''}catch(_){return ''}
+}
+function dlCollect(data,input){
+  const links=[], seen=new Set(), fields=['title','name','caption','description'], meta={title:'',thumbnail:'',duration:''};
+  function walk(value,key,depth,label){
+    if(depth>7||value==null)return;
+    if(typeof value==='string'){
+      const text=value.trim(), k=String(key||'').toLowerCase();
+      if(fields.includes(k)&&!meta.title&&!dlSafeUrl(text))meta.title=text.slice(0,180);
+      if(['duration','length'].includes(k)&&!meta.duration)meta.duration=text.slice(0,50);
+      const url=dlSafeUrl(text);if(!url)return;
+      if(['thumbnail','thumb','cover','cover_url','image','image_url','preview'].includes(k)){if(!meta.thumbnail)meta.thumbnail=url;return;}
+      if(['url','download','download_url','downloadurl','link','video','audio','hd','sd','mp3','mp4','media','medias','downloads','urls','images','result','data','play','file','src','watermark','no_watermark','nowm'].includes(k) && url!==input && !seen.has(url)){
+        seen.add(url);links.push({url,label:(label||key||'Media').toString().slice(0,70)});
+      }
+      return;
+    }
+    if(typeof value==='number'&&['duration','length'].includes(String(key).toLowerCase())&&!meta.duration)meta.duration=String(value);
+    if(Array.isArray(value)){value.forEach((item,i)=>walk(item,key,depth+1,label||(String(key||'Media')+' '+(i+1))));return;}
+    if(typeof value==='object'){
+      const description=[value.quality,value.resolution,value.format,value.type].filter(x=>typeof x==='string'||typeof x==='number').join(' · ');
+      Object.entries(value).forEach(([k,v])=>walk(v,k,depth+1,description||label));
+    }
+  }
+  walk(data,'',0,'');return {links,meta};
+}
+$('#dlForm').addEventListener('submit',async e=>{
+  e.preventDefault();const input=$('#dlInput').value.trim(),url=dlSafeUrl(input);
+  if(!url||input.length>2048){$('#dlStatus').textContent='Masukkan link http atau https yang valid.';return;}
+  if(S.banned){$('#dlStatus').textContent='Akun ini diblokir oleh owner.';return;}
+  const button=$('#dlSubmit');if(button.disabled)return;button.disabled=true;button.setAttribute('aria-busy','true');button.textContent='MENCARI MEDIA…';
+  $('#dlEmpty').hidden=false;$('#dlResult').hidden=true;$('#dlStatus').textContent='Sedang mengambil hasil, tunggu sebentar…';
+  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),55000);
+  try{
+    if(S.logged){if(!window.fbCheckAccess)throw new Error('Firebase belum siap. Coba lagi.');await window.fbCheckAccess();}
+    else{if(!window.fbReserveGuest)throw new Error('Firebase belum siap. Coba lagi.');await window.fbReserveGuest();}
+    if(window.fbCountApiClick)window.fbCountApiClick('downloader');
+    const response=await fetch('/api/downloader?'+new URLSearchParams({url:input}),{signal:controller.signal,cache:'no-store'});
+    let result;try{result=await response.json()}catch(_){throw new Error('Respons API tidak dikenali.')}
+    if(!response.ok||!result.ok)throw new Error(result.message||'Gagal mengambil media.');
+    const found=dlCollect(result.data,url);
+    if(!found.links.length)throw new Error('API tidak mengembalikan tautan media yang dapat dibuka untuk link ini.');
+    $('#dlTitle').textContent=found.meta.title||'Media siap dibuka';$('#dlMeta').textContent=found.meta.duration?'Durasi: '+found.meta.duration:'Pilih media yang ingin dibuka atau diunduh.';
+    const thumb=$('#dlThumb');thumb.hidden=!found.meta.thumbnail;if(found.meta.thumbnail)thumb.src=found.meta.thumbnail;else thumb.removeAttribute('src');
+    const list=$('#dlList');list.replaceChildren();found.links.forEach((item,i)=>{const a=document.createElement('a');a.className='dl-link';a.href=item.url;a.target='_blank';a.rel='noopener noreferrer';const name=document.createElement('span');name.textContent=item.label||('Media '+(i+1));const arrow=document.createElement('span');arrow.textContent='BUKA ↗';a.append(name,arrow);list.appendChild(a)});
+    $('#dlEmpty').hidden=true;$('#dlResult').hidden=false;$('#dlStatus').textContent='';
+  }catch(error){if(error.code==='guest-limit'){go('profile');toast(error.message)}$('#dlStatus').textContent=error.name==='AbortError'?'API terlalu lama merespons. Coba lagi.':(error.message||'Gagal mengambil media.');}
+  finally{clearTimeout(timer);button.disabled=false;button.removeAttribute('aria-busy');button.textContent='CARI MEDIA ↗';}
+});
+$('#dlThumb').addEventListener('error',()=>{$('#dlThumb').hidden=true});
 
 /* To URL */
 let tuFile=null, tuObjectUrl='';
