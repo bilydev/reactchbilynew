@@ -85,7 +85,7 @@ async function assertPublic(u) {
 
 function cleanName(name, fallbackExt) {
   let n = String(name || '').normalize('NFKD').replace(/[^\w.\- ]+/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').replace(/^[.\-]+/, '').slice(0, 80);
-  const m = /\.(mp4|mp3)$/i.exec(n);
+  const m = /\.(mp4|mp3|png|jpe?g|webp)$/i.exec(n);
   if (!m) n = (n.replace(/\.+$/, '') || 'bily-media') + '.' + fallbackExt;
   return n;
 }
@@ -149,9 +149,11 @@ module.exports = async function handler(req, res) {
 
     if (check) { ctrl.abort(); return json(res, 200, { ok: true, size: total || null, type: type || null }); }
 
-    const ext = /\.(mp3)$/i.test(String(q.name || '')) ? 'mp3' : 'mp4';
+    const wanted = (/\.(mp4|mp3|png|jpe?g|webp)$/i.exec(String(q.name || '')) || [])[1];
+    const ext = wanted ? wanted.toLowerCase() : 'mp4';
     const name = cleanName(q.name, ext);
-    const outType = (!type || type === 'application/octet-stream' || type === 'binary/octet-stream') ? (name.endsWith('.mp3') ? 'audio/mpeg' : 'video/mp4') : type;
+    const BY_EXT = { mp3: 'audio/mpeg', mp4: 'video/mp4', png: 'image/png', jpg: 'image/jpeg', jpeg: 'image/jpeg', webp: 'image/webp' };
+    const outType = (!type || type === 'application/octet-stream' || type === 'binary/octet-stream') ? BY_EXT[name.split('.').pop().toLowerCase()] : type;
 
     res.statusCode = up.status;
     res.setHeader('Content-Type', outType);
