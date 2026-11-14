@@ -482,6 +482,9 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
 
 .owner-action-grid,.bily-editor-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}.owner-action-grid .btn,.bily-editor-actions .btn{width:100%;min-width:0;font-size:12px;padding:12px 6px;margin:0}.owner-logout{margin-top:14px}.bily-editor label{font-size:13px;font-weight:850}.bily-editor #bilyEditorStatus:empty{display:none}
 .bily-update-dialog{padding:0;border:0;background:transparent;width:min(460px,calc(100% - 32px));max-height:calc(100% - 32px);overflow:visible}.bily-update-dialog::backdrop{background:rgba(45,33,23,.55)}.bily-update-box{background:#fbf6ee;color:#40301f;border:1px solid #e2d3bf;border-radius:28px;padding:36px 32px 32px;box-shadow:0 20px 44px -18px rgba(90,60,30,.5);max-height:calc(100vh - 32px);overflow:auto}.bily-update-box h2{font-family:Georgia,serif;font-size:clamp(2.4rem,9vw,3.2rem);line-height:1.05;letter-spacing:-.03em;color:#7a5230;margin:0 0 16px}.bily-update-box p{font-size:1.08rem;line-height:1.75;white-space:pre-wrap;overflow-wrap:anywhere;margin:0}.bily-update-box button{width:100%;margin-top:22px;padding:14px 20px;border:0;border-radius:16px;background:#7a5230;color:#fbf6ee;font-weight:700;cursor:pointer}.bily-update-box button:hover{background:#5f3e22}.bily-update-box button:focus-visible{outline:3px solid #d3b799;outline-offset:3px}
+
+/* To URL */
+.tu-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,.7fr);gap:24px;align-items:start}.tu-panel{background:#fff;border:var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}.tu-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 22px;background:var(--soft);border-bottom:var(--line)}.tu-head h3{margin:0;font-size:20px;letter-spacing:-.6px}.tu-head span{font-size:11px;font-weight:950;letter-spacing:1px}.tu-body{padding:22px}.tu-drop{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:240px;padding:24px;border:2px dashed #a794a5;border-radius:14px;background:#fff9fc;cursor:pointer;transition:background .2s,border-color .2s}.tu-drop:hover,.tu-drop.drag,.tu-drop:focus-within{background:#fff0f7;border-color:var(--ink)}.tu-icon{display:grid;place-items:center;width:64px;height:64px;border:var(--line);border-radius:20px;background:var(--yellow);margin-bottom:16px}.tu-icon svg{width:30px;height:30px}.tu-drop strong{font-size:17px}.tu-drop small{font-size:12px;color:#706572;font-weight:700;line-height:1.6;margin-top:6px}.tu-file{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}.tu-preview{display:block;width:100%;height:170px;object-fit:contain;border-radius:12px;background:#f5edf3;margin-bottom:12px}.tu-icon[hidden],.tu-preview[hidden],.tu-result[hidden],.tu-empty[hidden]{display:none}.tu-filename{max-width:100%;overflow-wrap:anywhere}.tu-action{width:100%;margin-top:20px}.tu-action:disabled{opacity:.65;cursor:wait}.tu-status{font-size:13px;font-weight:750;line-height:1.5;color:#665f6a;margin:12px 0 0}.tu-status:empty{display:none}.tu-resultbox{padding:24px;background:#f5efff;border:var(--line);border-radius:18px;box-shadow:var(--shadow)}.tu-resultbox h3{margin:0 0 8px;font-size:20px}.tu-resultbox p{margin:0;color:#665f6a;line-height:1.55;font-size:13px;font-weight:700}.tu-link{display:block;overflow-wrap:anywhere;border:2px solid var(--ink);border-radius:10px;background:#fff;padding:12px;margin:16px 0;color:#3e248b;font-size:13px;font-weight:800}.tu-actions{display:flex;gap:10px;flex-wrap:wrap}.tu-actions .btn{flex:1;text-align:center;font-size:12px;padding:12px}.tu-empty-icon{display:grid;place-items:center;width:48px;height:48px;border:2px solid var(--ink);border-radius:14px;background:var(--purple);margin-bottom:15px}.tu-empty-icon svg{width:23px;height:23px}@media(max-width:800px){.tu-layout{grid-template-columns:1fr}.tu-body{padding:18px}.tu-drop{min-height:200px}}
 </style>
 </head>
 <body>
@@ -507,6 +510,7 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
     <button class="nav-item" type="button" data-go="studio"><span class="ni-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 14a4 4 0 0 0 8 0M9 9h.01M15 9h.01"/></svg></span><span class="ni-txt">Reaction Studio<small>Kirim reaksi ke channel WA</small></span></button>
     <div class="nav-label">✦ FITUR BARU</div>
     <button class="nav-item fresh" type="button" data-go="fakecall"><span class="ni-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.4 19.4 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7l.4 2.8a2 2 0 0 1-.6 1.7L7.6 9.5a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 1.7-.6l2.8.4a2 2 0 0 1 1.6 2.9Z"/></svg></span><span class="ni-txt">Fake Call<small>Gambar layar panggilan palsu</small></span><span class="nav-badge">BARU</span></button>
+    <button class="nav-item fresh" type="button" data-go="tourl"><span class="ni-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.1 0l2-2a5 5 0 0 0-7.1-7.1l-1.1 1.1M14 11a5 5 0 0 0-7.1 0l-2 2a5 5 0 0 0 7.1 7.1l1.1-1.1"/></svg></span><span class="ni-txt">To URL<small>Ubah gambar &amp; video jadi link</small></span><span class="nav-badge">BARU</span></button>
     <button class="nav-item" type="button" data-go="control" id="sideControl" style="display:none"><span class="ni-ic">⌘</span><span class="ni-txt">Control Web<small>Khusus owner</small></span></button>
     <div class="nav-foot">✦ Bily Reaction — generate by Bily Developer. Pilih menu di atas untuk mulai.</div>
   </nav>
@@ -648,6 +652,25 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
     </div>
   </section>
 
+  <!-- TO URL -->
+  <section class="view" id="v-tourl">
+    <div class="page-head"><span class="eyebrow">✦ TO URL</span><h2>File jadi link.</h2><p>Ubah gambar atau video menjadi tautan yang siap kamu bagikan. Pilih file, upload, lalu salin link-nya.</p></div>
+    <div class="tu-layout">
+      <div class="tu-panel"><div class="tu-head"><h3>Upload file</h3><span>TO URL ✦</span></div><div class="tu-body">
+        <label class="tu-drop" id="tuDrop" for="tuFile">
+          <span class="tu-icon" id="tuIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V3m-5 5 5-5 5 5M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg></span>
+          <img id="tuImage" class="tu-preview" alt="Pratinjau gambar" hidden><video id="tuVideo" class="tu-preview" muted playsinline hidden></video>
+          <strong class="tu-filename" id="tuFileName">Pilih gambar atau video</strong><small id="tuFileHint">Ketuk untuk memilih file · maks. 100 MB<br>JPG, PNG, WebP, GIF, MP4, WebM, MOV</small>
+          <input id="tuFile" class="tu-file" type="file" accept="image/jpeg,image/png,image/webp,image/gif,video/mp4,video/webm,video/quicktime" aria-label="Pilih gambar atau video">
+        </label>
+        <button class="btn send tu-action" id="tuSend" type="button">BUAT LINK <span aria-hidden="true">↗</span></button><p class="tu-status" id="tuStatus" role="status" aria-live="polite"></p>
+      </div></div>
+      <div class="tu-resultbox"><div id="tuEmpty" class="tu-empty"><span class="tu-empty-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7 0l2-2a5 5 0 0 0-7-7l-1 1M14 11a5 5 0 0 0-7 0l-2 2a5 5 0 0 0 7 7l1-1"/></svg></span><h3>Link kamu di sini.</h3><p>Setelah file berhasil di-upload, link akan muncul di sini.</p></div>
+        <div id="tuResult" class="tu-result" hidden><h3>Link siap dibagikan! ✦</h3><p>Salin link atau buka untuk melihat hasil upload.</p><a class="tu-link" id="tuLink" href="#" target="_blank" rel="noopener noreferrer"></a><div class="tu-actions"><button class="btn" id="tuCopy" style="background:var(--green)" type="button">SALIN LINK</button><a class="btn" id="tuOpen" target="_blank" rel="noopener noreferrer">BUKA LINK ↗</a></div></div>
+      </div>
+    </div>
+  </section>
+
   <!-- FAKE CALL -->
   <section class="view" id="v-fakecall">
     <div class="blob one"></div><div class="blob two"></div>
@@ -763,6 +786,60 @@ function go(v){
   closeAll();window.scrollTo({top:0,behavior:'smooth'});render();if(v==='statistics'&&window.fbRefreshBilyStats)window.fbRefreshBilyStats();
 }
 document.addEventListener('click',e=>{const t=e.target.closest('[data-go]');if(t){e.preventDefault();go(t.dataset.go)}});
+
+/* To URL */
+let tuFile=null, tuObjectUrl='';
+const tuTypes=['image/jpeg','image/png','image/webp','image/gif','video/mp4','video/webm','video/quicktime'];
+function tuSelect(file){
+  if(tuObjectUrl){URL.revokeObjectURL(tuObjectUrl);tuObjectUrl='';}
+  tuFile=null; $('#tuImage').hidden=true; $('#tuVideo').hidden=true; $('#tuImage').removeAttribute('src'); $('#tuVideo').removeAttribute('src');
+  $('#tuIcon').hidden=false; $('#tuFileName').textContent='Pilih gambar atau video'; $('#tuFileHint').innerHTML='Ketuk untuk memilih file · maks. 100 MB<br>JPG, PNG, WebP, GIF, MP4, WebM, MOV';
+  $('#tuResult').hidden=true; $('#tuEmpty').hidden=false; $('#tuStatus').textContent='';
+  if(!file)return;
+  if(!tuTypes.includes(file.type) || !file.size || file.size>100*1024*1024){$('#tuFile').value='';$('#tuStatus').textContent='Pilih gambar atau video yang didukung, maksimal 100 MB.';return;}
+  tuFile=file; tuObjectUrl=URL.createObjectURL(file);
+  const preview=file.type.startsWith('image/')?$('#tuImage'):$('#tuVideo');preview.src=tuObjectUrl;preview.hidden=false;
+  $('#tuIcon').hidden=true;$('#tuFileName').textContent=file.name;$('#tuFileHint').textContent='Ketuk untuk mengganti file · '+(file.size/1024/1024).toFixed(2)+' MB';
+}
+$('#tuFile').addEventListener('change',e=>tuSelect(e.target.files[0]));
+['dragenter','dragover'].forEach(name=>$('#tuDrop').addEventListener(name,e=>{e.preventDefault();$('#tuDrop').classList.add('drag')}));
+['dragleave','drop'].forEach(name=>$('#tuDrop').addEventListener(name,e=>{e.preventDefault();$('#tuDrop').classList.remove('drag');if(name==='drop' && !$('#tuFile').disabled){const file=e.dataTransfer.files[0];$('#tuFile').value='';tuSelect(file)}}));
+function tuFindUrl(data,depth=0){
+  if(depth>5 || data==null)return '';
+  if(typeof data==='string'){try{const u=new URL(data.trim());return ['http:','https:'].includes(u.protocol)?u.href:''}catch(_){return ''}}
+  if(typeof data!=='object')return '';
+  for(const key of ['url','result','data','file','link']){const url=tuFindUrl(data[key],depth+1);if(url)return url;}
+  return '';
+}
+$('#tuSend').addEventListener('click',async()=>{
+  if(!tuFile){$('#tuStatus').textContent='Pilih gambar atau video dulu ya.';return;}
+  if(S.banned){$('#tuStatus').textContent='Akun ini diblokir oleh owner.';return;}
+  const button=$('#tuSend'),file=tuFile;button.disabled=true;button.setAttribute('aria-busy','true');button.textContent='MENGUPLOAD…';$('#tuFile').disabled=true;
+  $('#tuEmpty').hidden=false;$('#tuResult').hidden=true;$('#tuStatus').textContent='Sedang mengupload file, tunggu sebentar…';
+  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),180000);
+  try{
+    if(S.logged){if(!window.fbCheckAccess)throw new Error('Firebase belum siap. Coba lagi.');await window.fbCheckAccess();}
+    else{if(!window.fbReserveGuest)throw new Error('Firebase belum siap. Coba lagi.');await window.fbReserveGuest();}
+    if(window.fbCountApiClick)window.fbCountApiClick('tourl');
+    const direct=file.size>4*1024*1024;
+    let response;
+    if(direct){
+      const form=new FormData();form.append('file',file,file.name);
+      try{response=await fetch('https://api.izzxd.my.id/api/uploader/top4top?apikey=bilyapiforyou',{method:'POST',body:form,signal:controller.signal,cache:'no-store'});}
+      catch(error){if(error.name==='AbortError')throw error;throw new Error('Upload langsung gagal. API mungkin tidak mengizinkan akses dari browser (CORS), atau koneksi terputus.');}
+    }else response=await fetch('/api/tourl',{method:'POST',headers:{'Content-Type':file.type},body:file,signal:controller.signal,cache:'no-store'});
+    let result;try{result=await response.json()}catch(_){throw new Error('Respons API tidak dikenali. Coba lagi.')}
+    if(!response.ok || (result && typeof result==='object' && (result.ok===false || result.status===false || result.success===false || result.error)))
+      throw new Error(typeof result.message==='string'?result.message:(response.status===429?'Terlalu banyak permintaan. Coba lagi nanti.':'Upload gagal. Coba lagi.'));
+    let url;try{url=new URL(tuFindUrl(result));if(!['http:','https:'].includes(url.protocol))throw new Error()}catch(_){throw new Error('API tidak mengembalikan link yang valid.')}
+    $('#tuLink').textContent=url.href;$('#tuLink').href=url.href;$('#tuOpen').href=url.href;$('#tuEmpty').hidden=true;$('#tuResult').hidden=false;$('#tuStatus').textContent='';
+  }catch(error){if(error.code==='guest-limit'){go('profile');toast(error.message)}$('#tuStatus').textContent=error.name==='AbortError'?'Upload terlalu lama. Coba lagi.':(error.message || 'Upload gagal. Coba lagi.');}
+  finally{clearTimeout(timer);button.disabled=false;button.removeAttribute('aria-busy');button.textContent='BUAT LINK ↗';$('#tuFile').disabled=false;}
+});
+$('#tuCopy').addEventListener('click',async()=>{
+  try{await navigator.clipboard.writeText($('#tuLink').href);toast('Link berhasil disalin!');}
+  catch(_){toast('Tidak bisa menyalin otomatis. Tekan dan tahan link untuk menyalin.');}
+});
 
 /* Fake Call */
 let fcObjectUrl = null, fcResultUrl = '', fcExtension = '', fcTheme = 'android';
