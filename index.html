@@ -20,12 +20,11 @@ button,input{font:inherit;color:inherit}button{cursor:pointer}
 .menu-btn:active,.btn:active,.emoji:active,.dock button:active{transform:translate(3px,3px);box-shadow:none}
 .menu-lines{width:22px}.menu-lines i{height:3px;background:var(--ink);display:block;margin:4px 0;border-radius:5px}
 .brand{position:relative;display:inline-flex;align-items:center;border:0;outline:0;background:none;box-shadow:none;padding:8px 5px;font-weight:950;letter-spacing:-.5px;font-size:19px;line-height:1;cursor:default;color:#080b11;pointer-events:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent}
-.brand-letter{display:inline-block;color:#080b11;-webkit-text-fill-color:#080b11;text-shadow:none;animation:brandAppear 10s ease-in-out infinite;animation-delay:calc(var(--i) * .16s);animation-fill-mode:both;will-change:opacity,transform}
-.brand-letter-inner{display:inline-block;animation:brandDisappear 10s ease-in-out infinite;animation-delay:calc((12 - var(--i)) * .16s);animation-fill-mode:both;will-change:opacity,transform}
+.brand-letter,.brand-letter-inner{display:inline-block;color:#080b11;-webkit-text-fill-color:#080b11;text-shadow:none}
 .brand-space{display:inline-block;width:.34em}
-@keyframes brandAppear{0%,3%{opacity:0;transform:translateY(4px)}12%,100%{opacity:1;transform:translateY(0)}}
-@keyframes brandDisappear{0%,62%{opacity:1;transform:translateY(0)}72%,100%{opacity:0;transform:translateY(-4px)}}
-@media(prefers-reduced-motion:reduce){.brand-letter,.brand-letter-inner{animation:none}}
+#brand{animation:brandSweep 11s ease-in-out infinite;will-change:clip-path}
+@keyframes brandSweep{0%,4%{clip-path:inset(0 100% 0 0)}27%,62%{clip-path:inset(0 0 0 0)}86%,100%{clip-path:inset(0 100% 0 0)}}
+@media(prefers-reduced-motion:reduce){#brand{animation:none}}
 .login{display:flex;align-items:center;gap:10px;background:white;border:var(--line);padding:9px 16px 9px 14px;border-radius:11px;box-shadow:3px 3px 0 var(--ink);font-weight:850;position:relative;overflow:hidden;transition:border-color .25s,box-shadow .25s}
 .login:active{transform:translate(3px,3px);box-shadow:none}
 /* dekorasi kecil bergerak di dalam kotak login */
@@ -490,6 +489,8 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
 
 /* Downloader All Link */
 .dl-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,.8fr);gap:24px;align-items:start}.dl-card,.dl-result{border:var(--line);border-radius:18px;background:#fff;box-shadow:var(--shadow);overflow:hidden}.dl-card-head{background:var(--soft);padding:18px 22px;border-bottom:var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px}.dl-card-head h3{font-size:20px;letter-spacing:-.5px;margin:0}.dl-card-head span{font-size:11px;font-weight:950;letter-spacing:1px}.dl-body{padding:24px}.dl-label{display:block;font-weight:950;font-size:13px;margin-bottom:8px}.dl-input{width:100%;border:var(--line);border-radius:12px;padding:14px;font:inherit;font-weight:700;color:var(--ink);background:#fff}.dl-input:focus{outline:3px solid var(--purple);outline-offset:2px}.dl-help{color:#6a636e;font-size:12px;font-weight:700;line-height:1.5;margin:9px 0 20px}.dl-submit{width:100%}.dl-submit:disabled{opacity:.7;cursor:wait}.dl-status{font-size:13px;font-weight:750;line-height:1.5;margin:12px 0 0;color:#665f6a}.dl-status:empty{display:none}.dl-result{background:#f3eeff;padding:24px}.dl-result h3{font-size:20px;letter-spacing:-.5px;margin:0 0 8px}.dl-result p{margin:0;color:#665f6a;font-size:13px;line-height:1.55;font-weight:700}.dl-icon{display:grid;place-items:center;width:52px;height:52px;background:var(--purple);border:2px solid var(--ink);border-radius:14px;margin-bottom:16px}.dl-icon svg{width:26px;height:26px}.dl-thumbnail{display:block;width:100%;max-height:240px;object-fit:contain;border:2px solid var(--ink);border-radius:12px;background:#fff;margin-bottom:16px}.dl-list{display:grid;gap:10px;margin-top:18px}.dl-link{display:flex;align-items:center;justify-content:space-between;gap:10px;color:var(--ink);text-decoration:none;background:var(--green);border:2px solid var(--ink);border-radius:10px;padding:12px 14px;font-size:13px;font-weight:900;overflow-wrap:anywhere}.dl-link:hover{background:#8ee5be}.dl-result [hidden]{display:none!important}@media(max-width:800px){.dl-layout{grid-template-columns:1fr}.dl-body,.dl-result{padding:18px}}
+
+.dl-format-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}.dl-format-actions .btn{min-width:0;padding:12px 8px;font-size:12px}.dl-format-actions .btn:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}.dl-dialog{width:min(460px,calc(100% - 32px));max-height:calc(100% - 32px);padding:22px;border:var(--line);border-radius:18px;background:#fffafc;box-shadow:6px 6px 0 var(--ink);color:var(--ink)}.dl-dialog::backdrop{background:rgba(23,21,27,.55)}.dl-dialog-head{display:flex;align-items:center;justify-content:space-between;gap:12px}.dl-dialog-head h3{margin:0;font-size:21px}.dl-dialog-close{border:2px solid var(--ink);border-radius:10px;background:#fff;width:38px;height:38px;font-size:22px;line-height:1}.dl-dialog-note{font-size:12px;color:#665f6a;line-height:1.5;font-weight:700}.dl-dialog .dl-link{width:100%;font-family:inherit;cursor:pointer;text-align:left}.dl-dialog .dl-link:disabled{opacity:.6;cursor:wait}.dl-dialog-status{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px;line-height:1.5;font-weight:750;color:#665f6a}.dl-dialog-status:empty{display:none}
 </style>
 </head>
 <body>
@@ -665,9 +666,11 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
       <form id="dlForm"><label class="dl-label" for="dlInput">Link konten</label><input class="dl-input" id="dlInput" type="url" inputmode="url" placeholder="https://..." maxlength="2048" required><p class="dl-help">Masukkan link publik yang didukung oleh layanan downloader.</p><button class="btn send dl-submit" id="dlSubmit" type="submit">CARI MEDIA ↗</button></form>
       <p class="dl-status" id="dlStatus" role="status" aria-live="polite"></p>
     </div></div><div class="dl-result" aria-live="polite"><div id="dlEmpty"><span class="dl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M4 17v3h16v-3"/></svg></span><h3>Hasilnya di sini.</h3><p>Masukkan link dan klik cari media untuk melihat hasilnya.</p></div>
-      <div id="dlResult" hidden><img class="dl-thumbnail" id="dlThumb" alt="Pratinjau konten" referrerpolicy="no-referrer" hidden><h3 id="dlTitle">Media siap dibuka</h3><p id="dlMeta"></p><div class="dl-list" id="dlList"></div></div>
+      <div id="dlResult" hidden><img class="dl-thumbnail" id="dlThumb" alt="Pratinjau konten" referrerpolicy="no-referrer" hidden><h3 id="dlTitle">Media siap dibuka</h3><p id="dlMeta"></p><div class="dl-format-actions"><button class="btn" id="dlMp4" type="button" style="background:var(--green)">DOWNLOAD MP4</button><button class="btn" id="dlMp3" type="button" style="background:var(--yellow)">DOWNLOAD MP3</button></div><p class="dl-status" id="dlFormatStatus"></p></div>
     </div></div>
   </section>
+
+  <dialog class="dl-dialog" id="dlDialog" aria-labelledby="dlDialogTitle"><div class="dl-dialog-head"><h3 id="dlDialogTitle">Pilihan download</h3><button class="dl-dialog-close" id="dlDialogClose" type="button" aria-label="Tutup">×</button></div><p class="dl-dialog-note">Pilih kualitas yang tersedia untuk mulai mengunduh.</p><div class="dl-list" id="dlList"></div><p class="dl-dialog-status" id="dlDownloadStatus" role="status" aria-live="polite"></p></dialog>
 
   <!-- TO URL -->
   <section class="view" id="v-tourl">
@@ -809,6 +812,44 @@ function dlSafeUrl(value){
   if(typeof value!=='string')return '';
   try{const url=new URL(value.trim());return ['http:','https:'].includes(url.protocol)&&!url.username&&!url.password?url.href:''}catch(_){return ''}
 }
+function dlKind(url,key,label){
+  const text=((key||'')+' '+(label||'')).toLowerCase();
+  let path='';try{path=new URL(url).pathname.toLowerCase()}catch(_){}
+  if(/(?:\.mp3)$/.test(path)||/(^|[^a-z0-9])mp3([^a-z0-9]|$)|audio\/mpeg/.test(text))return 'mp3';
+  if(/(?:\.mp4)$/.test(path)||/(^|[^a-z0-9])mp4([^a-z0-9]|$)|video\/mp4/.test(text))return 'mp4';
+  return '';
+}
+let dlLinks=[];
+async function dlDownload(item,button){
+  const status=$('#dlDownloadStatus');button.disabled=true;status.textContent='Mengunduh di latar belakang…';
+  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),120000);
+  try{
+    const response=await fetch(item.url,{signal:controller.signal,credentials:'omit',mode:'cors'});
+    if(!response.ok)throw new Error('Server media membalas kode '+response.status+'.');
+    const type=(response.headers.get('content-type')||'').toLowerCase();
+    if(type.includes('text/html')||type.includes('application/json'))throw new Error('Server tidak mengirim file media.');
+    const max=100*1024*1024, length=Number(response.headers.get('content-length'));
+    if(length>max)throw new Error('Ukuran media lebih dari 100 MB.');
+    let blob;
+    if(response.body && response.body.getReader){
+      const reader=response.body.getReader(),chunks=[];let size=0;
+      while(true){const part=await reader.read();if(part.done)break;size+=part.value.byteLength;if(size>max){await reader.cancel();throw new Error('Ukuran media lebih dari 100 MB.');}chunks.push(part.value)}
+      blob=new Blob(chunks,{type:type||'application/octet-stream'});
+    }else blob=await response.blob();
+    if(!blob.size)throw new Error('File media kosong.');if(blob.size>max)throw new Error('Ukuran media lebih dari 100 MB.');
+    const objectUrl=URL.createObjectURL(blob), a=document.createElement('a');a.href=objectUrl;a.download='bily-downloader.'+item.kind;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(objectUrl),60000);
+    status.textContent='Unduhan dimulai. Periksa folder download perangkat kamu.';
+  }catch(error){status.textContent=error.name==='AbortError'?'Unduhan terlalu lama. Coba lagi.':(error instanceof TypeError?'Server media tidak mengizinkan unduhan langsung dari browser (CORS) atau koneksi terputus.':(error.message||'Unduhan gagal.'));}
+  finally{clearTimeout(timer);button.disabled=false;}
+}
+function dlShowOptions(kind){
+  const matches=dlLinks.filter(item=>item.kind===kind),list=$('#dlList');list.replaceChildren();$('#dlDownloadStatus').textContent='';$('#dlDialogTitle').textContent='Download '+kind.toUpperCase();
+  matches.forEach((item,i)=>{const button=document.createElement('button');button.type='button';button.className='dl-link';const label=document.createElement('span');label.textContent=item.label||('Pilihan '+(i+1));const action=document.createElement('span');action.textContent='DOWNLOAD ↓';button.append(label,action);button.addEventListener('click',()=>dlDownload(item,button));list.appendChild(button)});
+  if(matches.length)$('#dlDialog').showModal();
+}
+$('#dlMp4').addEventListener('click',()=>dlShowOptions('mp4'));
+$('#dlMp3').addEventListener('click',()=>dlShowOptions('mp3'));
+$('#dlDialogClose').addEventListener('click',()=>$('#dlDialog').close());
 function dlCollect(data,input){
   const links=[], seen=new Set(), fields=['title','name','caption','description'], meta={title:'',thumbnail:'',duration:''};
   function walk(value,key,depth,label){
@@ -820,7 +861,7 @@ function dlCollect(data,input){
       const url=dlSafeUrl(text);if(!url)return;
       if(['thumbnail','thumb','cover','cover_url','image','image_url','preview'].includes(k)){if(!meta.thumbnail)meta.thumbnail=url;return;}
       if(['url','download','download_url','downloadurl','link','video','audio','hd','sd','mp3','mp4','media','medias','downloads','urls','images','result','data','play','file','src','watermark','no_watermark','nowm'].includes(k) && url!==input && !seen.has(url)){
-        seen.add(url);links.push({url,label:(label||key||'Media').toString().slice(0,70)});
+        seen.add(url);links.push({url,label:(label||key||'Media').toString().slice(0,70),kind:dlKind(url, key, label)});
       }
       return;
     }
@@ -828,7 +869,7 @@ function dlCollect(data,input){
     if(Array.isArray(value)){value.forEach((item,i)=>walk(item,key,depth+1,label||(String(key||'Media')+' '+(i+1))));return;}
     if(typeof value==='object'){
       const description=[value.quality,value.resolution,value.format,value.type].filter(x=>typeof x==='string'||typeof x==='number').join(' · ');
-      Object.entries(value).forEach(([k,v])=>walk(v,k,depth+1,description||label));
+      Object.entries(value).forEach(([k,v])=>walk(v,k,depth+1,[description,label,key].filter(Boolean).join(' · ')));
     }
   }
   walk(data,'',0,'');return {links,meta};
@@ -849,9 +890,9 @@ $('#dlForm').addEventListener('submit',async e=>{
     if(!response.ok||!result.ok)throw new Error(result.message||'Gagal mengambil media.');
     const found=dlCollect(result.data,url);
     if(!found.links.length)throw new Error('API tidak mengembalikan tautan media yang dapat dibuka untuk link ini.');
-    $('#dlTitle').textContent=found.meta.title||'Media siap dibuka';$('#dlMeta').textContent=found.meta.duration?'Durasi: '+found.meta.duration:'Pilih media yang ingin dibuka atau diunduh.';
+    $('#dlTitle').textContent=found.meta.title||'Media siap dibuka';$('#dlMeta').textContent=found.meta.duration?'Durasi: '+found.meta.duration:'Pilih MP4 atau MP3 yang tersedia.';
     const thumb=$('#dlThumb');thumb.hidden=!found.meta.thumbnail;if(found.meta.thumbnail)thumb.src=found.meta.thumbnail;else thumb.removeAttribute('src');
-    const list=$('#dlList');list.replaceChildren();found.links.forEach((item,i)=>{const a=document.createElement('a');a.className='dl-link';a.href=item.url;a.target='_blank';a.rel='noopener noreferrer';const name=document.createElement('span');name.textContent=item.label||('Media '+(i+1));const arrow=document.createElement('span');arrow.textContent='BUKA ↗';a.append(name,arrow);list.appendChild(a)});
+    dlLinks=found.links;const mp4=dlLinks.filter(item=>item.kind==='mp4').length,mp3=dlLinks.filter(item=>item.kind==='mp3').length;$('#dlMp4').disabled=!mp4;$('#dlMp3').disabled=!mp3;$('#dlFormatStatus').textContent=(!mp4&&!mp3)?'API belum menyediakan hasil MP4 atau MP3 yang dapat dikenali.':(!mp4?'MP4 tidak tersedia untuk link ini.':!mp3?'MP3 tidak tersedia untuk link ini.':'');
     $('#dlEmpty').hidden=true;$('#dlResult').hidden=false;$('#dlStatus').textContent='';
   }catch(error){if(error.code==='guest-limit'){go('profile');toast(error.message)}$('#dlStatus').textContent=error.name==='AbortError'?'API terlalu lama merespons. Coba lagi.':(error.message||'Gagal mengambil media.');}
   finally{clearTimeout(timer);button.disabled=false;button.removeAttribute('aria-busy');button.textContent='CARI MEDIA ↗';}
