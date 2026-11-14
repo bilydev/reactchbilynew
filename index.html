@@ -693,7 +693,7 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
     </div></div>
   </section>
 
-  <dialog class="dl-dialog" id="dlDialog" aria-labelledby="dlDialogTitle"><div class="dl-dialog-head"><h3 id="dlDialogTitle">Pilihan download</h3><button class="dl-dialog-close" id="dlDialogClose" type="button" aria-label="Tutup">×</button></div><p class="dl-dialog-note">Pilih kualitas untuk menyimpan file. Server media harus mengizinkan unduhan dari browser.</p><div class="dl-list" id="dlList"></div><p class="dl-dialog-status" id="dlDownloadStatus" role="status" aria-live="polite"></p></dialog>
+  <dialog class="dl-dialog" id="dlDialog" aria-labelledby="dlDialogTitle"><div class="dl-dialog-head"><h3 id="dlDialogTitle">Pilihan download</h3><button class="dl-dialog-close" id="dlDialogClose" type="button" aria-label="Tutup">×</button></div><p class="dl-dialog-note">Pilih kualitas, lalu file diunduh otomatis di latar belakang ke folder Download.</p><div class="dl-list" id="dlList"></div><p class="dl-dialog-status" id="dlDownloadStatus" role="status" aria-live="polite"></p></dialog>
 
   <!-- TO URL -->
   <section class="view" id="v-tourl">
@@ -900,28 +900,31 @@ function dlKind(url,key,label){
   return '';
 }
 let dlLinks=[];
-let dlDownloading=false;
+let dlSigs={},dlTitleText='',dlBusy=false;
+function dlFileName(kind){
+  const base=String(dlTitleText||'').normalize('NFKD').replace(/[^\w\s-]/g,'').trim().replace(/\s+/g,'-').replace(/-+/g,'-').slice(0,60).toLowerCase();
+  return 'bily-'+(base||'media')+'.'+kind;
+}
+function dlProxyUrl(item,check){
+  const p=new URLSearchParams({url:item.url,name:dlFileName(item.kind)}),sig=dlSigs[item.url];
+  if(sig)p.set('sig',sig);if(check)p.set('check','1');
+  return '/api/dlfile?'+p.toString();
+}
+/* Unduhan lewat server (same-origin): dicek dulu cepat, lalu browser mengunduh sendiri di latar belakang. */
 async function dlDownload(item, button){
-  if(dlDownloading)return;
-  dlDownloading=true;button.disabled=true;const status=$('#dlDownloadStatus');status.textContent='Sedang mengunduh…';
-  const ctrl=new AbortController(),timer=setTimeout(()=>ctrl.abort(),180000),max=100*1024*1024;
+  if(dlBusy)return;
+  dlBusy=true;button.disabled=true;const status=$('#dlDownloadStatus');status.textContent='Menyiapkan unduhan…';
+  const ctrl=new AbortController(),timer=setTimeout(()=>ctrl.abort(),25000);
   try{
-    const response=await fetch(item.url,{signal:ctrl.signal,mode:'cors',credentials:'omit'});
-    if(!response.ok)throw new Error('Server media membalas kode '+response.status+'.');
-    const type=(response.headers.get('content-type')||'').toLowerCase();
-    if(type.includes('text/html')||type.includes('application/json'))throw new Error('Server tidak mengirim file media.');
-    if(Number(response.headers.get('content-length'))>max)throw new Error('File terlalu besar untuk unduhan langsung (maks. 100 MB).');
-    let blob;
-    if(response.body&&response.body.getReader){
-      const reader=response.body.getReader(),chunks=[];let size=0;
-      while(true){const part=await reader.read();if(part.done)break;size+=part.value.byteLength;if(size>max){await reader.cancel();throw new Error('File terlalu besar untuk unduhan langsung (maks. 100 MB).');}chunks.push(part.value);}
-      blob=new Blob(chunks,{type:type||'application/octet-stream'});
-    }else blob=await response.blob();
-    if(!blob.size)throw new Error('File media kosong.');if(blob.size>max)throw new Error('File terlalu besar untuk unduhan langsung (maks. 100 MB).');
-    const objectUrl=URL.createObjectURL(blob),a=document.createElement('a');a.href=objectUrl;a.download='bily-website-premium.'+item.kind;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(objectUrl),60000);
-    status.textContent='File dikirim ke browser untuk disimpan. Periksa folder Download.';
-  }catch(e){status.textContent=e.name==='AbortError'?'Unduhan terlalu lama. Coba lagi.':(e instanceof TypeError?'Unduhan ditolak atau terputus. Server media mungkin tidak mengizinkan akses CORS.':(e.message||'Unduhan gagal.'));}
-  finally{clearTimeout(timer);dlDownloading=false;button.disabled=false;}
+    const response=await fetch(dlProxyUrl(item,true),{signal:ctrl.signal,cache:'no-store'});
+    let info=null;try{info=await response.json()}catch(_){}
+    if(!response.ok||!info||!info.ok)throw new Error((info&&info.message)||(response.status===429?'Terlalu banyak permintaan. Coba lagi nanti.':'Unduhan tidak dapat dimulai.'));
+    const a=document.createElement('a');a.href=dlProxyUrl(item,false);a.download=dlFileName(item.kind);a.rel='noopener';a.style.display='none';document.body.appendChild(a);a.click();a.remove();
+    $('#dlDialog').close();
+    $('#dlFormatStatus').textContent='Unduhan dimulai di latar belakang. Cek notifikasi atau folder Download.';
+    toast('Unduhan dimulai ✦');
+  }catch(e){status.textContent=e.name==='AbortError'?'Server terlalu lama merespons. Coba lagi.':(e instanceof TypeError?'Koneksi terputus. Coba lagi.':(e.message||'Unduhan gagal.'));}
+  finally{clearTimeout(timer);setTimeout(()=>{dlBusy=false;button.disabled=false},1500);}
 }
 function dlShowOptions(kind){
   const matches=dlLinks.filter(item=>item.kind===kind),list=$('#dlList');list.replaceChildren();$('#dlDownloadStatus').textContent='';$('#dlDialogTitle').textContent='Download '+kind.toUpperCase();
@@ -991,7 +994,7 @@ $('#dlForm').addEventListener('submit',async e=>{
     if(!found.links.length)throw new Error('API tidak mengembalikan tautan media yang dapat dibuka untuk link ini.');
     $('#dlTitle').textContent=found.meta.title||'Media siap dibuka';$('#dlMeta').textContent=found.meta.duration?'Durasi: '+(Number.isFinite(Number(found.meta.duration)) ? Math.floor(Number(found.meta.duration)/60)+':'+String(Math.floor(Number(found.meta.duration)%60)).padStart(2,'0') : found.meta.duration):'Pilih MP4 atau MP3 yang tersedia.';
     const thumb=$('#dlThumb');thumb.hidden=!found.meta.thumbnail;if(found.meta.thumbnail)thumb.src=found.meta.thumbnail;else thumb.removeAttribute('src');
-    dlLinks=found.links;const mp4=dlLinks.filter(item=>item.kind==='mp4').length,mp3=dlLinks.filter(item=>item.kind==='mp3').length;$('#dlMp4').disabled=!mp4;$('#dlMp3').disabled=!mp3;$('#dlFormatStatus').textContent=(!mp4&&!mp3)?'Belum ada pilihan unduhan yang tersedia.':'';
+    dlLinks=found.links;dlSigs=(result.sig&&typeof result.sig==='object')?result.sig:{};dlTitleText=found.meta.title||'';const mp4=dlLinks.filter(item=>item.kind==='mp4').length,mp3=dlLinks.filter(item=>item.kind==='mp3').length;$('#dlMp4').disabled=!mp4;$('#dlMp3').disabled=!mp3;$('#dlFormatStatus').textContent=(!mp4&&!mp3)?'Belum ada pilihan unduhan yang tersedia.':'';
     $('#dlEmpty').hidden=true;$('#dlResult').hidden=false;$('#dlStatus').textContent='';
   }catch(error){if(error.code==='guest-limit'){go('profile');toast(error.message)}$('#dlStatus').textContent=error.name==='AbortError'?'API terlalu lama merespons. Coba lagi.':(error.message||'Gagal mengambil media.');}
   finally{clearTimeout(timer);button.disabled=false;button.removeAttribute('aria-busy');button.textContent='CARI MEDIA';}
@@ -1420,7 +1423,7 @@ var COOLDOWN_MS=3000,CD_KEY='bily_send_cd_until',cdTimer=null;
 function isOwnerNow(){return !!(S.logged&&S.role==='owner')}
 function getCdUntil(){try{return parseInt(localStorage.getItem(CD_KEY)||'0',10)||0}catch(e){return window.__bilyCd||0}}
 function setCdUntil(t){window.__bilyCd=t;try{localStorage.setItem(CD_KEY,String(t))}catch(e){}}
-function cdLeft(){return isOwnerNow()?0:Math.max(0,getCdUntil()-Date.now())}
+function cdLeft(){return isOwnerNow()?0:Math.min(COOLDOWN_MS,Math.max(0,getCdUntil()-Date.now()))}
 function tickCooldown(){
   const btn=$('#send'),lab=$('#sendLabel');if(!btn||!lab||sending)return;
   const left=cdLeft();
@@ -1473,7 +1476,7 @@ $('#send').onclick=async()=>{
   if(!navigator.onLine)return toast('Kamu sedang offline. Cek koneksi internet dulu.');
   if(!window.fbLogReaction || (S.logged&&!window.fbCheckAccess))return toast('Firebase belum siap. Coba lagi saat terhubung.');
   hideSuccess();setSending(true);
-  try{if(S.logged)await window.fbCheckAccess();else {if(!window.fbReserveGuest)throw new Error('Firebase belum siap.');await window.fbReserveGuest();}}catch(e){setSending(false);if(e.code==='guest-limit')go('profile');return toast(e.message||'Tidak dapat memeriksa akses akun.')}
+  try{if(S.logged)await window.fbCheckAccess({quota:true});else {if(!window.fbReserveGuest)throw new Error('Firebase belum siap.');await window.fbReserveGuest();}}catch(e){setSending(false);if(e.code==='guest-limit')go('profile');return toast(e.message||'Tidak dapat memeriksa akses akun.')}
   let deviceCount=1;
   try{deviceCount=Math.min(1000000,(parseInt(localStorage.getItem('bily_device_sends')||'0',10)||0)+1);localStorage.setItem('bily_device_sends',String(deviceCount))}catch(e){}
   // pemanggilan API ada di apibily.js
@@ -2016,12 +2019,20 @@ if(app){
     document.getElementById('controlLogs').textContent='';document.getElementById('controlUsers').textContent='';
   }
   function requireOwner(){if(!auth.currentUser||!window.S.logged||window.S.role!=='owner')throw new Error('Akses hanya untuk owner.')}
-  window.fbCheckAccess=async()=>{
+  window.fbCheckAccess=async(opts)=>{
     const u=auth.currentUser;if(!u||u.uid!==window.S.uid)throw new Error('Sesi login belum siap. Coba lagi.');
     let snap;try{snap=await getDocFromServer(doc(db,'users',u.uid))}catch(e){throw new Error('Tidak dapat memeriksa akun. Periksa koneksi Firebase.')}
     if(!snap.exists())throw new Error('Data akun belum siap. Coba login lagi.');
-    window.S.banned=snap.data().banned===true && (u.email||'').toLowerCase()!==OWNER_EMAIL;
+    const d=snap.data(),isOwner=(u.email||'').toLowerCase()===OWNER_EMAIL;
+    window.S.banned=d.banned===true && !isOwner;
     if(window.S.banned)throw new Error('Akun ini diblokir oleh owner.');
+    // Kuota harian dicek ke data terbaru di server (bukan hanya tampilan di tab ini), supaya tab ganda/tab lama tidak bisa melewati limit.
+    if(opts&&opts.quota&&!isOwner){
+      const today=window.todayStr(),pro=d.role==='pro'&&typeof d.proExpiry==='number'&&d.proExpiry>Date.now();
+      const lim=pro?(Number(d.dailyLimit)||7):3,used=d.usedDate===today?(Number(d.usedCount)||0):0;
+      window.S.used=used;window.S.usedDate=today;
+      if(used>=lim){window.render();throw new Error(pro?'Kuota hari ini sudah habis.':'Kuota habis. Upgrade ke Pro mulai Rp2K!');}
+    }
   };
   window.fbLogReaction=async({link,emojis,status,outcome,deviceCount,actorUid})=>{
     const u=auth.currentUser;

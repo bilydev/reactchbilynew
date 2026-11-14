@@ -5,6 +5,7 @@
     "api/fakecall.js": { "maxDuration": 60 },
     "api/tourl.js": { "maxDuration": 60 },
     "api/downloader.js": { "maxDuration": 60 },
+    "api/dlfile.js": { "maxDuration": 60 },
     "api/fakemaker.js": { "maxDuration": 60 }
   },
   "headers": [
