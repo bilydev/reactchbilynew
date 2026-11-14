@@ -670,7 +670,7 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
     </div></div>
   </section>
 
-  <dialog class="dl-dialog" id="dlDialog" aria-labelledby="dlDialogTitle"><div class="dl-dialog-head"><h3 id="dlDialogTitle">Pilihan download</h3><button class="dl-dialog-close" id="dlDialogClose" type="button" aria-label="Tutup">×</button></div><p class="dl-dialog-note">Pilih kualitas yang tersedia untuk mulai mengunduh.</p><div class="dl-list" id="dlList"></div><p class="dl-dialog-status" id="dlDownloadStatus" role="status" aria-live="polite"></p></dialog>
+  <dialog class="dl-dialog" id="dlDialog" aria-labelledby="dlDialogTitle"><div class="dl-dialog-head"><h3 id="dlDialogTitle">Pilihan download</h3><button class="dl-dialog-close" id="dlDialogClose" type="button" aria-label="Tutup">×</button></div><p class="dl-dialog-note">Pilih kualitas untuk membuka tautan media di tab baru. Browser atau server menentukan apakah file langsung diunduh.</p><div class="dl-list" id="dlList"></div><p class="dl-dialog-status" id="dlDownloadStatus" role="status" aria-live="polite"></p></dialog>
 
   <!-- TO URL -->
   <section class="view" id="v-tourl">
@@ -820,31 +820,13 @@ function dlKind(url,key,label){
   return '';
 }
 let dlLinks=[];
-async function dlDownload(item,button){
-  const status=$('#dlDownloadStatus');button.disabled=true;status.textContent='Mengunduh di latar belakang…';
-  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),120000);
-  try{
-    const response=await fetch(item.url,{signal:controller.signal,credentials:'omit',mode:'cors'});
-    if(!response.ok)throw new Error('Server media membalas kode '+response.status+'.');
-    const type=(response.headers.get('content-type')||'').toLowerCase();
-    if(type.includes('text/html')||type.includes('application/json'))throw new Error('Server tidak mengirim file media.');
-    const max=100*1024*1024, length=Number(response.headers.get('content-length'));
-    if(length>max)throw new Error('Ukuran media lebih dari 100 MB.');
-    let blob;
-    if(response.body && response.body.getReader){
-      const reader=response.body.getReader(),chunks=[];let size=0;
-      while(true){const part=await reader.read();if(part.done)break;size+=part.value.byteLength;if(size>max){await reader.cancel();throw new Error('Ukuran media lebih dari 100 MB.');}chunks.push(part.value)}
-      blob=new Blob(chunks,{type:type||'application/octet-stream'});
-    }else blob=await response.blob();
-    if(!blob.size)throw new Error('File media kosong.');if(blob.size>max)throw new Error('Ukuran media lebih dari 100 MB.');
-    const objectUrl=URL.createObjectURL(blob), a=document.createElement('a');a.href=objectUrl;a.download='bily-downloader.'+item.kind;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(objectUrl),60000);
-    status.textContent='Unduhan dimulai. Periksa folder download perangkat kamu.';
-  }catch(error){status.textContent=error.name==='AbortError'?'Unduhan terlalu lama. Coba lagi.':(error instanceof TypeError?'Server media tidak mengizinkan unduhan langsung dari browser (CORS) atau koneksi terputus.':(error.message||'Unduhan gagal.'));}
-  finally{clearTimeout(timer);button.disabled=false;}
-}
 function dlShowOptions(kind){
   const matches=dlLinks.filter(item=>item.kind===kind),list=$('#dlList');list.replaceChildren();$('#dlDownloadStatus').textContent='';$('#dlDialogTitle').textContent='Download '+kind.toUpperCase();
-  matches.forEach((item,i)=>{const button=document.createElement('button');button.type='button';button.className='dl-link';const label=document.createElement('span');label.textContent=item.label||('Pilihan '+(i+1));const action=document.createElement('span');action.textContent='DOWNLOAD ↓';button.append(label,action);button.addEventListener('click',()=>dlDownload(item,button));list.appendChild(button)});
+  matches.forEach((item,i)=>{
+    const link=document.createElement('a');link.className='dl-link';link.href=item.url;link.target='_blank';link.rel='noopener noreferrer';link.download='bily-downloader.'+item.kind;
+    const label=document.createElement('span');label.textContent=item.label||('Pilihan '+(i+1));const action=document.createElement('span');action.textContent='DOWNLOAD ↓';link.append(label,action);
+    link.addEventListener('click',()=>{$('#dlDownloadStatus').textContent='Tautan dibuka. Unduhan atau pemutaran mengikuti pengaturan browser dan server media.';});list.appendChild(link);
+  });
   if(matches.length)$('#dlDialog').showModal();
 }
 $('#dlMp4').addEventListener('click',()=>dlShowOptions('mp4'));
@@ -868,6 +850,20 @@ function dlCollect(data,input){
     if(typeof value==='number'&&['duration','length'].includes(String(key).toLowerCase())&&!meta.duration)meta.duration=String(value);
     if(Array.isArray(value)){value.forEach((item,i)=>walk(item,key,depth+1,label||(String(key||'Media')+' '+(i+1))));return;}
     if(typeof value==='object'){
+      // Nexray `medias` include precise mimeType, extension, quality and audio flags.
+      if(key==='medias' && typeof value.url==='string'){
+        const url=dlSafeUrl(value.url), mime=String(value.mimeType||'').toLowerCase().split(';')[0].trim();
+        const extension=String(value.extension||'').toLowerCase(), type=String(value.type||'').toLowerCase();
+        let kind='';
+        if(mime==='video/mp4' || (!mime && type==='video' && extension==='mp4'))kind='mp4';
+        else if(mime==='audio/mpeg' || (!mime && type==='audio' && extension==='mp3'))kind='mp3';
+        if(url && url!==input && !seen.has(url)){
+          const quality=String(value.label||value.qualityLabel||value.quality||kind.toUpperCase()||'Media').slice(0,80);
+          const audio=kind==='mp4'&&value.is_audio===false?' · tanpa audio':kind==='mp4'&&value.is_audio===true?' · dengan audio':'';
+          seen.add(url);links.push({url,label:quality+audio,kind});
+        }
+        return;
+      }
       const description=[value.quality,value.resolution,value.format,value.type].filter(x=>typeof x==='string'||typeof x==='number').join(' · ');
       Object.entries(value).forEach(([k,v])=>walk(v,k,depth+1,[description,label,key].filter(Boolean).join(' · ')));
     }
@@ -890,7 +886,7 @@ $('#dlForm').addEventListener('submit',async e=>{
     if(!response.ok||!result.ok)throw new Error(result.message||'Gagal mengambil media.');
     const found=dlCollect(result.data,url);
     if(!found.links.length)throw new Error('API tidak mengembalikan tautan media yang dapat dibuka untuk link ini.');
-    $('#dlTitle').textContent=found.meta.title||'Media siap dibuka';$('#dlMeta').textContent=found.meta.duration?'Durasi: '+found.meta.duration:'Pilih MP4 atau MP3 yang tersedia.';
+    $('#dlTitle').textContent=found.meta.title||'Media siap dibuka';$('#dlMeta').textContent=found.meta.duration?'Durasi: '+(Number.isFinite(Number(found.meta.duration)) ? Math.floor(Number(found.meta.duration)/60)+':'+String(Math.floor(Number(found.meta.duration)%60)).padStart(2,'0') : found.meta.duration):'Pilih MP4 atau MP3 yang tersedia.';
     const thumb=$('#dlThumb');thumb.hidden=!found.meta.thumbnail;if(found.meta.thumbnail)thumb.src=found.meta.thumbnail;else thumb.removeAttribute('src');
     dlLinks=found.links;const mp4=dlLinks.filter(item=>item.kind==='mp4').length,mp3=dlLinks.filter(item=>item.kind==='mp3').length;$('#dlMp4').disabled=!mp4;$('#dlMp3').disabled=!mp3;$('#dlFormatStatus').textContent=(!mp4&&!mp3)?'API belum menyediakan hasil MP4 atau MP3 yang dapat dikenali.':(!mp4?'MP4 tidak tersedia untuk link ini.':!mp3?'MP3 tidak tersedia untuk link ini.':'');
     $('#dlEmpty').hidden=true;$('#dlResult').hidden=false;$('#dlStatus').textContent='';
