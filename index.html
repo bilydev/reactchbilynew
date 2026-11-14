@@ -491,6 +491,12 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
 .dl-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,.8fr);gap:24px;align-items:start}.dl-card,.dl-result{border:var(--line);border-radius:18px;background:#fff;box-shadow:var(--shadow);overflow:hidden}.dl-card-head{background:var(--soft);padding:18px 22px;border-bottom:var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px}.dl-card-head h3{font-size:20px;letter-spacing:-.5px;margin:0}.dl-card-head span{font-size:11px;font-weight:950;letter-spacing:1px}.dl-body{padding:24px}.dl-label{display:block;font-weight:950;font-size:13px;margin-bottom:8px}.dl-input{width:100%;border:var(--line);border-radius:12px;padding:14px;font:inherit;font-weight:700;color:var(--ink);background:#fff}.dl-input:focus{outline:3px solid var(--purple);outline-offset:2px}.dl-help{color:#6a636e;font-size:12px;font-weight:700;line-height:1.5;margin:9px 0 20px}.dl-submit{width:100%}.dl-submit:disabled{opacity:.7;cursor:wait}.dl-status{font-size:13px;font-weight:750;line-height:1.5;margin:12px 0 0;color:#665f6a}.dl-status:empty{display:none}.dl-result{background:#f3eeff;padding:24px}.dl-result h3{font-size:20px;letter-spacing:-.5px;margin:0 0 8px}.dl-result p{margin:0;color:#665f6a;font-size:13px;line-height:1.55;font-weight:700}.dl-icon{display:grid;place-items:center;width:52px;height:52px;background:var(--purple);border:2px solid var(--ink);border-radius:14px;margin-bottom:16px}.dl-icon svg{width:26px;height:26px}.dl-thumbnail{display:block;width:100%;max-height:240px;object-fit:contain;border:2px solid var(--ink);border-radius:12px;background:#fff;margin-bottom:16px}.dl-list{display:grid;gap:10px;margin-top:18px}.dl-link{display:flex;align-items:center;justify-content:space-between;gap:10px;color:var(--ink);text-decoration:none;background:var(--green);border:2px solid var(--ink);border-radius:10px;padding:12px 14px;font-size:13px;font-weight:900;overflow-wrap:anywhere}.dl-link:hover{background:#8ee5be}.dl-result [hidden]{display:none!important}@media(max-width:800px){.dl-layout{grid-template-columns:1fr}.dl-body,.dl-result{padding:18px}}
 
 .dl-format-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}.dl-format-actions .btn{min-width:0;padding:12px 8px;font-size:12px}.dl-format-actions .btn:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}.dl-dialog{width:min(460px,calc(100% - 32px));max-height:calc(100% - 32px);padding:22px;border:var(--line);border-radius:18px;background:#fffafc;box-shadow:6px 6px 0 var(--ink);color:var(--ink)}.dl-dialog::backdrop{background:rgba(23,21,27,.55)}.dl-dialog-head{display:flex;align-items:center;justify-content:space-between;gap:12px}.dl-dialog-head h3{margin:0;font-size:21px}.dl-dialog-close{border:2px solid var(--ink);border-radius:10px;background:#fff;width:38px;height:38px;font-size:22px;line-height:1}.dl-dialog-note{font-size:12px;color:#665f6a;line-height:1.5;font-weight:700}.dl-dialog .dl-link{width:100%;font-family:inherit;cursor:pointer;text-align:left}.dl-dialog .dl-link:disabled{opacity:.6;cursor:wait}.dl-dialog-status{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px;line-height:1.5;font-weight:750;color:#665f6a}.dl-dialog-status:empty{display:none}
+
+/* Image maker pages */
+.mk-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,.8fr);gap:24px;align-items:start}.mk-card,.mk-result{border:var(--line);border-radius:18px;background:#fff;box-shadow:var(--shadow);overflow:hidden}.mk-head{padding:18px 22px;border-bottom:var(--line);background:var(--soft);display:flex;align-items:center;justify-content:space-between;gap:10px}.mk-head h3{margin:0;font-size:20px;letter-spacing:-.5px}.mk-head span{font-size:11px;font-weight:950;letter-spacing:1px}.mk-body{padding:24px}.mk-label{display:block;font-weight:950;font-size:13px;margin-bottom:8px}.mk-input{width:100%;border:var(--line);border-radius:12px;padding:14px;font:inherit;font-weight:750;background:#fff}.mk-input:focus{outline:3px solid var(--purple);outline-offset:2px}.mk-hint{font-size:12px;font-weight:700;color:#6a636e;line-height:1.6;margin:8px 0 20px}.mk-action{width:100%;margin-top:18px}.mk-action:disabled{opacity:.65;cursor:wait}.mk-status{font-size:13px;line-height:1.5;font-weight:750;color:#665f6a;margin:12px 0 0}.mk-status:empty{display:none}.mk-result{background:#f3eeff;padding:22px}.mk-result h3{margin:0 0 8px;font-size:20px}.mk-result p{font-size:13px;font-weight:700;line-height:1.55;color:#665f6a;margin:0}.mk-result-img{display:block;width:100%;max-height:520px;object-fit:contain;background:#fff;border:2px solid var(--ink);border-radius:12px;margin-bottom:14px}.mk-result [hidden],.mk-upload-icon[hidden],.mk-upload-preview[hidden]{display:none!important}.mk-save{width:100%;margin-top:16px}.mk-upload{position:relative;min-height:200px;padding:20px;border:2px dashed #aa99a7;border-radius:14px;background:#fff8fc;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;cursor:pointer}.mk-upload:hover,.mk-upload:focus-within{border-color:var(--ink);background:#fff0f7}.mk-upload-icon{display:grid;place-items:center;width:58px;height:58px;border:var(--line);border-radius:18px;background:var(--yellow);margin-bottom:14px}.mk-upload-icon svg{width:28px;height:28px}.mk-upload-preview{max-width:100%;width:100%;height:145px;object-fit:contain;margin-bottom:12px;border-radius:10px}.mk-upload strong{overflow-wrap:anywhere;max-width:100%;font-size:15px}.mk-upload small{color:#6a636e;margin-top:6px;font-size:12px;font-weight:700}.mk-file{position:absolute;width:1px;height:1px;opacity:0}.mk-empty-icon{width:52px;height:52px;display:grid;place-items:center;border:2px solid var(--ink);border-radius:14px;background:var(--purple);margin-bottom:16px}.mk-empty-icon svg{width:26px;height:26px}@media(max-width:800px){.mk-layout{grid-template-columns:1fr}.mk-body,.mk-result{padding:18px}}
+
+/* Downloader format buttons */
+.dl-format-actions .dl-format-btn{display:flex;align-items:center;justify-content:center;gap:8px;min-height:54px;padding:10px 7px;border-radius:12px;font-size:12px;font-weight:950;letter-spacing:.2px}.dl-format-icon{display:grid;place-items:center;flex:none;width:28px;height:28px;border:2px solid var(--ink);border-radius:8px;background:#fff}.dl-format-icon svg{width:16px;height:16px}.dl-dialog{overflow:auto}.dl-list .dl-link{gap:12px;background:#fff;padding:13px 14px;transition:background .2s}.dl-list .dl-link:hover{background:#e8fbf2}.dl-choice-label{min-width:0;flex:1;line-height:1.45;overflow-wrap:anywhere}.dl-choice-action{display:flex;align-items:center;justify-content:center;flex:none;width:35px;height:35px;border:2px solid var(--ink);border-radius:10px;background:var(--green)}.dl-choice-action svg{width:18px;height:18px}.dl-dialog-note{margin:12px 0 0}.dl-dialog-status{margin:12px 0 0}@media(max-width:380px){.dl-format-actions .dl-format-btn{font-size:11px;gap:5px}.dl-format-icon{width:25px;height:25px}}
 </style>
 </head>
 <body>
@@ -518,6 +524,8 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
     <button class="nav-item fresh" type="button" data-go="fakecall"><span class="ni-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.4 19.4 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7l.4 2.8a2 2 0 0 1-.6 1.7L7.6 9.5a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 1.7-.6l2.8.4a2 2 0 0 1 1.6 2.9Z"/></svg></span><span class="ni-txt">Fake Call<small>Gambar layar panggilan palsu</small></span><span class="nav-badge">BARU</span></button>
     <button class="nav-item fresh" type="button" data-go="tourl"><span class="ni-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.1 0l2-2a5 5 0 0 0-7.1-7.1l-1.1 1.1M14 11a5 5 0 0 0-7.1 0l-2 2a5 5 0 0 0 7.1 7.1l1.1-1.1"/></svg></span><span class="ni-txt">To URL<small>Ubah gambar &amp; video jadi link</small></span><span class="nav-badge">BARU</span></button>
     <button class="nav-item fresh" type="button" data-go="downloader"><span class="ni-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M4 17v3h16v-3"/></svg></span><span class="ni-txt">Downloader All Link<small>Ambil media dari tautan</small></span><span class="nav-badge">BARU</span></button>
+    <button class="nav-item fresh" type="button" data-go="fakedana"><span class="ni-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M16 12h5M3 9h18"/></svg></span><span class="ni-txt">Fake DANA<small>Gambar saldo simulasi</small></span><span class="nav-badge">BARU</span></button>
+    <button class="nav-item fresh" type="button" data-go="wasted"><span class="ni-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8" cy="8" r="1.5"/><path d="m3 17 5-5 4 4 3-3 6 6"/></svg></span><span class="ni-txt">Wasted GTA V<small>Efek Wasted untuk foto</small></span><span class="nav-badge">BARU</span></button>
     <button class="nav-item" type="button" data-go="control" id="sideControl" style="display:none"><span class="ni-ic">⌘</span><span class="ni-txt">Control Web<small>Khusus owner</small></span></button>
     <div class="nav-foot">✦ Bily Reaction — generate by Bily Developer. Pilih menu di atas untuk mulai.</div>
   </nav>
@@ -659,6 +667,21 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
     </div>
   </section>
 
+  <!-- FAKE DANA -->
+  <section class="view" id="v-fakedana">
+    <div class="page-head"><span class="eyebrow">✦ FAKE DANA</span><h2>Saldo versi imajinasi.</h2><p>Masukkan nominal untuk membuat gambar saldo simulasi dengan tema basic. Hasil ini bukan saldo atau bukti transaksi asli.</p></div>
+    <div class="mk-layout"><div class="mk-card"><div class="mk-head"><h3>Fake DANA Studio</h3><span>SIMULASI ✦</span></div><div class="mk-body"><form id="danaForm"><label class="mk-label" for="danaAmount">Nominal saldo</label><input class="mk-input" id="danaAmount" inputmode="numeric" autocomplete="off" maxlength="19" placeholder="Contoh: 1.000.000" required><p class="mk-hint">Masukkan angka; titik pemisah ditambahkan otomatis.</p><button class="btn send mk-action" id="danaSend" type="submit">BUAT GAMBAR ↗</button></form><p class="mk-status" id="danaStatus" role="status" aria-live="polite"></p></div></div>
+      <div class="mk-result"><div id="danaEmpty"><span class="mk-empty-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M16 12h5M3 9h18"/></svg></span><h3>Hasilnya di sini.</h3><p>Gambar simulasi akan muncul setelah berhasil dibuat.</p></div><div id="danaResult" hidden><img class="mk-result-img" id="danaImage" alt="Hasil gambar saldo simulasi"><h3>Gambar sudah siap ✦</h3><p>Hanya untuk simulasi, bukan saldo asli.</p><button class="btn mk-save" id="danaSave" type="button" style="background:var(--green)">SIMPAN GAMBAR ↓</button></div></div>
+    </div>
+  </section>
+  <!-- WASTED -->
+  <section class="view" id="v-wasted">
+    <div class="page-head"><span class="eyebrow">✦ WASTED GTA V</span><h2>Fotomu, versi Wasted.</h2><p>Pilih foto favorit dan ubah jadi gambar dengan efek Wasted ala GTA V.</p></div>
+    <div class="mk-layout"><div class="mk-card"><div class="mk-head"><h3>Wasted Studio</h3><span>PHOTO MAKER ✦</span></div><div class="mk-body"><form id="wastedForm"><label class="mk-upload" for="wastedFile"><span class="mk-upload-icon" id="wastedIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8" cy="8" r="1.5"/><path d="m3 17 5-5 4 4 3-3 6 6"/></svg></span><img id="wastedPreview" class="mk-upload-preview" alt="Pratinjau foto" hidden><strong id="wastedFileName">Pilih foto kamu</strong><small>JPG, PNG, WebP · maks. 4 MB</small><input class="mk-file" id="wastedFile" type="file" accept="image/jpeg,image/png,image/webp" aria-label="Pilih atau ganti foto"></label><button class="btn send mk-action" id="wastedSend" type="submit">BUAT WASTED ↗</button></form><p class="mk-status" id="wastedStatus" role="status" aria-live="polite"></p></div></div>
+      <div class="mk-result"><div id="wastedEmpty"><span class="mk-empty-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8" cy="8" r="1.5"/><path d="m3 17 5-5 4 4 3-3 6 6"/></svg></span><h3>Hasilnya di sini.</h3><p>Foto dengan efek Wasted akan muncul di sini.</p></div><div id="wastedResult" hidden><img class="mk-result-img" id="wastedImage" alt="Hasil foto efek Wasted"><h3>Gambar sudah siap ✦</h3><p>Simpan hasilnya ke perangkat kamu.</p><button class="btn mk-save" id="wastedSave" type="button" style="background:var(--green)">SIMPAN GAMBAR ↓</button></div></div>
+    </div>
+  </section>
+
   <!-- DOWNLOADER -->
   <section class="view" id="v-downloader">
     <div class="page-head"><span class="eyebrow">✦ DOWNLOADER ALL LINK</span><h2>Link masuk, media keluar.</h2><p>Tempel tautan konten, lalu lihat pilihan media yang tersedia untuk dibuka atau diunduh.</p></div>
@@ -666,11 +689,11 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
       <form id="dlForm"><label class="dl-label" for="dlInput">Link konten</label><input class="dl-input" id="dlInput" type="url" inputmode="url" placeholder="https://..." maxlength="2048" required><p class="dl-help">Masukkan link publik yang didukung oleh layanan downloader.</p><button class="btn send dl-submit" id="dlSubmit" type="submit">CARI MEDIA ↗</button></form>
       <p class="dl-status" id="dlStatus" role="status" aria-live="polite"></p>
     </div></div><div class="dl-result" aria-live="polite"><div id="dlEmpty"><span class="dl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M4 17v3h16v-3"/></svg></span><h3>Hasilnya di sini.</h3><p>Masukkan link dan klik cari media untuk melihat hasilnya.</p></div>
-      <div id="dlResult" hidden><img class="dl-thumbnail" id="dlThumb" alt="Pratinjau konten" referrerpolicy="no-referrer" hidden><h3 id="dlTitle">Media siap dibuka</h3><p id="dlMeta"></p><div class="dl-format-actions"><button class="btn" id="dlMp4" type="button" style="background:var(--green)">DOWNLOAD MP4</button><button class="btn" id="dlMp3" type="button" style="background:var(--yellow)">DOWNLOAD MP3</button></div><p class="dl-status" id="dlFormatStatus"></p></div>
+      <div id="dlResult" hidden><img class="dl-thumbnail" id="dlThumb" alt="Pratinjau konten" referrerpolicy="no-referrer" hidden><h3 id="dlTitle">Media siap dibuka</h3><p id="dlMeta"></p><div class="dl-format-actions"><button class="btn dl-format-btn" id="dlMp4" type="button" style="background:var(--green)"><span class="dl-format-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m-4-4 4 4 4-4M4 17v3h16v-3"/></svg></span><span>DOWNLOAD MP4</span></button><button class="btn dl-format-btn" id="dlMp3" type="button" style="background:var(--yellow)"><span class="dl-format-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m-4-4 4 4 4-4M4 17v3h16v-3"/></svg></span><span>DOWNLOAD MP3</span></button></div><p class="dl-status" id="dlFormatStatus"></p></div>
     </div></div>
   </section>
 
-  <dialog class="dl-dialog" id="dlDialog" aria-labelledby="dlDialogTitle"><div class="dl-dialog-head"><h3 id="dlDialogTitle">Pilihan download</h3><button class="dl-dialog-close" id="dlDialogClose" type="button" aria-label="Tutup">×</button></div><p class="dl-dialog-note">Pilih kualitas untuk membuka tautan media di tab baru. Browser atau server menentukan apakah file langsung diunduh.</p><div class="dl-list" id="dlList"></div><p class="dl-dialog-status" id="dlDownloadStatus" role="status" aria-live="polite"></p></dialog>
+  <dialog class="dl-dialog" id="dlDialog" aria-labelledby="dlDialogTitle"><div class="dl-dialog-head"><h3 id="dlDialogTitle">Pilihan download</h3><button class="dl-dialog-close" id="dlDialogClose" type="button" aria-label="Tutup">×</button></div><p class="dl-dialog-note">Pilih kualitas untuk mengunduh.</p><div class="dl-list" id="dlList"></div><p class="dl-dialog-status" id="dlDownloadStatus" role="status" aria-live="polite"></p></dialog>
 
   <!-- TO URL -->
   <section class="view" id="v-tourl">
@@ -807,6 +830,59 @@ function go(v){
 }
 document.addEventListener('click',e=>{const t=e.target.closest('[data-go]');if(t){e.preventDefault();go(t.dataset.go)}});
 
+/* Fake DANA & Wasted */
+const mkState={dana:{objectUrl:'',url:'',ext:''},wasted:{objectUrl:'',url:'',ext:''}};
+let wastedPhotoUrl='';
+function mkClear(kind){
+  const state=mkState[kind];if(state.objectUrl)URL.revokeObjectURL(state.objectUrl);
+  state.objectUrl='';state.url='';state.ext='';$('#'+kind+'Image').removeAttribute('src');$('#'+kind+'Result').hidden=true;$('#'+kind+'Empty').hidden=false;
+}
+$('#danaAmount').addEventListener('input',e=>{
+  const digits=e.target.value.replace(/\D/g,'').slice(0,15);
+  e.target.value=digits.replace(/\B(?=(\d{3})+(?!\d))/g,'.');
+});
+$('#wastedFile').addEventListener('change',e=>{
+  if(wastedPhotoUrl){URL.revokeObjectURL(wastedPhotoUrl);wastedPhotoUrl='';}
+  const preview=$('#wastedPreview');preview.hidden=true;preview.removeAttribute('src');$('#wastedIcon').hidden=false;$('#wastedFileName').textContent='Pilih foto kamu';mkClear('wasted');$('#wastedStatus').textContent='';
+  const file=e.target.files[0];if(!file)return;
+  if(!['image/jpeg','image/png','image/webp'].includes(file.type)||!file.size||file.size>4*1024*1024){e.target.value='';$('#wastedStatus').textContent='Pilih foto JPG, PNG, atau WebP maksimal 4 MB.';return;}
+  wastedPhotoUrl=URL.createObjectURL(file);preview.src=wastedPhotoUrl;preview.hidden=false;$('#wastedIcon').hidden=true;$('#wastedFileName').textContent=file.name;
+});
+async function mkGenerate(kind, file, saldo){
+  if(S.banned){$('#'+kind+'Status').textContent='Akun ini diblokir oleh owner.';return;}
+  const button=$('#'+kind+'Send'), status=$('#'+kind+'Status'), image=$('#'+kind+'Image'), state=mkState[kind];
+  if(button.disabled)return;button.disabled=true;button.setAttribute('aria-busy','true');button.textContent='MEMBUAT…';if(kind==='wasted')$('#wastedFile').disabled=true;
+  mkClear(kind);status.textContent='Sedang membuat gambar, tunggu sebentar…';
+  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),55000);
+  try{
+    if(S.logged){if(!window.fbCheckAccess)throw new Error('Firebase belum siap. Coba lagi.');await window.fbCheckAccess();}
+    else{if(!window.fbReserveGuest)throw new Error('Firebase belum siap. Coba lagi.');await window.fbReserveGuest();}
+    if(window.fbCountApiClick)window.fbCountApiClick(kind==='dana'?'fakedana':'wasted');
+    const params=new URLSearchParams({kind});if(kind==='dana')params.set('saldo',saldo);
+    const options=kind==='wasted'?{method:'POST',headers:{'Content-Type':file.type},body:file,signal:controller.signal,cache:'no-store'}:{signal:controller.signal,cache:'no-store'};
+    const response=await fetch('/api/fakemaker?'+params,options),type=(response.headers.get('content-type')||'').toLowerCase();
+    if(!response.ok){let error;try{error=await response.json()}catch(_){}throw new Error(error&&typeof error.message==='string'?error.message:'API sedang tidak tersedia. Coba lagi.');}
+    if(type.startsWith('image/')){
+      const blob=await response.blob();if(!blob.size)throw new Error('Gambar dari API kosong.');
+      state.objectUrl=URL.createObjectURL(blob);state.url=state.objectUrl;state.ext=({'image/png':'.png','image/jpeg':'.jpg','image/webp':'.webp','image/gif':'.gif'})[blob.type.split(';')[0]]||'';
+    }else{
+      const data=type.includes('application/json')?await response.json():await response.text();
+      if(data&&typeof data==='object'&&(data.ok===false||data.success===false||data.status===false||data.error))throw new Error(typeof data.message==='string'?data.message:'API gagal membuat gambar.');
+      state.url=fcFindUrl(data,0);if(!state.url)throw new Error('API tidak mengembalikan gambar yang bisa ditampilkan.');
+    }
+    await new Promise((resolve,reject)=>{const timeout=setTimeout(()=>{image.onload=image.onerror=null;reject(new Error('Gambar terlalu lama dimuat.'))},15000);image.onload=()=>{clearTimeout(timeout);resolve()};image.onerror=()=>{clearTimeout(timeout);reject(new Error('Gambar tidak bisa dimuat. Coba lagi.'))};image.src=state.url;});
+    $('#'+kind+'Empty').hidden=true;$('#'+kind+'Result').hidden=false;status.textContent='';
+  }catch(e){mkClear(kind);if(e.code==='guest-limit'){go('profile');toast(e.message)}status.textContent=e.name==='AbortError'?'API terlalu lama merespons. Coba lagi.':(e.message||'Gagal membuat gambar.');}
+  finally{clearTimeout(timer);button.disabled=false;button.removeAttribute('aria-busy');button.textContent=kind==='dana'?'BUAT GAMBAR ↗':'BUAT WASTED ↗';if(kind==='wasted')$('#wastedFile').disabled=false;}
+}
+$('#danaForm').addEventListener('submit',e=>{e.preventDefault();const value=$('#danaAmount').value.trim();if(!/^\d{1,3}(?:\.\d{3}){0,4}$/.test(value)){$('#danaStatus').textContent='Masukkan nominal saldo yang valid.';return;}mkGenerate('dana',null,value)});
+$('#wastedForm').addEventListener('submit',e=>{e.preventDefault();const file=$('#wastedFile').files[0];if(!file){$('#wastedStatus').textContent='Pilih foto terlebih dahulu.';return;}mkGenerate('wasted',file,'')});
+['dana','wasted'].forEach(kind=>$('#'+kind+'Save').addEventListener('click',()=>{
+  const state=mkState[kind];if(!state.url)return;
+  if(!state.objectUrl){window.open(state.url,'_blank','noopener,noreferrer');toast('Simpan gambar dari halaman yang terbuka ya.');return;}
+  const a=document.createElement('a');a.href=state.url;a.download='bily-'+(kind==='dana'?'fake-dana':'wasted')+state.ext;document.body.appendChild(a);a.click();a.remove();
+}));
+
 /* Downloader All Link */
 function dlSafeUrl(value){
   if(typeof value!=='string')return '';
@@ -823,9 +899,9 @@ let dlLinks=[];
 function dlShowOptions(kind){
   const matches=dlLinks.filter(item=>item.kind===kind),list=$('#dlList');list.replaceChildren();$('#dlDownloadStatus').textContent='';$('#dlDialogTitle').textContent='Download '+kind.toUpperCase();
   matches.forEach((item,i)=>{
-    const link=document.createElement('a');link.className='dl-link';link.href=item.url;link.target='_blank';link.rel='noopener noreferrer';link.download='bily-downloader.'+item.kind;
-    const label=document.createElement('span');label.textContent=item.label||('Pilihan '+(i+1));const action=document.createElement('span');action.textContent='DOWNLOAD ↓';link.append(label,action);
-    link.addEventListener('click',()=>{$('#dlDownloadStatus').textContent='Tautan dibuka. Unduhan atau pemutaran mengikuti pengaturan browser dan server media.';});list.appendChild(link);
+    const link=document.createElement('a');link.className='dl-link';link.href=item.url;link.target='_blank';link.rel='noopener noreferrer';link.download='bily-website-premium.'+item.kind;
+    const label=document.createElement('span');label.className='dl-choice-label';label.textContent=item.label||('Pilihan '+(i+1));const action=document.createElement('span');action.className='dl-choice-action';action.setAttribute('aria-hidden','true');action.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m-4-4 4 4 4-4M4 17v3h16v-3"/></svg>';link.append(label,action);
+    link.addEventListener('click',()=>{$('#dlDownloadStatus').textContent='Tautan dibuka di tab baru.';});list.appendChild(link);
   });
   if(matches.length)$('#dlDialog').showModal();
 }
@@ -888,7 +964,7 @@ $('#dlForm').addEventListener('submit',async e=>{
     if(!found.links.length)throw new Error('API tidak mengembalikan tautan media yang dapat dibuka untuk link ini.');
     $('#dlTitle').textContent=found.meta.title||'Media siap dibuka';$('#dlMeta').textContent=found.meta.duration?'Durasi: '+(Number.isFinite(Number(found.meta.duration)) ? Math.floor(Number(found.meta.duration)/60)+':'+String(Math.floor(Number(found.meta.duration)%60)).padStart(2,'0') : found.meta.duration):'Pilih MP4 atau MP3 yang tersedia.';
     const thumb=$('#dlThumb');thumb.hidden=!found.meta.thumbnail;if(found.meta.thumbnail)thumb.src=found.meta.thumbnail;else thumb.removeAttribute('src');
-    dlLinks=found.links;const mp4=dlLinks.filter(item=>item.kind==='mp4').length,mp3=dlLinks.filter(item=>item.kind==='mp3').length;$('#dlMp4').disabled=!mp4;$('#dlMp3').disabled=!mp3;$('#dlFormatStatus').textContent=(!mp4&&!mp3)?'API belum menyediakan hasil MP4 atau MP3 yang dapat dikenali.':(!mp4?'MP4 tidak tersedia untuk link ini.':!mp3?'MP3 tidak tersedia untuk link ini.':'');
+    dlLinks=found.links;const mp4=dlLinks.filter(item=>item.kind==='mp4').length,mp3=dlLinks.filter(item=>item.kind==='mp3').length;$('#dlMp4').disabled=!mp4;$('#dlMp3').disabled=!mp3;$('#dlFormatStatus').textContent=(!mp4&&!mp3)?'Belum ada pilihan unduhan yang tersedia.':'';
     $('#dlEmpty').hidden=true;$('#dlResult').hidden=false;$('#dlStatus').textContent='';
   }catch(error){if(error.code==='guest-limit'){go('profile');toast(error.message)}$('#dlStatus').textContent=error.name==='AbortError'?'API terlalu lama merespons. Coba lagi.':(error.message||'Gagal mengambil media.');}
   finally{clearTimeout(timer);button.disabled=false;button.removeAttribute('aria-busy');button.textContent='CARI MEDIA ↗';}
@@ -1542,7 +1618,7 @@ if(app){
       const count=await runTransaction(db,async tx=>{
         const snap=await tx.get(ref), data=snap.exists()?snap.data():null;
         const current=data&&data.day===day?data.count:0;
-        if(current>=3){const error=new Error('Percobaan harian habis. Login Google untuk melanjutkan.');error.code='guest-limit';throw error;}
+        if(current>=3){const error=new Error('3 percobaan hari ini habis. Login Google atau coba lagi besok (00.00 UTC).');error.code='guest-limit';throw error;}
         tx.set(ref,{day,count:current+1,updatedAt:serverTimestamp()});return current+1;
       });
       window.setGuestCount(day,count);
