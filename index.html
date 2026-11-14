@@ -177,7 +177,7 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
 @media(prefers-reduced-motion:reduce){.dock button.owner-tab .owner-icon{animation:none}}
 
 /* sidebar / modal */
-.sidebar{position:fixed;inset:0 auto 0 0;width:min(340px,88vw);background:var(--paper);z-index:40;border-right:var(--line);transform:translateX(-105%);transition:.25s;padding:25px;box-shadow:12px 0 0 rgba(23,21,27,.18)}.sidebar.open{transform:none}
+.sidebar{position:fixed;inset:0 auto 0 0;width:min(340px,88vw);height:100dvh;max-height:100vh;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;background:var(--paper);z-index:40;border-right:var(--line);transform:translateX(-105%);transition:.25s;padding:25px;box-shadow:12px 0 0 rgba(23,21,27,.18)}.sidebar.open{transform:none}
 .side-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:30px}
 .close{border:var(--line);width:42px;height:42px;border-radius:8px;background:var(--pink);font-size:21px;font-weight:900}
 .side-empty{border:2px dashed var(--ink);border-radius:14px;padding:28px 16px;text-align:center;font-weight:1000;font-size:14px;background:#fff;box-shadow:4px 4px 0 var(--ink)}
@@ -496,7 +496,7 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
 .mk-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,.8fr);gap:24px;align-items:start}.mk-card,.mk-result{border:var(--line);border-radius:18px;background:#fff;box-shadow:var(--shadow);overflow:hidden}.mk-head{padding:18px 22px;border-bottom:var(--line);background:var(--soft);display:flex;align-items:center;justify-content:space-between;gap:10px}.mk-head h3{margin:0;font-size:20px;letter-spacing:-.5px}.mk-head span{font-size:11px;font-weight:950;letter-spacing:1px}.mk-body{padding:24px}.mk-label{display:block;font-weight:950;font-size:13px;margin-bottom:8px}.mk-input{width:100%;border:var(--line);border-radius:12px;padding:14px;font:inherit;font-weight:750;background:#fff}.mk-input:focus{outline:3px solid var(--purple);outline-offset:2px}.mk-hint{font-size:12px;font-weight:700;color:#6a636e;line-height:1.6;margin:8px 0 20px}.mk-action{width:100%;margin-top:18px}.mk-action:disabled{opacity:.65;cursor:wait}.mk-status{font-size:13px;line-height:1.5;font-weight:750;color:#665f6a;margin:12px 0 0}.mk-status:empty{display:none}.mk-result{background:#f3eeff;padding:22px}.mk-result h3{margin:0 0 8px;font-size:20px}.mk-result p{font-size:13px;font-weight:700;line-height:1.55;color:#665f6a;margin:0}.mk-result-img{display:block;width:100%;max-height:520px;object-fit:contain;background:#fff;border:2px solid var(--ink);border-radius:12px;margin-bottom:14px}.mk-result [hidden],.mk-upload-icon[hidden],.mk-upload-preview[hidden]{display:none!important}.mk-save{width:100%;margin-top:16px}.mk-upload{position:relative;min-height:200px;padding:20px;border:2px dashed #aa99a7;border-radius:14px;background:#fff8fc;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;cursor:pointer}.mk-upload:hover,.mk-upload:focus-within{border-color:var(--ink);background:#fff0f7}.mk-upload-icon{display:grid;place-items:center;width:58px;height:58px;border:var(--line);border-radius:18px;background:var(--yellow);margin-bottom:14px}.mk-upload-icon svg{width:28px;height:28px}.mk-upload-preview{max-width:100%;width:100%;height:145px;object-fit:contain;margin-bottom:12px;border-radius:10px}.mk-upload strong{overflow-wrap:anywhere;max-width:100%;font-size:15px}.mk-upload small{color:#6a636e;margin-top:6px;font-size:12px;font-weight:700}.mk-file{position:absolute;width:1px;height:1px;opacity:0}.mk-empty-icon{width:52px;height:52px;display:grid;place-items:center;border:2px solid var(--ink);border-radius:14px;background:var(--purple);margin-bottom:16px}.mk-empty-icon svg{width:26px;height:26px}@media(max-width:800px){.mk-layout{grid-template-columns:1fr}.mk-body,.mk-result{padding:18px}}
 
 /* Downloader format buttons */
-.dl-format-actions .dl-format-btn{display:flex;align-items:center;justify-content:center;gap:8px;min-height:54px;padding:10px 7px;border-radius:12px;font-size:12px;font-weight:950;letter-spacing:.2px}.dl-format-icon{display:grid;place-items:center;flex:none;width:28px;height:28px;border:2px solid var(--ink);border-radius:8px;background:#fff}.dl-format-icon svg{width:16px;height:16px}.dl-dialog{overflow:auto}.dl-list .dl-link{gap:12px;background:#fff;padding:13px 14px;transition:background .2s}.dl-list .dl-link:hover{background:#e8fbf2}.dl-choice-label{min-width:0;flex:1;line-height:1.45;overflow-wrap:anywhere}.dl-choice-action{display:flex;align-items:center;justify-content:center;flex:none;width:35px;height:35px;border:2px solid var(--ink);border-radius:10px;background:var(--green)}.dl-choice-action svg{width:18px;height:18px}.dl-dialog-note{margin:12px 0 0}.dl-dialog-status{margin:12px 0 0}@media(max-width:380px){.dl-format-actions .dl-format-btn{font-size:11px;gap:5px}.dl-format-icon{width:25px;height:25px}}
+.dl-format-actions .dl-format-btn{display:flex;align-items:center;justify-content:center;gap:8px;min-height:54px;padding:10px 7px;border-radius:12px;font-size:12px;font-weight:950;letter-spacing:.2px}.dl-format-icon{display:grid;place-items:center;flex:none;width:28px;height:28px;border:2px solid var(--ink);border-radius:8px;background:#fff}.dl-format-icon svg{width:16px;height:16px}.dl-dialog{overflow:auto}.dl-list .dl-link{gap:12px;background:#fff;padding:13px 14px;transition:background .2s}.dl-list .dl-link:hover{background:#e8fbf2}.dl-choice-label{min-width:0;flex:1;line-height:1.45;overflow-wrap:anywhere}.dl-choice-action{display:flex;align-items:center;justify-content:center;flex:none;padding:8px;border:2px solid var(--ink);border-radius:10px;background:var(--green);font-size:10px}.dl-choice-action svg{width:18px;height:18px}.dl-dialog-note{margin:12px 0 0}.dl-dialog-status{margin:12px 0 0}@media(max-width:380px){.dl-format-actions .dl-format-btn{font-size:11px;gap:5px}.dl-format-icon{width:25px;height:25px}}
 </style>
 </head>
 <body>
@@ -559,7 +559,7 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
       </div>
       <div class="side">
         <div class="quota"><div class="quota-top"><b>KUOTA HARI INI</b><span class="pill" id="planPill">FREE</span></div><h3><span id="used">0</span> / <span id="limit">3</span></h3><p id="quotaText">3 reaksi gratis per hari</p><div class="bar"><i id="bar"></i></div></div>
-        <div class="upsell"><h3>Mau lebih banyak? ✦</h3><p>Paket Pro mulai Rp2K — sampai <b>20 reaksi/hari</b> selama 17 hari. Cek di Market.</p><button class="btn" data-go="market">LIHAT MARKET →</button></div>
+        <div class="upsell"><h3>Mau lebih banyak? ✦</h3><p>Paket Pro mulai Rp2K — sampai <b>20 reaksi/hari</b> selama 17 hari. Cek di Market.</p><button class="btn" data-go="market">LIHAT MARKET</button></div>
       </div>
     </div>
   </section>
@@ -655,7 +655,7 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
     </div>
   </section>
   <section class="view" id="v-control">
-    <div class="control-shell"><div class="control-top"><div><div class="control-lights">● ● ●</div><h2>CONTROL REACT BILY</h2><p>owner console / firebase realtime</p></div><button class="ctl-btn" data-go="profile">← KEMBALI</button></div>
+    <div class="control-shell"><div class="control-top"><div><div class="control-lights">● ● ●</div><h2>CONTROL REACT BILY</h2><p>owner console / firebase realtime</p></div><button class="ctl-btn" data-go="profile">KEMBALI</button></div>
     <div class="control-body"><div class="control-section"><div class="control-heading"><h3>01 / REACTION LOG <span id="logCount">(0)</span></h3><button class="ctl-btn danger" id="clearLogs">HAPUS SEMUA LOG</button></div><div class="control-list" id="controlLogs"><div class="control-empty">Menunggu data Firebase...</div></div></div>
     <div class="control-section"><div class="control-heading"><h3>02 / AKUN LOGIN <span id="userCount">(0)</span></h3></div><div class="control-list" id="controlUsers"><div class="control-empty">Menunggu data Firebase...</div></div></div></div></div>
   </section>
@@ -670,15 +670,15 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
   <!-- FAKE DANA -->
   <section class="view" id="v-fakedana">
     <div class="page-head"><span class="eyebrow">✦ FAKE DANA</span><h2>Saldo versi imajinasi.</h2><p>Masukkan nominal untuk membuat gambar saldo simulasi dengan tema basic. Hasil ini bukan saldo atau bukti transaksi asli.</p></div>
-    <div class="mk-layout"><div class="mk-card"><div class="mk-head"><h3>Fake DANA Studio</h3><span>SIMULASI ✦</span></div><div class="mk-body"><form id="danaForm"><label class="mk-label" for="danaAmount">Nominal saldo</label><input class="mk-input" id="danaAmount" inputmode="numeric" autocomplete="off" maxlength="19" placeholder="Contoh: 1.000.000" required><p class="mk-hint">Masukkan angka; titik pemisah ditambahkan otomatis.</p><button class="btn send mk-action" id="danaSend" type="submit">BUAT GAMBAR ↗</button></form><p class="mk-status" id="danaStatus" role="status" aria-live="polite"></p></div></div>
-      <div class="mk-result"><div id="danaEmpty"><span class="mk-empty-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M16 12h5M3 9h18"/></svg></span><h3>Hasilnya di sini.</h3><p>Gambar simulasi akan muncul setelah berhasil dibuat.</p></div><div id="danaResult" hidden><img class="mk-result-img" id="danaImage" alt="Hasil gambar saldo simulasi"><h3>Gambar sudah siap ✦</h3><p>Hanya untuk simulasi, bukan saldo asli.</p><button class="btn mk-save" id="danaSave" type="button" style="background:var(--green)">SIMPAN GAMBAR ↓</button></div></div>
+    <div class="mk-layout"><div class="mk-card"><div class="mk-head"><h3>Fake DANA Studio</h3><span>SIMULASI ✦</span></div><div class="mk-body"><form id="danaForm"><label class="mk-label" for="danaAmount">Nominal saldo</label><input class="mk-input" id="danaAmount" inputmode="numeric" autocomplete="off" maxlength="19" placeholder="Contoh: 1.000.000" required><p class="mk-hint">Masukkan angka; titik pemisah ditambahkan otomatis.</p><button class="btn send mk-action" id="danaSend" type="submit">BUAT GAMBAR</button></form><p class="mk-status" id="danaStatus" role="status" aria-live="polite"></p></div></div>
+      <div class="mk-result"><div id="danaEmpty"><span class="mk-empty-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M16 12h5M3 9h18"/></svg></span><h3>Hasilnya di sini.</h3><p>Gambar simulasi akan muncul setelah berhasil dibuat.</p></div><div id="danaResult" hidden><img class="mk-result-img" id="danaImage" alt="Hasil gambar saldo simulasi"><h3>Gambar sudah siap ✦</h3><p>Hanya untuk simulasi, bukan saldo asli.</p><button class="btn mk-save" id="danaSave" type="button" style="background:var(--green)">SIMPAN GAMBAR</button></div></div>
     </div>
   </section>
   <!-- WASTED -->
   <section class="view" id="v-wasted">
     <div class="page-head"><span class="eyebrow">✦ WASTED GTA V</span><h2>Fotomu, versi Wasted.</h2><p>Pilih foto favorit dan ubah jadi gambar dengan efek Wasted ala GTA V.</p></div>
-    <div class="mk-layout"><div class="mk-card"><div class="mk-head"><h3>Wasted Studio</h3><span>PHOTO MAKER ✦</span></div><div class="mk-body"><form id="wastedForm"><label class="mk-upload" for="wastedFile"><span class="mk-upload-icon" id="wastedIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8" cy="8" r="1.5"/><path d="m3 17 5-5 4 4 3-3 6 6"/></svg></span><img id="wastedPreview" class="mk-upload-preview" alt="Pratinjau foto" hidden><strong id="wastedFileName">Pilih foto kamu</strong><small>JPG, PNG, WebP · maks. 4 MB</small><input class="mk-file" id="wastedFile" type="file" accept="image/jpeg,image/png,image/webp" aria-label="Pilih atau ganti foto"></label><button class="btn send mk-action" id="wastedSend" type="submit">BUAT WASTED ↗</button></form><p class="mk-status" id="wastedStatus" role="status" aria-live="polite"></p></div></div>
-      <div class="mk-result"><div id="wastedEmpty"><span class="mk-empty-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8" cy="8" r="1.5"/><path d="m3 17 5-5 4 4 3-3 6 6"/></svg></span><h3>Hasilnya di sini.</h3><p>Foto dengan efek Wasted akan muncul di sini.</p></div><div id="wastedResult" hidden><img class="mk-result-img" id="wastedImage" alt="Hasil foto efek Wasted"><h3>Gambar sudah siap ✦</h3><p>Simpan hasilnya ke perangkat kamu.</p><button class="btn mk-save" id="wastedSave" type="button" style="background:var(--green)">SIMPAN GAMBAR ↓</button></div></div>
+    <div class="mk-layout"><div class="mk-card"><div class="mk-head"><h3>Wasted Studio</h3><span>PHOTO MAKER ✦</span></div><div class="mk-body"><form id="wastedForm"><label class="mk-upload" for="wastedFile"><span class="mk-upload-icon" id="wastedIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8" cy="8" r="1.5"/><path d="m3 17 5-5 4 4 3-3 6 6"/></svg></span><img id="wastedPreview" class="mk-upload-preview" alt="Pratinjau foto" hidden><strong id="wastedFileName">Pilih foto kamu</strong><small>JPG, PNG, WebP · maks. 4 MB</small><input class="mk-file" id="wastedFile" type="file" accept="image/jpeg,image/png,image/webp" aria-label="Pilih atau ganti foto"></label><button class="btn send mk-action" id="wastedSend" type="submit">BUAT WASTED</button></form><p class="mk-status" id="wastedStatus" role="status" aria-live="polite"></p></div></div>
+      <div class="mk-result"><div id="wastedEmpty"><span class="mk-empty-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8" cy="8" r="1.5"/><path d="m3 17 5-5 4 4 3-3 6 6"/></svg></span><h3>Hasilnya di sini.</h3><p>Foto dengan efek Wasted akan muncul di sini.</p></div><div id="wastedResult" hidden><img class="mk-result-img" id="wastedImage" alt="Hasil foto efek Wasted"><h3>Gambar sudah siap ✦</h3><p>Simpan hasilnya ke perangkat kamu.</p><button class="btn mk-save" id="wastedSave" type="button" style="background:var(--green)">SIMPAN GAMBAR</button></div></div>
     </div>
   </section>
 
@@ -686,14 +686,14 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
   <section class="view" id="v-downloader">
     <div class="page-head"><span class="eyebrow">✦ DOWNLOADER ALL LINK</span><h2>Link masuk, media keluar.</h2><p>Tempel tautan konten, lalu lihat pilihan media yang tersedia untuk dibuka atau diunduh.</p></div>
     <div class="dl-layout"><div class="dl-card"><div class="dl-card-head"><h3>Downloader Studio</h3><span>ALL LINK ✦</span></div><div class="dl-body">
-      <form id="dlForm"><label class="dl-label" for="dlInput">Link konten</label><input class="dl-input" id="dlInput" type="url" inputmode="url" placeholder="https://..." maxlength="2048" required><p class="dl-help">Masukkan link publik yang didukung oleh layanan downloader.</p><button class="btn send dl-submit" id="dlSubmit" type="submit">CARI MEDIA ↗</button></form>
+      <form id="dlForm"><label class="dl-label" for="dlInput">Link konten</label><input class="dl-input" id="dlInput" type="url" inputmode="url" placeholder="https://..." maxlength="2048" required><p class="dl-help">Masukkan link publik yang didukung oleh layanan downloader.</p><button class="btn send dl-submit" id="dlSubmit" type="submit">CARI MEDIA</button></form>
       <p class="dl-status" id="dlStatus" role="status" aria-live="polite"></p>
     </div></div><div class="dl-result" aria-live="polite"><div id="dlEmpty"><span class="dl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M4 17v3h16v-3"/></svg></span><h3>Hasilnya di sini.</h3><p>Masukkan link dan klik cari media untuk melihat hasilnya.</p></div>
-      <div id="dlResult" hidden><img class="dl-thumbnail" id="dlThumb" alt="Pratinjau konten" referrerpolicy="no-referrer" hidden><h3 id="dlTitle">Media siap dibuka</h3><p id="dlMeta"></p><div class="dl-format-actions"><button class="btn dl-format-btn" id="dlMp4" type="button" style="background:var(--green)"><span class="dl-format-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m-4-4 4 4 4-4M4 17v3h16v-3"/></svg></span><span>DOWNLOAD MP4</span></button><button class="btn dl-format-btn" id="dlMp3" type="button" style="background:var(--yellow)"><span class="dl-format-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m-4-4 4 4 4-4M4 17v3h16v-3"/></svg></span><span>DOWNLOAD MP3</span></button></div><p class="dl-status" id="dlFormatStatus"></p></div>
+      <div id="dlResult" hidden><img class="dl-thumbnail" id="dlThumb" alt="Pratinjau konten" referrerpolicy="no-referrer" hidden><h3 id="dlTitle">Media siap dibuka</h3><p id="dlMeta"></p><div class="dl-format-actions"><button class="btn dl-format-btn" id="dlMp4" type="button" style="background:var(--green)"><span>DOWNLOAD MP4</span></button><button class="btn dl-format-btn" id="dlMp3" type="button" style="background:var(--yellow)"><span>DOWNLOAD MP3</span></button></div><p class="dl-status" id="dlFormatStatus"></p></div>
     </div></div>
   </section>
 
-  <dialog class="dl-dialog" id="dlDialog" aria-labelledby="dlDialogTitle"><div class="dl-dialog-head"><h3 id="dlDialogTitle">Pilihan download</h3><button class="dl-dialog-close" id="dlDialogClose" type="button" aria-label="Tutup">×</button></div><p class="dl-dialog-note">Pilih kualitas untuk mengunduh.</p><div class="dl-list" id="dlList"></div><p class="dl-dialog-status" id="dlDownloadStatus" role="status" aria-live="polite"></p></dialog>
+  <dialog class="dl-dialog" id="dlDialog" aria-labelledby="dlDialogTitle"><div class="dl-dialog-head"><h3 id="dlDialogTitle">Pilihan download</h3><button class="dl-dialog-close" id="dlDialogClose" type="button" aria-label="Tutup">×</button></div><p class="dl-dialog-note">Pilih kualitas untuk menyimpan file. Server media harus mengizinkan unduhan dari browser.</p><div class="dl-list" id="dlList"></div><p class="dl-dialog-status" id="dlDownloadStatus" role="status" aria-live="polite"></p></dialog>
 
   <!-- TO URL -->
   <section class="view" id="v-tourl">
@@ -706,10 +706,10 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
           <strong class="tu-filename" id="tuFileName">Pilih gambar atau video</strong><small id="tuFileHint">Ketuk untuk memilih file · maks. 100 MB<br>JPG, PNG, WebP, GIF, MP4, WebM, MOV</small>
           <input id="tuFile" class="tu-file" type="file" accept="image/jpeg,image/png,image/webp,image/gif,video/mp4,video/webm,video/quicktime" aria-label="Pilih gambar atau video">
         </label>
-        <button class="btn send tu-action" id="tuSend" type="button">BUAT LINK <span aria-hidden="true">↗</span></button><p class="tu-status" id="tuStatus" role="status" aria-live="polite"></p>
+        <button class="btn send tu-action" id="tuSend" type="button">BUAT LINK</button><p class="tu-status" id="tuStatus" role="status" aria-live="polite"></p>
       </div></div>
       <div class="tu-resultbox"><div id="tuEmpty" class="tu-empty"><span class="tu-empty-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7 0l2-2a5 5 0 0 0-7-7l-1 1M14 11a5 5 0 0 0-7 0l-2 2a5 5 0 0 0 7 7l1-1"/></svg></span><h3>Link kamu di sini.</h3><p>Setelah file berhasil di-upload, link akan muncul di sini.</p></div>
-        <div id="tuResult" class="tu-result" hidden><h3>Link siap dibagikan! ✦</h3><p>Salin link atau buka untuk melihat hasil upload.</p><a class="tu-link" id="tuLink" href="#" target="_blank" rel="noopener noreferrer"></a><div class="tu-actions"><button class="btn" id="tuCopy" style="background:var(--green)" type="button">SALIN LINK</button><a class="btn" id="tuOpen" target="_blank" rel="noopener noreferrer">BUKA LINK ↗</a></div></div>
+        <div id="tuResult" class="tu-result" hidden><h3>Link siap dibagikan! ✦</h3><p>Salin link atau buka untuk melihat hasil upload.</p><a class="tu-link" id="tuLink" href="#" target="_blank" rel="noopener noreferrer"></a><div class="tu-actions"><button class="btn" id="tuCopy" style="background:var(--green)" type="button">SALIN LINK</button><a class="btn" id="tuOpen" target="_blank" rel="noopener noreferrer">BUKA LINK</a></div></div>
       </div>
     </div>
   </section>
@@ -735,7 +735,7 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
       <div class="fc-result" id="fcResult">
         <div class="fc-phone"><div class="fc-notch"></div><div class="fc-screen"><img id="fcImg" alt="Hasil fake call"></div></div>
         <div class="fc-actions">
-          <button class="btn" id="fcDownload" type="button" style="background:var(--green)" disabled><svg class="fc-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M4 17v3h16v-3"/></svg>DOWNLOAD</button>
+          <button class="btn" id="fcDownload" type="button" style="background:var(--green)" disabled>DOWNLOAD</button>
           <button class="btn" id="fcOpen" type="button" disabled><svg class="fc-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12s3.3-6 9-6 9 6 9 6-3.3 6-9 6-9-6-9-6Z"/><circle cx="12" cy="12" r="3"/></svg>LIHAT PENUH</button>
         </div>
       </div>
@@ -818,8 +818,12 @@ window.__setPendingBar=function(p){const bar=$('#pendingBar');if(!bar)return; if
 
 /* nav / overlay */
 const sidebar=$('#sidebar'), overlay=$('#overlay'), modal=$('#modal');
-function closeAll(){sidebar.classList.remove('open');modal.classList.remove('show');overlay.classList.remove('show')}
-$('#menuBtn').onclick=()=>{sidebar.classList.add('open');overlay.classList.add('show')};
+let menuScrollY=null;
+function closeAll(){
+  sidebar.classList.remove('open');modal.classList.remove('show');overlay.classList.remove('show');
+  if(menuScrollY!==null){const y=menuScrollY;menuScrollY=null;document.body.style.position='';document.body.style.top='';document.body.style.width='';window.scrollTo(0,y);}
+}
+$('#menuBtn').onclick=()=>{if(menuScrollY===null){menuScrollY=window.scrollY;document.body.style.position='fixed';document.body.style.top='-'+menuScrollY+'px';document.body.style.width='100%'}sidebar.classList.add('open');overlay.classList.add('show')};
 $('#closeSide').onclick=closeAll; overlay.onclick=closeAll; $('#modalX').onclick=closeAll;
 function openLogin(){modal.classList.add('show');overlay.classList.add('show')}
 function go(v){
@@ -873,7 +877,7 @@ async function mkGenerate(kind, file, saldo){
     await new Promise((resolve,reject)=>{const timeout=setTimeout(()=>{image.onload=image.onerror=null;reject(new Error('Gambar terlalu lama dimuat.'))},15000);image.onload=()=>{clearTimeout(timeout);resolve()};image.onerror=()=>{clearTimeout(timeout);reject(new Error('Gambar tidak bisa dimuat. Coba lagi.'))};image.src=state.url;});
     $('#'+kind+'Empty').hidden=true;$('#'+kind+'Result').hidden=false;status.textContent='';
   }catch(e){mkClear(kind);if(e.code==='guest-limit'){go('profile');toast(e.message)}status.textContent=e.name==='AbortError'?'API terlalu lama merespons. Coba lagi.':(e.message||'Gagal membuat gambar.');}
-  finally{clearTimeout(timer);button.disabled=false;button.removeAttribute('aria-busy');button.textContent=kind==='dana'?'BUAT GAMBAR ↗':'BUAT WASTED ↗';if(kind==='wasted')$('#wastedFile').disabled=false;}
+  finally{clearTimeout(timer);button.disabled=false;button.removeAttribute('aria-busy');button.textContent=kind==='dana'?'BUAT GAMBAR':'BUAT WASTED';if(kind==='wasted')$('#wastedFile').disabled=false;}
 }
 $('#danaForm').addEventListener('submit',e=>{e.preventDefault();const value=$('#danaAmount').value.trim();if(!/^\d{1,3}(?:\.\d{3}){0,4}$/.test(value)){$('#danaStatus').textContent='Masukkan nominal saldo yang valid.';return;}mkGenerate('dana',null,value)});
 $('#wastedForm').addEventListener('submit',e=>{e.preventDefault();const file=$('#wastedFile').files[0];if(!file){$('#wastedStatus').textContent='Pilih foto terlebih dahulu.';return;}mkGenerate('wasted',file,'')});
@@ -896,12 +900,35 @@ function dlKind(url,key,label){
   return '';
 }
 let dlLinks=[];
+let dlDownloading=false;
+async function dlDownload(item, button){
+  if(dlDownloading)return;
+  dlDownloading=true;button.disabled=true;const status=$('#dlDownloadStatus');status.textContent='Sedang mengunduh…';
+  const ctrl=new AbortController(),timer=setTimeout(()=>ctrl.abort(),180000),max=100*1024*1024;
+  try{
+    const response=await fetch(item.url,{signal:ctrl.signal,mode:'cors',credentials:'omit'});
+    if(!response.ok)throw new Error('Server media membalas kode '+response.status+'.');
+    const type=(response.headers.get('content-type')||'').toLowerCase();
+    if(type.includes('text/html')||type.includes('application/json'))throw new Error('Server tidak mengirim file media.');
+    if(Number(response.headers.get('content-length'))>max)throw new Error('File terlalu besar untuk unduhan langsung (maks. 100 MB).');
+    let blob;
+    if(response.body&&response.body.getReader){
+      const reader=response.body.getReader(),chunks=[];let size=0;
+      while(true){const part=await reader.read();if(part.done)break;size+=part.value.byteLength;if(size>max){await reader.cancel();throw new Error('File terlalu besar untuk unduhan langsung (maks. 100 MB).');}chunks.push(part.value);}
+      blob=new Blob(chunks,{type:type||'application/octet-stream'});
+    }else blob=await response.blob();
+    if(!blob.size)throw new Error('File media kosong.');if(blob.size>max)throw new Error('File terlalu besar untuk unduhan langsung (maks. 100 MB).');
+    const objectUrl=URL.createObjectURL(blob),a=document.createElement('a');a.href=objectUrl;a.download='bily-website-premium.'+item.kind;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(objectUrl),60000);
+    status.textContent='File dikirim ke browser untuk disimpan. Periksa folder Download.';
+  }catch(e){status.textContent=e.name==='AbortError'?'Unduhan terlalu lama. Coba lagi.':(e instanceof TypeError?'Unduhan ditolak atau terputus. Server media mungkin tidak mengizinkan akses CORS.':(e.message||'Unduhan gagal.'));}
+  finally{clearTimeout(timer);dlDownloading=false;button.disabled=false;}
+}
 function dlShowOptions(kind){
   const matches=dlLinks.filter(item=>item.kind===kind),list=$('#dlList');list.replaceChildren();$('#dlDownloadStatus').textContent='';$('#dlDialogTitle').textContent='Download '+kind.toUpperCase();
   matches.forEach((item,i)=>{
-    const link=document.createElement('a');link.className='dl-link';link.href=item.url;link.target='_blank';link.rel='noopener noreferrer';link.download='bily-website-premium.'+item.kind;
-    const label=document.createElement('span');label.className='dl-choice-label';label.textContent=item.label||('Pilihan '+(i+1));const action=document.createElement('span');action.className='dl-choice-action';action.setAttribute('aria-hidden','true');action.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m-4-4 4 4 4-4M4 17v3h16v-3"/></svg>';link.append(label,action);
-    link.addEventListener('click',()=>{$('#dlDownloadStatus').textContent='Tautan dibuka di tab baru.';});list.appendChild(link);
+    const button=document.createElement('button');button.type='button';button.className='dl-link';
+    const label=document.createElement('span');label.className='dl-choice-label';label.textContent=item.label||('Pilihan '+(i+1));const action=document.createElement('span');action.className='dl-choice-action';action.textContent='SIMPAN';button.append(label,action);
+    button.addEventListener('click',()=>dlDownload(item,button));list.appendChild(button);
   });
   if(matches.length)$('#dlDialog').showModal();
 }
@@ -967,7 +994,7 @@ $('#dlForm').addEventListener('submit',async e=>{
     dlLinks=found.links;const mp4=dlLinks.filter(item=>item.kind==='mp4').length,mp3=dlLinks.filter(item=>item.kind==='mp3').length;$('#dlMp4').disabled=!mp4;$('#dlMp3').disabled=!mp3;$('#dlFormatStatus').textContent=(!mp4&&!mp3)?'Belum ada pilihan unduhan yang tersedia.':'';
     $('#dlEmpty').hidden=true;$('#dlResult').hidden=false;$('#dlStatus').textContent='';
   }catch(error){if(error.code==='guest-limit'){go('profile');toast(error.message)}$('#dlStatus').textContent=error.name==='AbortError'?'API terlalu lama merespons. Coba lagi.':(error.message||'Gagal mengambil media.');}
-  finally{clearTimeout(timer);button.disabled=false;button.removeAttribute('aria-busy');button.textContent='CARI MEDIA ↗';}
+  finally{clearTimeout(timer);button.disabled=false;button.removeAttribute('aria-busy');button.textContent='CARI MEDIA';}
 });
 $('#dlThumb').addEventListener('error',()=>{$('#dlThumb').hidden=true});
 
@@ -1018,7 +1045,7 @@ $('#tuSend').addEventListener('click',async()=>{
     let url;try{url=new URL(tuFindUrl(result));if(!['http:','https:'].includes(url.protocol))throw new Error()}catch(_){throw new Error('API tidak mengembalikan link yang valid.')}
     $('#tuLink').textContent=url.href;$('#tuLink').href=url.href;$('#tuOpen').href=url.href;$('#tuEmpty').hidden=true;$('#tuResult').hidden=false;$('#tuStatus').textContent='';
   }catch(error){if(error.code==='guest-limit'){go('profile');toast(error.message)}$('#tuStatus').textContent=error.name==='AbortError'?'Upload terlalu lama. Coba lagi.':(error.message || 'Upload gagal. Coba lagi.');}
-  finally{clearTimeout(timer);button.disabled=false;button.removeAttribute('aria-busy');button.textContent='BUAT LINK ↗';$('#tuFile').disabled=false;}
+  finally{clearTimeout(timer);button.disabled=false;button.removeAttribute('aria-busy');button.textContent='BUAT LINK';$('#tuFile').disabled=false;}
 });
 $('#tuCopy').addEventListener('click',async()=>{
   try{await navigator.clipboard.writeText($('#tuLink').href);toast('Link berhasil disalin!');}
