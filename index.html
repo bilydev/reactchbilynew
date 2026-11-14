@@ -495,6 +495,8 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
 /* Image maker pages */
 .mk-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,.8fr);gap:24px;align-items:start}.mk-card,.mk-result{border:var(--line);border-radius:18px;background:#fff;box-shadow:var(--shadow);overflow:hidden}.mk-head{padding:18px 22px;border-bottom:var(--line);background:var(--soft);display:flex;align-items:center;justify-content:space-between;gap:10px}.mk-head h3{margin:0;font-size:20px;letter-spacing:-.5px}.mk-head span{font-size:11px;font-weight:950;letter-spacing:1px}.mk-body{padding:24px}.mk-label{display:block;font-weight:950;font-size:13px;margin-bottom:8px}.mk-input{width:100%;border:var(--line);border-radius:12px;padding:14px;font:inherit;font-weight:750;background:#fff}.mk-input:focus{outline:3px solid var(--purple);outline-offset:2px}.mk-hint{font-size:12px;font-weight:700;color:#6a636e;line-height:1.6;margin:8px 0 20px}.mk-action{width:100%;margin-top:18px}.mk-action:disabled{opacity:.65;cursor:wait}.mk-status{font-size:13px;line-height:1.5;font-weight:750;color:#665f6a;margin:12px 0 0}.mk-status:empty{display:none}.mk-result{background:#f3eeff;padding:22px}.mk-result h3{margin:0 0 8px;font-size:20px}.mk-result p{font-size:13px;font-weight:700;line-height:1.55;color:#665f6a;margin:0}.mk-result-img{display:block;width:100%;max-height:520px;object-fit:contain;background:#fff;border:2px solid var(--ink);border-radius:12px;margin-bottom:14px}.mk-result [hidden],.mk-upload-icon[hidden],.mk-upload-preview[hidden]{display:none!important}.mk-save{width:100%;margin-top:16px}.mk-upload{position:relative;min-height:200px;padding:20px;border:2px dashed #aa99a7;border-radius:14px;background:#fff8fc;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;cursor:pointer}.mk-upload:hover,.mk-upload:focus-within{border-color:var(--ink);background:#fff0f7}.mk-upload-icon{display:grid;place-items:center;width:58px;height:58px;border:var(--line);border-radius:18px;background:var(--yellow);margin-bottom:14px}.mk-upload-icon svg{width:28px;height:28px}.mk-upload-preview{max-width:100%;width:100%;height:145px;object-fit:contain;margin-bottom:12px;border-radius:10px}.mk-upload strong{overflow-wrap:anywhere;max-width:100%;font-size:15px}.mk-upload small{color:#6a636e;margin-top:6px;font-size:12px;font-weight:700}.mk-file{position:absolute;width:1px;height:1px;opacity:0}.mk-empty-icon{width:52px;height:52px;display:grid;place-items:center;border:2px solid var(--ink);border-radius:14px;background:var(--purple);margin-bottom:16px}.mk-empty-icon svg{width:26px;height:26px}@media(max-width:800px){.mk-layout{grid-template-columns:1fr}.mk-body,.mk-result{padding:18px}}
 
+/* Remove BG + statistik total error */
+.rb-checker{background-color:#fff;background-image:linear-gradient(45deg,#e7dfe6 25%,transparent 25%),linear-gradient(-45deg,#e7dfe6 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#e7dfe6 75%),linear-gradient(-45deg,transparent 75%,#e7dfe6 75%);background-size:20px 20px;background-position:0 0,0 10px,10px -10px,-10px 0}.rb-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}.rb-actions .btn{min-width:0;padding:12px 8px;font-size:12px}.bily-stat.err{grid-column:1/-1;justify-self:center;width:min(100%,calc(50% - 8px));background:#ffd9d9}
 /* Downloader format buttons */
 .dl-format-actions .dl-format-btn{display:flex;align-items:center;justify-content:center;gap:8px;min-height:54px;padding:10px 7px;border-radius:12px;font-size:12px;font-weight:950;letter-spacing:.2px}.dl-format-icon{display:grid;place-items:center;flex:none;width:28px;height:28px;border:2px solid var(--ink);border-radius:8px;background:#fff}.dl-format-icon svg{width:16px;height:16px}.dl-dialog{overflow:auto}.dl-list .dl-link{gap:12px;background:#fff;padding:13px 14px;transition:background .2s}.dl-list .dl-link:hover{background:#e8fbf2}.dl-choice-label{min-width:0;flex:1;line-height:1.45;overflow-wrap:anywhere}.dl-choice-action{display:flex;align-items:center;justify-content:center;flex:none;padding:8px;border:2px solid var(--ink);border-radius:10px;background:var(--green);font-size:10px}.dl-choice-action svg{width:18px;height:18px}.dl-dialog-note{margin:12px 0 0}.dl-dialog-status{margin:12px 0 0}@media(max-width:380px){.dl-format-actions .dl-format-btn{font-size:11px;gap:5px}.dl-format-icon{width:25px;height:25px}}
 </style>
@@ -526,6 +528,7 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
     <button class="nav-item fresh" type="button" data-go="downloader"><span class="ni-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M4 17v3h16v-3"/></svg></span><span class="ni-txt">Downloader All Link<small>Ambil media dari tautan</small></span><span class="nav-badge">BARU</span></button>
     <button class="nav-item fresh" type="button" data-go="fakedana"><span class="ni-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M16 12h5M3 9h18"/></svg></span><span class="ni-txt">Fake DANA<small>Gambar saldo simulasi</small></span><span class="nav-badge">BARU</span></button>
     <button class="nav-item fresh" type="button" data-go="wasted"><span class="ni-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8" cy="8" r="1.5"/><path d="m3 17 5-5 4 4 3-3 6 6"/></svg></span><span class="ni-txt">Wasted GTA V<small>Efek Wasted untuk foto</small></span><span class="nav-badge">BARU</span></button>
+    <button class="nav-item fresh" type="button" data-go="removebg"><span class="ni-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/></svg></span><span class="ni-txt">Remove BG<small>Hapus background foto</small></span><span class="nav-badge">BARU</span></button>
     <button class="nav-item" type="button" data-go="control" id="sideControl" style="display:none"><span class="ni-ic">⌘</span><span class="ni-txt">Control Web<small>Khusus owner</small></span></button>
     <div class="nav-foot">✦ Bily Reaction — generate by Bily Developer. Pilih menu di atas untuk mulai.</div>
   </nav>
@@ -662,7 +665,7 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
 
   <section class="view" id="v-statistics">
     <div class="bily-stats"><span class="eyebrow">OWNER DASHBOARD</span><h2>Statistik Bily.</h2><p>Pantau aktivitas dan bagikan kabar terbaru.</p>
-      <div class="bily-stats-grid"><div class="bily-stat"><small>PENGGUNA / DEVICE</small><b id="bilyDevices">—</b></div><div class="bily-stat"><small>KLIK KIRIM API</small><b id="bilyClicks">—</b></div></div>
+      <div class="bily-stats-grid"><div class="bily-stat"><small>PENGGUNA / DEVICE</small><b id="bilyDevices">—</b></div><div class="bily-stat"><small>KLIK KIRIM API</small><b id="bilyClicks">—</b></div><div class="bily-stat err"><small>TOTAL ERROR</small><b id="bilyErrors">—</b></div></div>
       <div class="bily-editor"><h3>Update Log <span aria-hidden="true">✦</span></h3><label for="bilyUpdate">Deskripsi update</label><textarea id="bilyUpdate" maxlength="1000" placeholder="Ada yang baru di Bily..."></textarea><div class="bily-editor-actions"><button class="btn" id="bilyPublish" type="button" style="background:var(--pink)">KIRIM UPDATE</button><button class="btn" id="bilyRemove" type="button">HAPUS UPDATE</button></div><p id="bilyEditorStatus" role="status"></p></div>
     </div>
   </section>
@@ -679,6 +682,14 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
     <div class="page-head"><span class="eyebrow">✦ WASTED GTA V</span><h2>Fotomu, versi Wasted.</h2><p>Pilih foto favorit dan ubah jadi gambar dengan efek Wasted ala GTA V.</p></div>
     <div class="mk-layout"><div class="mk-card"><div class="mk-head"><h3>Wasted Studio</h3><span>PHOTO MAKER ✦</span></div><div class="mk-body"><form id="wastedForm"><label class="mk-upload" for="wastedFile"><span class="mk-upload-icon" id="wastedIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8" cy="8" r="1.5"/><path d="m3 17 5-5 4 4 3-3 6 6"/></svg></span><img id="wastedPreview" class="mk-upload-preview" alt="Pratinjau foto" hidden><strong id="wastedFileName">Pilih foto kamu</strong><small>JPG, PNG, WebP · maks. 4 MB</small><input class="mk-file" id="wastedFile" type="file" accept="image/jpeg,image/png,image/webp" aria-label="Pilih atau ganti foto"></label><button class="btn send mk-action" id="wastedSend" type="submit">BUAT WASTED</button></form><p class="mk-status" id="wastedStatus" role="status" aria-live="polite"></p></div></div>
       <div class="mk-result"><div id="wastedEmpty"><span class="mk-empty-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8" cy="8" r="1.5"/><path d="m3 17 5-5 4 4 3-3 6 6"/></svg></span><h3>Hasilnya di sini.</h3><p>Foto dengan efek Wasted akan muncul di sini.</p></div><div id="wastedResult" hidden><img class="mk-result-img" id="wastedImage" alt="Hasil foto efek Wasted"><h3>Gambar sudah siap ✦</h3><p>Simpan hasilnya ke perangkat kamu.</p><button class="btn mk-save" id="wastedSave" type="button" style="background:var(--green)">SIMPAN GAMBAR</button></div></div>
+    </div>
+  </section>
+
+  <!-- REMOVE BG -->
+  <section class="view" id="v-removebg">
+    <div class="page-head"><span class="eyebrow">✦ REMOVE BG</span><h2>Background hilang.</h2><p>Upload foto, lalu background-nya dihapus otomatis. Lihat pratinjau dulu, baru unduh hasilnya.</p></div>
+    <div class="mk-layout"><div class="mk-card"><div class="mk-head"><h3>Remove BG Studio</h3><span>PHOTO TOOL ✦</span></div><div class="mk-body"><form id="rbForm"><label class="mk-upload" for="rbFile"><span class="mk-upload-icon" id="rbIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V3m-5 5 5-5 5 5M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg></span><img id="rbPreview" class="mk-upload-preview" alt="Pratinjau foto" hidden><strong id="rbFileName">Pilih foto kamu</strong><small>JPG, PNG, WebP · maks. 4 MB</small><input class="mk-file" id="rbFile" type="file" accept="image/jpeg,image/png,image/webp" aria-label="Pilih atau ganti foto"></label><button class="btn send mk-action" id="rbSend" type="submit">HAPUS BACKGROUND</button></form><p class="mk-status" id="rbStatus" role="status" aria-live="polite"></p></div></div>
+      <div class="mk-result"><div id="rbEmpty"><span class="mk-empty-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/></svg></span><h3>Hasilnya di sini.</h3><p>Foto tanpa background akan muncul setelah berhasil diproses.</p></div><div id="rbResult" hidden><img class="mk-result-img rb-checker" id="rbImage" alt="Hasil foto tanpa background" referrerpolicy="no-referrer"><h3>Background sudah dihapus ✦</h3><p>Lihat pratinjau, lalu simpan hasilnya ke perangkat kamu.</p><div class="rb-actions"><button class="btn" id="rbOpen" type="button" style="background:var(--yellow)">PRATINJAU</button><button class="btn" id="rbSave" type="button" style="background:var(--green)">DOWNLOAD</button></div></div></div>
     </div>
   </section>
 
@@ -856,12 +867,12 @@ async function mkGenerate(kind, file, saldo){
   if(S.banned){$('#'+kind+'Status').textContent='Akun ini diblokir oleh owner.';return;}
   const button=$('#'+kind+'Send'), status=$('#'+kind+'Status'), image=$('#'+kind+'Image'), state=mkState[kind];
   if(button.disabled)return;button.disabled=true;button.setAttribute('aria-busy','true');button.textContent='MEMBUAT…';if(kind==='wasted')$('#wastedFile').disabled=true;
-  mkClear(kind);status.textContent='Sedang membuat gambar, tunggu sebentar…';
+  mkClear(kind);status.textContent='Sedang membuat gambar, tunggu sebentar…';let sent=false;
   const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),55000);
   try{
     if(S.logged){if(!window.fbCheckAccess)throw new Error('Firebase belum siap. Coba lagi.');await window.fbCheckAccess();}
     else{if(!window.fbReserveGuest)throw new Error('Firebase belum siap. Coba lagi.');await window.fbReserveGuest();}
-    if(window.fbCountApiClick)window.fbCountApiClick(kind==='dana'?'fakedana':'wasted');
+    if(window.fbCountApiClick)window.fbCountApiClick(kind==='dana'?'fakedana':'wasted');sent=true;
     const params=new URLSearchParams({kind});if(kind==='dana')params.set('saldo',saldo);
     const options=kind==='wasted'?{method:'POST',headers:{'Content-Type':file.type},body:file,signal:controller.signal,cache:'no-store'}:{signal:controller.signal,cache:'no-store'};
     const response=await fetch('/api/fakemaker?'+params,options),type=(response.headers.get('content-type')||'').toLowerCase();
@@ -876,7 +887,7 @@ async function mkGenerate(kind, file, saldo){
     }
     await new Promise((resolve,reject)=>{const timeout=setTimeout(()=>{image.onload=image.onerror=null;reject(new Error('Gambar terlalu lama dimuat.'))},15000);image.onload=()=>{clearTimeout(timeout);resolve()};image.onerror=()=>{clearTimeout(timeout);reject(new Error('Gambar tidak bisa dimuat. Coba lagi.'))};image.src=state.url;});
     $('#'+kind+'Empty').hidden=true;$('#'+kind+'Result').hidden=false;status.textContent='';
-  }catch(e){mkClear(kind);if(e.code==='guest-limit'){go('profile');toast(e.message)}status.textContent=e.name==='AbortError'?'API terlalu lama merespons. Coba lagi.':(e.message||'Gagal membuat gambar.');}
+  }catch(e){if(sent&&window.fbCountApiError)window.fbCountApiError(kind==='dana'?'fakedana':'wasted');mkClear(kind);if(e.code==='guest-limit'){go('profile');toast(e.message)}status.textContent=e.name==='AbortError'?'API terlalu lama merespons. Coba lagi.':(e.message||'Gagal membuat gambar.');}
   finally{clearTimeout(timer);button.disabled=false;button.removeAttribute('aria-busy');button.textContent=kind==='dana'?'BUAT GAMBAR':'BUAT WASTED';if(kind==='wasted')$('#wastedFile').disabled=false;}
 }
 $('#danaForm').addEventListener('submit',e=>{e.preventDefault();const value=$('#danaAmount').value.trim();if(!/^\d{1,3}(?:\.\d{3}){0,4}$/.test(value)){$('#danaStatus').textContent='Masukkan nominal saldo yang valid.';return;}mkGenerate('dana',null,value)});
@@ -886,6 +897,72 @@ $('#wastedForm').addEventListener('submit',e=>{e.preventDefault();const file=$('
   if(!state.objectUrl){window.open(state.url,'_blank','noopener,noreferrer');toast('Simpan gambar dari halaman yang terbuka ya.');return;}
   const a=document.createElement('a');a.href=state.url;a.download='bily-'+(kind==='dana'?'fake-dana':'wasted')+state.ext;document.body.appendChild(a);a.click();a.remove();
 }));
+
+/* Remove BG: foto -> /api/tourl (jadi link) -> /api/removebg -> pratinjau / download */
+const rbTypes=['image/jpeg','image/png','image/webp'];
+let rbFile=null,rbPreviewUrl='',rbRes={objectUrl:'',url:'',sig:'',ext:'.png'};
+function rbClear(){
+  if(rbRes.objectUrl)URL.revokeObjectURL(rbRes.objectUrl);
+  rbRes={objectUrl:'',url:'',sig:'',ext:'.png'};
+  $('#rbImage').removeAttribute('src');$('#rbResult').hidden=true;$('#rbEmpty').hidden=false;
+}
+$('#rbFile').addEventListener('change',e=>{
+  if(rbPreviewUrl){URL.revokeObjectURL(rbPreviewUrl);rbPreviewUrl='';}
+  rbFile=null;const preview=$('#rbPreview');preview.hidden=true;preview.removeAttribute('src');$('#rbIcon').hidden=false;$('#rbFileName').textContent='Pilih foto kamu';rbClear();$('#rbStatus').textContent='';
+  const file=e.target.files[0];if(!file)return;
+  if(!rbTypes.includes(file.type)||!file.size||file.size>4*1024*1024){e.target.value='';$('#rbStatus').textContent='Pilih foto JPG, PNG, atau WebP maksimal 4 MB.';return;}
+  rbFile=file;rbPreviewUrl=URL.createObjectURL(file);preview.src=rbPreviewUrl;preview.hidden=false;$('#rbIcon').hidden=true;$('#rbFileName').textContent=file.name;
+});
+$('#rbForm').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const file=rbFile,status=$('#rbStatus'),button=$('#rbSend'),image=$('#rbImage');
+  if(!file){status.textContent='Pilih foto terlebih dahulu.';return;}
+  if(S.banned){status.textContent='Akun ini diblokir oleh owner.';return;}
+  if(button.disabled)return;
+  button.disabled=true;button.setAttribute('aria-busy','true');button.textContent='MEMPROSES…';$('#rbFile').disabled=true;
+  rbClear();status.textContent='Sedang memproses, tunggu sebentar…';
+  let sent=false;
+  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),115000);
+  try{
+    if(S.logged){if(!window.fbCheckAccess)throw new Error('Firebase belum siap. Coba lagi.');await window.fbCheckAccess();}
+    else{if(!window.fbReserveGuest)throw new Error('Firebase belum siap. Coba lagi.');await window.fbReserveGuest();}
+    if(window.fbCountApiClick)window.fbCountApiClick('removebg');sent=true;
+    // 1) foto dikirim ke API To URL, ambil link-nya
+    status.textContent='Mengupload foto…';
+    const upload=await fetch('/api/tourl',{method:'POST',headers:{'Content-Type':file.type},body:file,signal:controller.signal,cache:'no-store'});
+    let uploaded;try{uploaded=await upload.json()}catch(_){throw new Error('Respons upload tidak dikenali. Coba lagi.')}
+    if(!upload.ok||!uploaded||uploaded.ok===false)throw new Error(uploaded&&typeof uploaded.message==='string'?uploaded.message:(upload.status===429?'Terlalu banyak permintaan. Coba lagi nanti.':'Upload foto gagal. Coba lagi.'));
+    const link=dlSafeUrl(uploaded.url);if(!link)throw new Error('API tidak mengembalikan link foto yang valid.');
+    // 2) link foto dikirim ke API Remove BG
+    status.textContent='Menghapus background…';
+    const response=await fetch('/api/removebg?'+new URLSearchParams({url:link}),{signal:controller.signal,cache:'no-store'}),type=(response.headers.get('content-type')||'').toLowerCase();
+    if(type.startsWith('image/')&&response.ok){
+      const blob=await response.blob();if(!blob.size)throw new Error('Gambar dari API kosong.');
+      rbRes.objectUrl=URL.createObjectURL(blob);rbRes.url=rbRes.objectUrl;rbRes.ext=({'image/png':'.png','image/jpeg':'.jpg','image/webp':'.webp'})[blob.type.split(';')[0]]||'.png';
+    }else{
+      let data;try{data=await response.json()}catch(_){throw new Error('Respons API tidak dikenali. Coba lagi.')}
+      if(!response.ok||!data||data.ok===false)throw new Error(data&&typeof data.message==='string'?data.message:(response.status===429?'Terlalu banyak permintaan. Coba lagi nanti.':'API Remove BG sedang tidak tersedia.'));
+      rbRes.url=dlSafeUrl(data.url);rbRes.sig=typeof data.sig==='string'?data.sig:'';
+      if(!rbRes.url)throw new Error('API tidak mengembalikan gambar yang bisa ditampilkan.');
+      const m=/\.(png|jpe?g|webp)(?:$|\?)/i.exec(new URL(rbRes.url).pathname+'?');rbRes.ext=m?'.'+m[1].toLowerCase().replace('jpeg','jpg'):'.png';
+    }
+    await new Promise((resolve,reject)=>{const t=setTimeout(()=>{image.onload=image.onerror=null;reject(new Error('Gambar terlalu lama dimuat.'))},20000);image.onload=()=>{clearTimeout(t);resolve()};image.onerror=()=>{clearTimeout(t);reject(new Error('Gambar tidak bisa dimuat. Coba lagi.'))};image.src=rbRes.url;});
+    $('#rbEmpty').hidden=true;$('#rbResult').hidden=false;status.textContent='';
+  }catch(err){
+    if(sent&&window.fbCountApiError)window.fbCountApiError('removebg');
+    rbClear();if(err.code==='guest-limit'){go('profile');toast(err.message)}
+    status.textContent=err.name==='AbortError'?'API terlalu lama merespons. Coba lagi.':(err.message||'Gagal menghapus background.');
+  }
+  finally{clearTimeout(timer);button.disabled=false;button.removeAttribute('aria-busy');button.textContent='HAPUS BACKGROUND';$('#rbFile').disabled=false;}
+});
+$('#rbOpen').addEventListener('click',()=>{if(rbRes.url)window.open(rbRes.url,'_blank','noopener,noreferrer')});
+$('#rbSave').addEventListener('click',()=>{
+  if(!rbRes.url)return;
+  const name='bily-removebg'+(rbRes.ext||'.png'),a=document.createElement('a');
+  if(rbRes.objectUrl)a.href=rbRes.objectUrl;
+  else{const p=new URLSearchParams({url:rbRes.url,name});if(rbRes.sig)p.set('sig',rbRes.sig);a.href='/api/dlfile?'+p.toString();}
+  a.download=name;a.rel='noopener';a.style.display='none';document.body.appendChild(a);a.click();a.remove();toast('Unduhan dimulai ✦');
+});
 
 /* Downloader All Link */
 function dlSafeUrl(value){
@@ -981,12 +1058,12 @@ $('#dlForm').addEventListener('submit',async e=>{
   if(!url||input.length>2048){$('#dlStatus').textContent='Masukkan link http atau https yang valid.';return;}
   if(S.banned){$('#dlStatus').textContent='Akun ini diblokir oleh owner.';return;}
   const button=$('#dlSubmit');if(button.disabled)return;button.disabled=true;button.setAttribute('aria-busy','true');button.textContent='MENCARI MEDIA…';
-  $('#dlEmpty').hidden=false;$('#dlResult').hidden=true;$('#dlStatus').textContent='Sedang mengambil hasil, tunggu sebentar…';
+  $('#dlEmpty').hidden=false;$('#dlResult').hidden=true;$('#dlStatus').textContent='Sedang mengambil hasil, tunggu sebentar…';let sent=false;
   const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),55000);
   try{
     if(S.logged){if(!window.fbCheckAccess)throw new Error('Firebase belum siap. Coba lagi.');await window.fbCheckAccess();}
     else{if(!window.fbReserveGuest)throw new Error('Firebase belum siap. Coba lagi.');await window.fbReserveGuest();}
-    if(window.fbCountApiClick)window.fbCountApiClick('downloader');
+    if(window.fbCountApiClick)window.fbCountApiClick('downloader');sent=true;
     const response=await fetch('/api/downloader?'+new URLSearchParams({url:input}),{signal:controller.signal,cache:'no-store'});
     let result;try{result=await response.json()}catch(_){throw new Error('Respons API tidak dikenali.')}
     if(!response.ok||!result.ok)throw new Error(result.message||'Gagal mengambil media.');
@@ -996,7 +1073,7 @@ $('#dlForm').addEventListener('submit',async e=>{
     const thumb=$('#dlThumb');thumb.hidden=!found.meta.thumbnail;if(found.meta.thumbnail)thumb.src=found.meta.thumbnail;else thumb.removeAttribute('src');
     dlLinks=found.links;dlSigs=(result.sig&&typeof result.sig==='object')?result.sig:{};dlTitleText=found.meta.title||'';const mp4=dlLinks.filter(item=>item.kind==='mp4').length,mp3=dlLinks.filter(item=>item.kind==='mp3').length;$('#dlMp4').disabled=!mp4;$('#dlMp3').disabled=!mp3;$('#dlFormatStatus').textContent=(!mp4&&!mp3)?'Belum ada pilihan unduhan yang tersedia.':'';
     $('#dlEmpty').hidden=true;$('#dlResult').hidden=false;$('#dlStatus').textContent='';
-  }catch(error){if(error.code==='guest-limit'){go('profile');toast(error.message)}$('#dlStatus').textContent=error.name==='AbortError'?'API terlalu lama merespons. Coba lagi.':(error.message||'Gagal mengambil media.');}
+  }catch(error){if(sent&&window.fbCountApiError)window.fbCountApiError('downloader');if(error.code==='guest-limit'){go('profile');toast(error.message)}$('#dlStatus').textContent=error.name==='AbortError'?'API terlalu lama merespons. Coba lagi.':(error.message||'Gagal mengambil media.');}
   finally{clearTimeout(timer);button.disabled=false;button.removeAttribute('aria-busy');button.textContent='CARI MEDIA';}
 });
 $('#dlThumb').addEventListener('error',()=>{$('#dlThumb').hidden=true});
@@ -1029,12 +1106,12 @@ $('#tuSend').addEventListener('click',async()=>{
   if(!tuFile){$('#tuStatus').textContent='Pilih gambar atau video dulu ya.';return;}
   if(S.banned){$('#tuStatus').textContent='Akun ini diblokir oleh owner.';return;}
   const button=$('#tuSend'),file=tuFile;button.disabled=true;button.setAttribute('aria-busy','true');button.textContent='MENGUPLOAD…';$('#tuFile').disabled=true;
-  $('#tuEmpty').hidden=false;$('#tuResult').hidden=true;$('#tuStatus').textContent='Sedang mengupload file, tunggu sebentar…';
+  $('#tuEmpty').hidden=false;$('#tuResult').hidden=true;$('#tuStatus').textContent='Sedang mengupload file, tunggu sebentar…';let sent=false;
   const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),180000);
   try{
     if(S.logged){if(!window.fbCheckAccess)throw new Error('Firebase belum siap. Coba lagi.');await window.fbCheckAccess();}
     else{if(!window.fbReserveGuest)throw new Error('Firebase belum siap. Coba lagi.');await window.fbReserveGuest();}
-    if(window.fbCountApiClick)window.fbCountApiClick('tourl');
+    if(window.fbCountApiClick)window.fbCountApiClick('tourl');sent=true;
     const direct=file.size>4*1024*1024;
     let response;
     if(direct){
@@ -1047,7 +1124,7 @@ $('#tuSend').addEventListener('click',async()=>{
       throw new Error(typeof result.message==='string'?result.message:(response.status===429?'Terlalu banyak permintaan. Coba lagi nanti.':'Upload gagal. Coba lagi.'));
     let url;try{url=new URL(tuFindUrl(result));if(!['http:','https:'].includes(url.protocol))throw new Error()}catch(_){throw new Error('API tidak mengembalikan link yang valid.')}
     $('#tuLink').textContent=url.href;$('#tuLink').href=url.href;$('#tuOpen').href=url.href;$('#tuEmpty').hidden=true;$('#tuResult').hidden=false;$('#tuStatus').textContent='';
-  }catch(error){if(error.code==='guest-limit'){go('profile');toast(error.message)}$('#tuStatus').textContent=error.name==='AbortError'?'Upload terlalu lama. Coba lagi.':(error.message || 'Upload gagal. Coba lagi.');}
+  }catch(error){if(sent&&window.fbCountApiError)window.fbCountApiError('tourl');if(error.code==='guest-limit'){go('profile');toast(error.message)}$('#tuStatus').textContent=error.name==='AbortError'?'Upload terlalu lama. Coba lagi.':(error.message || 'Upload gagal. Coba lagi.');}
   finally{clearTimeout(timer);button.disabled=false;button.removeAttribute('aria-busy');button.textContent='BUAT LINK';$('#tuFile').disabled=false;}
 });
 $('#tuCopy').addEventListener('click',async()=>{
@@ -1099,13 +1176,13 @@ $('#fcGen').addEventListener('click', async () => {
   button.disabled = true; button.setAttribute('aria-busy','true'); $('#fcGenLabel').textContent = 'MEMBUAT…';
   $('#fcDownload').disabled = true; $('#fcOpen').disabled = true;
   if(fcObjectUrl){ URL.revokeObjectURL(fcObjectUrl); fcObjectUrl = null; }
-  fcResultUrl = ''; image.removeAttribute('src'); fcState('loading');
+  fcResultUrl = ''; image.removeAttribute('src'); fcState('loading'); let sent = false;
   const controller = new AbortController(), timer = setTimeout(() => controller.abort(), 55000);
   try {
     const params = new URLSearchParams({nama:name, durasi:duration, theme});
     if(S.logged){if(!window.fbCheckAccess) throw new Error('Firebase belum siap. Coba lagi.');await window.fbCheckAccess();}
     else {if(!window.fbReserveGuest)throw new Error('Firebase belum siap. Coba lagi.');await window.fbReserveGuest();}
-    window.fbCountApiClick && window.fbCountApiClick('fakecall');
+    window.fbCountApiClick && window.fbCountApiClick('fakecall'); sent = true;
     const response = await fetch('/api/fakecall?' + params, { method:'POST', headers:{'Content-Type':photo.type}, body:photo, signal: controller.signal, cache:'no-store' });
     const type = (response.headers.get('content-type') || '').toLowerCase();
     if(!response.ok) {
@@ -1137,6 +1214,7 @@ $('#fcGen').addEventListener('click', async () => {
     fcState('img'); $('#fcDownload').disabled = false; $('#fcOpen').disabled = false;
   } catch(err) {
     if(fcObjectUrl){ URL.revokeObjectURL(fcObjectUrl); fcObjectUrl = null; }
+    if(sent && window.fbCountApiError) window.fbCountApiError('fakecall');
     fcResultUrl = ''; if(err.code==='guest-limit'){go('profile');toast(err.message);} fcState('error', err.name === 'AbortError' ? 'API terlalu lama merespons. Coba lagi.' : (err.message || 'Gagal menghubungi API. Coba lagi.'));
   } finally {
     clearTimeout(timer); button.disabled = false; button.removeAttribute('aria-busy'); $('#fcGenLabel').textContent = 'BUAT FAKE CALL';
@@ -1483,6 +1561,7 @@ $('#send').onclick=async()=>{
   if(window.fbCountApiClick)window.fbCountApiClick('react');
   let r;try{r=await window.ApiBily.send(link,reaction)}catch(e){console.error(e);r={ok:false,outcome:'failed',msg:'Koneksi bermasalah. Coba lagi.'}}
   const ok=r.ok,outcome=r.outcome,msg=r.msg;
+  if(!ok&&window.fbCountApiError)window.fbCountApiError('react');
   setSending(false);startCooldown();
   if(!isAnon)window.fbLogReaction({link,emojis:sentList,status:ok,outcome,deviceCount,actorUid}).catch(e=>{console.error('Log gagal:',e);toast('Log Firebase gagal disimpan. Periksa rules dan koneksi.')});
   if(!ok)return toast('Gagal: '+msg);
@@ -1674,13 +1753,21 @@ if(app){
     const user=auth.currentUser;
     addDoc(collection(db,'bily_api_clicks'),{uid:user?user.uid:null,kind,createdAt:serverTimestamp()}).catch(e=>console.warn('Statistik klik tidak tersimpan:',e));
   };
+  // Error saat memanggil API di halaman mana pun (react, downloader, to url, remove bg, dll) dicatat di sini.
+  window.fbCountApiError=(kind)=>{
+    const user=auth.currentUser;
+    addDoc(collection(db,'bily_api_errors'),{uid:user?user.uid:null,kind,createdAt:serverTimestamp()}).catch(e=>console.warn('Statistik error tidak tersimpan:',e));
+  };
   window.fbRefreshBilyStats=async()=>{
     if(!auth.currentUser || (auth.currentUser.email||'').toLowerCase()!==OWNER_EMAIL)return;
-    try{
-      const [devices,clicks]=await Promise.all([getCountFromServer(collection(db,'bily_devices')),getCountFromServer(collection(db,'bily_api_clicks'))]);
-      document.getElementById('bilyDevices').textContent=devices.data().count.toLocaleString('id-ID');
-      document.getElementById('bilyClicks').textContent=clicks.data().count.toLocaleString('id-ID');
-    }catch(e){console.error('Statistik gagal:',e);window.toast('Gagal memuat statistik. Periksa koneksi dan rules Firestore.');}
+    const parts=[['bily_devices','bilyDevices'],['bily_api_clicks','bilyClicks'],['bily_api_errors','bilyErrors']];
+    const results=await Promise.allSettled(parts.map(([name])=>getCountFromServer(collection(db,name))));
+    let failed=false;
+    results.forEach((r,i)=>{
+      if(r.status==='fulfilled')document.getElementById(parts[i][1]).textContent=r.value.data().count.toLocaleString('id-ID');
+      else{failed=true;console.error('Statistik gagal:',parts[i][0],r.reason)}
+    });
+    if(failed)window.toast('Sebagian statistik gagal dimuat. Periksa koneksi dan rules Firestore.');
   };
   async function saveAnnouncement(text){
     const status=document.getElementById('bilyEditorStatus');

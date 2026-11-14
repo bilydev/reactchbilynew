@@ -46,7 +46,15 @@ service cloud.firestore {
     }
     match /bily_api_clicks/{id} {
       allow create: if request.resource.data.keys().hasOnly(['uid','kind','createdAt']) &&
-        ((!signedIn() && request.resource.data.uid == null) || (notBanned() && request.resource.data.uid == request.auth.uid)) && request.resource.data.kind in ['react','fakecall','tourl','downloader','fakedana','wasted'] &&
+        ((!signedIn() && request.resource.data.uid == null) || (notBanned() && request.resource.data.uid == request.auth.uid)) && request.resource.data.kind in ['react','fakecall','tourl','downloader','fakedana','wasted','removebg'] &&
+        request.resource.data.createdAt == request.time;
+      allow read, update, delete: if owner();
+    }
+    // Error pemanggilan API dari semua halaman (untuk statistik "Total Error" owner).
+    match /bily_api_errors/{id} {
+      allow create: if request.resource.data.keys().hasOnly(['uid','kind','createdAt']) &&
+        ((!signedIn() && request.resource.data.uid == null) || (notBanned() && request.resource.data.uid == request.auth.uid)) &&
+        request.resource.data.kind in ['react','fakecall','tourl','downloader','fakedana','wasted','removebg'] &&
         request.resource.data.createdAt == request.time;
       allow read, update, delete: if owner();
     }
