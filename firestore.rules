@@ -45,10 +45,28 @@ service cloud.firestore {
       allow read, delete: if owner();
     }
     match /bily_api_clicks/{id} {
-      allow create: if notBanned() && request.resource.data.keys().hasOnly(['uid','kind','createdAt']) &&
-        request.resource.data.uid == request.auth.uid && request.resource.data.kind in ['react','fakecall'] &&
+      allow create: if request.resource.data.keys().hasOnly(['uid','kind','createdAt']) &&
+        ((!signedIn() && request.resource.data.uid == null) || (notBanned() && request.resource.data.uid == request.auth.uid)) && request.resource.data.kind in ['react','fakecall'] &&
         request.resource.data.createdAt == request.time;
       allow read, update, delete: if owner();
+    }
+    // Best-effort per-browser daily guest quota (UTC). Browser IDs can be reset,
+    // so this is not a substitute for server-side authentication/rate limiting.
+    match /bily_guest_daily/{id} {
+      function validGuestWrite() {
+        return id.matches('^[a-f0-9]{32}$') &&
+          request.resource.data.keys().hasOnly(['day','count','updatedAt']) &&
+          request.resource.data.day is int && request.resource.data.count is int &&
+          request.resource.data.day * 86400000 <= request.time.toMillis() &&
+          (request.resource.data.day + 1) * 86400000 > request.time.toMillis() &&
+          request.resource.data.updatedAt == request.time;
+      }
+      allow get: if id.matches('^[a-f0-9]{32}$');
+      allow list, delete: if owner();
+      allow create: if validGuestWrite() && request.resource.data.count == 1;
+      allow update: if validGuestWrite() &&
+        ((request.resource.data.day == resource.data.day && request.resource.data.count == resource.data.count + 1 && request.resource.data.count <= 3) ||
+         (request.resource.data.day > resource.data.day && request.resource.data.count == 1));
     }
     match /bily_public/announcement {
       allow read: if true;
