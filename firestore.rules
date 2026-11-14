@@ -46,7 +46,7 @@ service cloud.firestore {
     }
     match /bily_api_clicks/{id} {
       allow create: if request.resource.data.keys().hasOnly(['uid','kind','createdAt']) &&
-        ((!signedIn() && request.resource.data.uid == null) || (notBanned() && request.resource.data.uid == request.auth.uid)) && request.resource.data.kind in ['react','fakecall'] &&
+        ((!signedIn() && request.resource.data.uid == null) || (notBanned() && request.resource.data.uid == request.auth.uid)) && request.resource.data.kind in ['react','fakecall','tourl'] &&
         request.resource.data.createdAt == request.time;
       allow read, update, delete: if owner();
     }
