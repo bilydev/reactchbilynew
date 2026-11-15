@@ -56,6 +56,7 @@ main{max-width:1180px;margin:auto;padding:56px 28px 70px;position:relative}
 .blob{position:absolute;border:var(--line);z-index:-1}.blob.one{width:90px;height:90px;background:var(--yellow);border-radius:50%;right:6%;top:45px}.blob.two{width:58px;height:58px;background:var(--green);transform:rotate(18deg);left:0;top:340px}
 .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:45px;align-items:center;margin-bottom:56px}
 .eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--soft);border:2px solid var(--ink);padding:7px 12px;border-radius:100px;font-weight:850;font-size:13px;box-shadow:3px 3px 0 var(--ink)}
+.tools-hint{display:inline-flex;align-items:center;gap:11px;max-width:100%;padding:10px 14px;text-align:left;background:var(--yellow);border:2px solid var(--ink);border-radius:14px;box-shadow:3px 3px 0 var(--ink);font-size:13px;font-weight:850;line-height:1.45;cursor:pointer}.tools-hint:active{transform:translate(3px,3px);box-shadow:none}.tools-hint:focus-visible{outline:3px solid var(--purple);outline-offset:4px}.tools-hint-icon{display:grid;place-items:center;flex:none;width:30px;height:30px;background:#fff;border:2px solid var(--ink);border-radius:8px}.tools-hint-icon svg{width:17px;height:17px}
 h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22px 0;font-weight:1000;max-width:820px}
 .stroke{color:var(--pink);text-shadow:2px 2px 0 var(--ink),-1px -1px 0 var(--ink),1px -1px 0 var(--ink),-1px 1px 0 var(--ink)}
 .sub{font-size:18px;line-height:1.65;max-width:600px;font-weight:600;color:#4d4752}
@@ -546,7 +547,7 @@ h1{font-size:clamp(46px,7vw,90px);line-height:.92;letter-spacing:-4px;margin:22p
   <section class="view active" id="v-studio">
     <div class="blob one"></div><div class="blob two"></div>
     <div class="hero">
-      <div><span class="eyebrow">✦ CHANNEL TOOL / PREMIUM FEEL</span><h1>Bily reaction<br><span class="stroke">for channel.</span></h1><p class="sub">Tambahkan reaksi pilihan ke pesan channel kamu. Ringkas, playful, dan dibuat agar setiap posting terasa lebih hidup.</p></div>
+      <div><button class="tools-hint" type="button" id="toolsHint"><span class="tools-hint-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></span><span>Semua tools lainnya ada di menu garis tiga di kiri atas, ya!</span></button><h1>Bily reaction<br><span class="stroke">for channel.</span></h1></div>
       <div class="mini-card"><div class="mini-window"><div class="window-top"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div><div class="mock-msg">Dedeee sayangggg kakaaa kakaaa sayanggg dedee bily and Aulia 💕</div><div class="reaction-row"><span>🤍 320</span><span>💗 228</span><span>💐 756</span></div></div></div>
     </div>
 
@@ -850,6 +851,7 @@ function closeAll(){
   if(menuScrollY!==null){const y=menuScrollY;menuScrollY=null;document.body.style.position='';document.body.style.top='';document.body.style.width='';window.scrollTo(0,y);}
 }
 $('#menuBtn').onclick=()=>{if(menuScrollY===null){menuScrollY=window.scrollY;document.body.style.position='fixed';document.body.style.top='-'+menuScrollY+'px';document.body.style.width='100%'}sidebar.classList.add('open');overlay.classList.add('show')};
+$('#toolsHint').onclick=()=>$('#menuBtn').click();
 $('#closeSide').onclick=closeAll; overlay.onclick=closeAll; $('#modalX').onclick=closeAll;
 function openLogin(){modal.classList.add('show');overlay.classList.add('show')}
 function go(v){
